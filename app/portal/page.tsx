@@ -21,18 +21,18 @@ type MessageRow = { id: string; kind: string; body: string | null };
 type PlanRow = { id: string; name: string; code_limit: number; uploads_allowed: boolean };
 
 const ERRORS: Record<string, string> = {
-  invalid_id: "Diese Kennung hat nicht das richtige Format.",
+  invalid_id: "Diese Nummer hat nicht das richtige Format. Sie besteht aus 10 Zeichen.",
   code_limit_reached: "Dein Limit an Knöpfen ist erreicht. Mit einem Abo sind mehr möglich.",
   code_not_claimable: "Dieser Knopf ist schon vergeben oder nicht aktiv.",
   not_authenticated: "Bitte melde dich zuerst an.",
   claim: "Der Knopf konnte nicht übernommen werden.",
-  create: "Der Code konnte nicht angelegt werden. Vielleicht ist dein Limit erreicht.",
+  create: "Der QR-Code konnte nicht erstellt werden. Vielleicht ist dein Limit erreicht.",
   update: "Die Änderung konnte nicht gespeichert werden.",
 };
 
 const NOTICES: Record<string, string> = {
   claimed: "Der Knopf gehört jetzt dir.",
-  created: "Der Code ist angelegt.",
+  created: "Der QR-Code ist erstellt.",
   saved: "Gespeichert.",
 };
 
@@ -101,26 +101,38 @@ export default async function PortalPage({
       {notice && NOTICES[notice] && <div className="card notice" role="status">{NOTICES[notice]}</div>}
 
       <h2>Knopf übernehmen</h2>
+      <p className="muted small">
+        Du hast eine Puppe mit Knopf? Tippe den Knopf mit dem Handy an, dann wird die Nummer hier
+        automatisch eingetragen.
+      </p>
       <form className="card stack" action={claimCode}>
         <label>
-          Kennung des Knopfes (10 Zeichen, steht in der Adresse nach /q/)
-          <input name="short_id" defaultValue={claimId ?? ""} autoCapitalize="none" autoCorrect="off" required />
+          Nummer deines Knopfes
+          <input name="short_id" defaultValue={claimId ?? ""} autoCapitalize="none" autoCorrect="off" placeholder="z. B. a9gsbne6h9" required />
         </label>
+        <p className="muted small">
+          Von Hand eintragen musst du sie nur, wenn das Antippen nicht klappt. Du findest die 10 Zeichen
+          am Ende der Adresse, die der Knopf öffnet, nach /q/.
+        </p>
         <div><button>Übernehmen</button></div>
       </form>
 
-      <h2>Eigenen Code anlegen</h2>
+      <h2>QR-Code ohne Knopf erstellen</h2>
+      <p className="muted small">
+        Für Karten, Sticker oder Geschenke ohne Puppe: Du bekommst einen QR-Code zum Ausdrucken, hinter
+        dem du eine Botschaft hinterlegst.
+      </p>
       <form className="card stack" action={createCode}>
         <label>
           Name (nur für dich sichtbar)
           <input name="title" maxLength={120} placeholder="z. B. Karte für Oma" />
         </label>
-        <div><button className="secondary">Anlegen</button></div>
+        <div><button className="secondary">QR-Code erstellen</button></div>
       </form>
 
       <h2>Übersicht</h2>
       {codeRows.length === 0 && (
-        <p className="muted">Noch nichts hier. Übernimm einen Knopf oder lege einen Code an.</p>
+        <p className="muted">Noch nichts hier. Übernimm einen Knopf oder erstelle einen QR-Code.</p>
       )}
       {codeRows.map((code) => {
         const link = `${origin}/q/${code.short_id}`;
@@ -136,7 +148,7 @@ export default async function PortalPage({
             <div className="row between">
               <div>
                 <code className="id">{code.short_id}</code>{" "}
-                <span className="badge">{code.chip_uid ? "Knopf" : "Eigener Code"}</span>{" "}
+                <span className="badge">{code.chip_uid ? "Knopf" : "QR-Code ohne Knopf"}</span>{" "}
                 {!code.is_active && <span className="badge">pausiert</span>}
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -150,9 +162,9 @@ export default async function PortalPage({
               <input name="title" defaultValue={code.title ?? ""} maxLength={120} />
             </label>
             <label>
-              Was erscheint beim Antippen?
+              Botschaft, die beim Antippen oder Scannen erscheint
               <select name="target" defaultValue={current}>
-                <option value="">Noch nichts</option>
+                <option value="">Noch keine Botschaft</option>
                 {archiveRows.length > 0 && (
                   <optgroup label="Aus dem Archiv">
                     {archiveRows.map((item) => (
