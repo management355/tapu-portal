@@ -39,6 +39,10 @@ export default async function LoginPage({
           <button className="secondary" formAction={signup}>Neu registrieren</button>
         </div>
       </form>
+      <p className="muted small">
+        Mit der Registrierung akzeptierst du die <Link href="/nutzungsbedingungen">Nutzungsbedingungen</Link>.
+        Wie wir mit deinen Daten umgehen, steht in der <Link href="/datenschutz">Datenschutzerklärung</Link>.
+      </p>
       <p className="small"><Link href="/">Zur Startseite</Link></p>
     </main>
   );

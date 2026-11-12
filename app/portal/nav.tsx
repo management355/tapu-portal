@@ -3,6 +3,7 @@ import Link from "next/link";
 const TABS = [
   { href: "/portal", label: "Meine Knöpfe" },
   { href: "/portal/messages", label: "Meine Botschaften" },
+  { href: "/portal/konto", label: "Konto" },
 ];
 
 export function PortalNav({ current, isAdmin }: { current: string; isAdmin: boolean }) {

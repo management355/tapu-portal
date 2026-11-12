@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { isConfigured } from "@/lib/supabase/env";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ konto?: string }>;
+}) {
+  const { konto } = await searchParams;
   return (
     <main>
       <div className="face" aria-hidden="true">:x</div>
@@ -10,6 +15,9 @@ export default function Home() {
         Tippe den Knopf mit deinem Handy an und sieh, was jemand für dich
         hinterlegt hat. Oder hinterlege selbst etwas.
       </p>
+      {konto === "geloescht" && (
+        <div className="card notice" role="status">Dein Konto wurde gelöscht.</div>
+      )}
       {!isConfigured() && (
         <div className="card error">
           Die Verbindung zur Datenbank ist noch nicht eingerichtet. Es fehlen
