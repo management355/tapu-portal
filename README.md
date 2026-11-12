@@ -7,9 +7,11 @@ Portal für Knöpfe mit hinterlegten Botschaften: Antippen (NFC) oder Scannen (Q
 - Anmelden und Registrieren mit E-Mail und Passwort
 - Knopf übernehmen, eigene Codes anlegen, Ziel aus dem Archiv wählen
 - QR-Code je Code
-- Öffentliche Scan-Seite mit Zählung der Aufrufe
+- Öffentliche Scan-Seite mit Zählung der Aufrufe und Meldeknopf
+- Eigene Botschaften mit Text, Bild, Audio oder Video (Stufen Plus und Pro)
+- Admin-Bereich: Archiv pflegen, Meldungen bearbeiten, Botschaften sperren
 
-Noch nicht enthalten: Uploads, Admin-Bereich, Abo-Zahlung, Zugangscode.
+Noch nicht enthalten: Abo-Zahlung, Zugangscode, Statistik, Branding.
 
 ## Einrichtung bei Vercel
 
@@ -34,7 +36,9 @@ npm run dev
 ## Aufbau
 
 - `app/q/[shortId]` Scan-Seite (öffentlich)
-- `app/portal` Nutzerbereich
+- `app/portal` Nutzerbereich (Knöpfe, eigene Botschaften)
+- `app/admin` Admin-Bereich
+- `app/upload-actions.ts` Prüfung und Freigabe von Uploads
 - `app/login`, `app/auth` Anmeldung
 - `lib/supabase` Verbindung zur Datenbank
 - `proxy.ts` frischt die Anmeldung auf

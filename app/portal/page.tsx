@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getOrigin, normalizeShortId } from "@/lib/site";
+import { getAccount } from "@/lib/account";
 import { isConfigured } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 import { claimCode, createCode, updateCode } from "./actions";
+import { PortalNav } from "./nav";
 
 type CodeRow = {
   id: string;
@@ -55,7 +57,8 @@ export default async function PortalPage({
     redirect(`/login?next=${encodeURIComponent(next)}`);
   }
 
-  const [subscription, codes, archive, messages, origin] = await Promise.all([
+  const [account, subscription, codes, archive, messages, origin] = await Promise.all([
+    getAccount(),
     supabase
       .from("subscriptions")
       .select("status, plans(id, name, code_limit, uploads_allowed)")
@@ -93,6 +96,7 @@ export default async function PortalPage({
           <button className="secondary">Abmelden</button>
         </form>
       </div>
+      <PortalNav current="/portal" isAdmin={account?.isAdmin ?? false} />
       <p className="muted small">
         {user.email} · Stufe {plan?.name ?? "unbekannt"} · {codeRows.length} von {limit} Knöpfen belegt
       </p>
@@ -178,7 +182,7 @@ export default async function PortalPage({
                   <optgroup label="Meine Botschaften">
                     {messageRows.map((message) => (
                       <option key={message.id} value={`message:${message.id}`}>
-                        {(message.body ?? message.kind).slice(0, 60)}
+                        {(message.body ?? ({ image: "Bild", audio: "Audio", video: "Video" } as Record<string, string>)[message.kind] ?? "Botschaft").slice(0, 60)}
                       </option>
                     ))}
                   </optgroup>
