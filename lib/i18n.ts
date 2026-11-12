@@ -36,3 +36,9 @@ export const ACCOUNT_DELETED: Record<Lang, string> = {
   en: "Your account has been deleted.",
   ru: "Твой аккаунт удалён.",
 };
+
+export const SOUND_ON: Record<Lang, string> = {
+  de: "Ton einschalten",
+  en: "Turn sound on",
+  ru: "Включить звук",
+};

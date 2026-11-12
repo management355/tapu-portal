@@ -184,6 +184,8 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
 .lp-tile p, .lp-steps p { margin: 0; line-height: 1.55; color: var(--soft); }
 
 .lp-video { width: 100%; max-width: 60rem; align-self: center; }
+.lp-video-frame { position: relative; }
+.lp-sound { position: absolute; top: 1rem; right: 1rem; }
 .lp-video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0e0b13; border: 1px solid var(--accent); border-radius: 4px; }
 .lp-video-note { margin: 0.75rem 0 0; font-size: 0.875rem; color: var(--muted); text-align: center; }
 .lp-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14.4rem, 100%), 1fr)); gap: 2rem; }

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ACCOUNT_DELETED, LANGS, VIDEO_NOTE, getLang, landingStrings } from "@/lib/i18n";
+import { ExplainerVideo } from "./explainer-video";
+import { ACCOUNT_DELETED, SOUND_ON, LANGS, VIDEO_NOTE, getLang, landingStrings } from "@/lib/i18n";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 
@@ -179,9 +180,7 @@ export default async function Home({
               <h2>{t.videoH}</h2>
             </div>
             {isConfigured() && <div className="lp-video">
-              <video controls playsInline preload="metadata" poster={POSTER_URL} aria-label={t.videoH} lang="de">
-                <source src={VIDEO_URL} type="video/mp4" />
-              </video>
+              <ExplainerVideo src={VIDEO_URL} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} />
               {videoNote && <p className="lp-video-note">{videoNote}</p>}
             </div>}
             <ol className="lp-steps">
