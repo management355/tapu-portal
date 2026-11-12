@@ -36,3 +36,34 @@ export const SOUND_ON: Record<Lang, string> = {
   en: "Turn sound on",
   ru: "Включить звук",
 };
+
+export const SCAN_STRINGS: Record<Lang, {
+  home: string; file: string; reported: string; report: string; reportQuestion: string; reportSend: string;
+  emptyH: string; emptyP: string; unclaimedH: string; unclaimedP: string; claim: string;
+  missingH: string; missingP: string; language: string;
+}> = {
+  de: {
+    home: "Zur Startseite", file: "Hinterlegte Datei", reported: "Danke, die Meldung ist angekommen.",
+    report: "Inhalt melden", reportQuestion: "Was stimmt mit diesem Inhalt nicht? (optional)", reportSend: "Meldung abschicken",
+    emptyH: "Hier ist noch nichts hinterlegt", emptyP: "Der Besitzer dieses Knopfes hat noch keine Botschaft ausgewählt.",
+    unclaimedH: "Dieser Knopf wartet auf dich", unclaimedP: "Übernimm ihn in dein Konto und hinterlege deine erste Botschaft.",
+    claim: "Knopf übernehmen", missingH: "Nichts gefunden", missingP: "Diese Adresse gehört zu keinem aktiven Knopf.",
+    language: "Sprache",
+  },
+  en: {
+    home: "Go to home page", file: "Attached file", reported: "Thank you, your report has been received.",
+    report: "Report this content", reportQuestion: "What is wrong with this content? (optional)", reportSend: "Send report",
+    emptyH: "Nothing has been left here yet", emptyP: "The owner of this button has not chosen a message yet.",
+    unclaimedH: "This button is waiting for you", unclaimedP: "Add it to your account and leave your first message.",
+    claim: "Claim this button", missingH: "Nothing found", missingP: "This address does not belong to an active button.",
+    language: "Language",
+  },
+  ru: {
+    home: "На главную", file: "Прикреплённый файл", reported: "Спасибо, жалоба получена.",
+    report: "Пожаловаться на содержимое", reportQuestion: "Что не так с этим содержимым? (необязательно)", reportSend: "Отправить жалобу",
+    emptyH: "Здесь пока ничего нет", emptyP: "Владелец этой кнопки ещё не выбрал послание.",
+    unclaimedH: "Эта кнопка ждёт тебя", unclaimedP: "Добавь её в свой аккаунт и оставь первое послание.",
+    claim: "Забрать кнопку", missingH: "Ничего не найдено", missingP: "Этот адрес не принадлежит активной кнопке.",
+    language: "Язык",
+  },
+};
