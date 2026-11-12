@@ -109,17 +109,18 @@ export default async function ScanPage({
 
   return (
     <main>
-      <div className="face" aria-hidden="true">:x</div>
+      <p className="scan-head"><Link href="/" className="scan-logo">taPu</Link></p>
       {shown.state === "content" && (
         <>
           {shown.title && <h1>{shown.title}</h1>}
           <MediaView path={shown.mediaPath} url={shown.mediaUrl} label={shown.title ?? "Hinterlegte Datei"} />
           {shown.body && <p className="message-body">{shown.body}</p>}
+          <p className="scan-home"><Link className="button secondary" href="/">Zur Startseite</Link></p>
           {gemeldet && (
             <div className="card notice" role="status">Danke, die Meldung ist angekommen.</div>
           )}
           {shown.reportable && !gemeldet && (
-            <details style={{ marginTop: "3rem" }}>
+            <details style={{ marginTop: "2rem" }}>
               <summary>Inhalt melden</summary>
               <form className="stack" action={reportContent} style={{ marginTop: "0.75rem" }}>
                 <input type="hidden" name="short_id" value={shown.shortId} />
@@ -137,19 +138,24 @@ export default async function ScanPage({
         <>
           <h1>Hier ist noch nichts hinterlegt</h1>
           <p className="muted">Der Besitzer dieses Knopfes hat noch keine Botschaft ausgewählt.</p>
+          <p className="scan-home"><Link className="button secondary" href="/">Zur Startseite</Link></p>
         </>
       )}
       {shown.state === "unclaimed" && (
         <>
           <h1>Dieser Knopf wartet auf dich</h1>
           <p className="muted">Übernimm ihn in dein Konto und hinterlege deine erste Botschaft.</p>
-          <Link className="button" href={`/portal?claim=${shown.shortId}`}>Knopf übernehmen</Link>
+          <div className="row">
+            <Link className="button" href={`/portal?claim=${shown.shortId}`}>Knopf übernehmen</Link>
+            <Link className="button secondary" href="/">Zur Startseite</Link>
+          </div>
         </>
       )}
       {shown.state === "unavailable" && (
         <>
           <h1>Nichts gefunden</h1>
           <p className="muted">Diese Adresse gehört zu keinem aktiven Knopf.</p>
+          <p className="scan-home"><Link className="button secondary" href="/">Zur Startseite</Link></p>
         </>
       )}
       {shown.state === "config" && (
