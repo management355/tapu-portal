@@ -130,25 +130,14 @@ export default async function Home({
             <p className="lp-lead">{t.sub}</p>
             <div className="lp-actions">
               <Link href="/portal" className="lp-cta">{t.cta}</Link>
-              <a href="#video" className="lp-link">{t.ctaVideo}</a>
+              <a href="#video" className="lp-link">{t.navHow}</a>
             </div>
           </div>
-          <div className="lp-hero-art">
-            <svg role="img" aria-label="taPu: Logo, QR-Code, A9GSB NE6H9" viewBox="0 0 600 600">
-              <defs>
-                <radialGradient id="tapu-glow" cx="50%" cy="50%" r="50%">
-                  <stop offset="55%" stopColor="#F0B35E" stopOpacity="0.22" />
-                  <stop offset="100%" stopColor="#F0B35E" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-              <circle className="lp-glow" cx="300" cy="300" r="300" fill="url(#tapu-glow)" />
-              <circle cx="300" cy="300" r="236" fill="#1F1929" stroke="#F0B35E" strokeWidth="3" />
-              <circle cx="300" cy="300" r="214" fill="none" stroke="#5B4A3A" strokeWidth="1.5" />
-              <text x="300" y="168" textAnchor="middle" className="lp-svg-logo" fontSize="58" fontWeight="800" letterSpacing="-1" fill="#F2EADF">taPu</text>
-              <rect x="190" y="190" width="220" height="220" rx="10" fill="#FFFFFF" />
-              <use href="#tapu-qr" x="204" y="204" width="192" height="192" />
-              <text x="300" y="458" textAnchor="middle" className="lp-svg-code" fontSize="26" fontWeight="700" letterSpacing="2" fill="#F0B35E">A9GSB·NE6H9</text>
-            </svg>
+          <div className="lp-hero-video" id="video-top">
+            {isConfigured() && (
+              <ExplainerVideo src={VIDEO_URL} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} />
+            )}
+            {videoNote && <p className="lp-video-note">{videoNote}</p>}
           </div>
         </section>
 
@@ -179,10 +168,6 @@ export default async function Home({
               <div className="lp-eyebrow">{t.videoEyebrow}</div>
               <h2>{t.videoH}</h2>
             </div>
-            {isConfigured() && <div className="lp-video">
-              <ExplainerVideo src={VIDEO_URL} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} />
-              {videoNote && <p className="lp-video-note">{videoNote}</p>}
-            </div>}
             <ol className="lp-steps">
               {steps.map(([title, text], index) => (
                 <li key={title}>
