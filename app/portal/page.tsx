@@ -22,6 +22,16 @@ type ArchiveRow = { id: string; title: string; category: string | null; is_premi
 type MessageRow = { id: string; kind: string; body: string | null };
 type PlanRow = { id: string; name: string; code_limit: number; uploads_allowed: boolean };
 
+const KIND_LABELS: Record<string, string> = { text: "Text", image: "Bild", audio: "Audio", video: "Video" };
+
+// Zeigt in der Auswahl, ob eine Botschaft ein Medium enthaelt.
+function messageLabel(message: MessageRow): string {
+  const kind = KIND_LABELS[message.kind] ?? "Botschaft";
+  const text = (message.body ?? "").slice(0, 50);
+  if (message.kind === "text") return text || kind;
+  return text ? `${kind} mit Text: ${text}` : `${kind} ohne Text`;
+}
+
 const ERRORS: Record<string, string> = {
   invalid_id: "Diese Nummer hat nicht das richtige Format. Sie besteht aus 10 Zeichen.",
   code_limit_reached: "Dein Limit an Knöpfen ist erreicht. Mit einem Abo sind mehr möglich.",
@@ -182,7 +192,7 @@ export default async function PortalPage({
                   <optgroup label="Meine Botschaften">
                     {messageRows.map((message) => (
                       <option key={message.id} value={`message:${message.id}`}>
-                        {(message.body ?? ({ image: "Bild", audio: "Audio", video: "Video" } as Record<string, string>)[message.kind] ?? "Botschaft").slice(0, 60)}
+                        {messageLabel(message)}
                       </option>
                     ))}
                   </optgroup>
