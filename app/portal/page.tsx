@@ -165,8 +165,11 @@ export default async function PortalPage({
                 <span className="badge">{code.chip_uid ? "Knopf" : "QR-Code ohne Knopf"}</span>{" "}
                 {!code.is_active && <span className="badge">pausiert</span>}
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="qr" src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
+              <div className="qr-box">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="qr" src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
+                <Link className="button secondary small" href={`/portal/druck/${code.short_id}`}>Drucken</Link>
+              </div>
             </div>
             <p className="small">
               <Link href={`/q/${code.short_id}`}>{link}</Link>

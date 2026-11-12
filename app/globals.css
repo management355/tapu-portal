@@ -202,3 +202,20 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
   .lp-hero { padding-bottom: 4rem; }
   .lp-section { padding-top: 4rem; padding-bottom: 4rem; }
 }
+
+/* QR-Code drucken */
+.qr-box { display: grid; gap: 0.5rem; justify-items: stretch; text-align: center; }
+.print-sheet { display: flex; flex-wrap: wrap; gap: 0.6cm; padding: 1rem; background: #ffffff; border-radius: 4px; }
+.print-label { box-sizing: border-box; padding: 0.35em 0.5em 0.4em; border: 0.03em solid #15111c; border-radius: 0.5em; background: #ffffff; color: #15111c; text-align: center; break-inside: avoid; }
+.print-label img { display: block; width: 100%; height: auto; }
+.print-logo { font-family: var(--sans); font-weight: 800; font-size: 1em; letter-spacing: -0.02em; line-height: 1.2; }
+.print-code { font-family: var(--mono); font-weight: 700; font-size: 0.42em; letter-spacing: 0.08em; line-height: 1.4; }
+.print-link { font-family: var(--sans); font-size: 0.24em; line-height: 1.3; overflow-wrap: anywhere; }
+
+@media print {
+  @page { margin: 1cm; }
+  html, body { background: #ffffff !important; color: #000000; }
+  .no-print, .legal-footer { display: none !important; }
+  main.print-page { max-width: none; padding: 0; }
+  .print-sheet { padding: 0; }
+}
