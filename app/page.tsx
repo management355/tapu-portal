@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
-import { ACCOUNT_DELETED, SOUND_ON, LANGS, VIDEO_NOTE, getLang, landingStrings } from "@/lib/i18n";
+import { ACCOUNT_DELETED, SOUND_ON, LANGS, getLang, landingStrings } from "@/lib/i18n";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 
 // Das Erklärvideo liegt im öffentlichen Ordner "site-media" unseres Supabase-Speichers.
 const MEDIA_BASE = `${supabaseUrl}/storage/v1/object/public/site-media`;
-const VIDEO_URL = `${MEDIA_BASE}/tapu-erklaervideo-de.mp4`;
 const POSTER_URL = `${MEDIA_BASE}/tapu-erklaervideo-poster.jpg`;
 
 function Qr({ x, y, size }: { x: number; y: number; size: number }) {
@@ -83,7 +82,6 @@ export default async function Home({
   const steps = [
     [t.s1, t.sd1], [t.s2, t.sd2], [t.s3, t.sd3], [t.s4, t.sd4],
   ];
-  const videoNote = VIDEO_NOTE[lang];
 
   return (
     <div className="lp" lang={lang}>
@@ -135,9 +133,8 @@ export default async function Home({
           </div>
           <div className="lp-hero-video" id="video-top">
             {isConfigured() && (
-              <ExplainerVideo src={VIDEO_URL} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} />
+              <ExplainerVideo src={`${MEDIA_BASE}/tapu-erklaervideo-${lang}.mp4`} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} lang={lang} key={lang} />
             )}
-            {videoNote && <p className="lp-video-note">{videoNote}</p>}
           </div>
         </section>
 

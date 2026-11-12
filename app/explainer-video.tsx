@@ -9,11 +9,13 @@ export function ExplainerVideo({
   poster,
   label,
   soundOn,
+  lang,
 }: {
   src: string;
   poster: string;
   label: string;
   soundOn: string;
+  lang: string;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
@@ -59,7 +61,7 @@ export function ExplainerVideo({
         preload="metadata"
         poster={poster}
         aria-label={label}
-        lang="de"
+        lang={lang}
         onVolumeChange={(event) => setMuted(event.currentTarget.muted || event.currentTarget.volume === 0)}
       >
         <source src={src} type="video/mp4" />

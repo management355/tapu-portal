@@ -25,12 +25,6 @@ export function landingStrings(lang: Lang): LandingStrings {
   return strings[lang];
 }
 
-export const VIDEO_NOTE: Record<Lang, string | null> = {
-  de: null,
-  en: "The video is in German for now.",
-  ru: "Видео пока только на немецком языке.",
-};
-
 export const ACCOUNT_DELETED: Record<Lang, string> = {
   de: "Dein Konto wurde gelöscht.",
   en: "Your account has been deleted.",
