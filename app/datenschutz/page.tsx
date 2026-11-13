@@ -87,6 +87,13 @@ export default function DatenschutzPage() {
         <li>
           <strong>Vercel Inc.</strong> (USA): Hosting und Auslieferung der Webseiten.
         </li>
+        <li>
+          <strong>Google Ireland Ltd.</strong> und <strong>Meta Platforms Ireland Ltd.</strong>: nur, wenn du dich
+          freiwillig über „Mit Google anmelden“ oder „Mit Facebook anmelden“ anmeldest. Der Anbieter erfährt dann,
+          dass du dich bei uns anmeldest, und übermittelt uns deinen Namen, deine E-Mail-Adresse und dein
+          Profilbild (Art. 6 Abs. 1 lit. b DSGVO). Du kannst dich stattdessen jederzeit mit E-Mail und Passwort
+          registrieren.
+        </li>
       </ul>
       <p>
         Mit den Dienstleistern bestehen Verträge zur Auftragsverarbeitung. Soweit dabei Daten in die USA

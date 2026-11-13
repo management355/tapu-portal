@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
-import { ACCOUNT_DELETED, SOUND_ON, LANGS, getLang, landingStrings } from "@/lib/i18n";
+import { ACCOUNT_DELETED, PORTAL_LABEL, SOUND_ON, LANGS, getLang, landingStrings } from "@/lib/i18n";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
+import { createClient } from "@/lib/supabase/server";
 
 // Das Erklärvideo liegt im öffentlichen Ordner "site-media" unseres Supabase-Speichers.
 const MEDIA_BASE = `${supabaseUrl}/storage/v1/object/public/site-media`;
@@ -76,6 +77,12 @@ export default async function Home({
   const { konto } = await searchParams;
   const lang = await getLang();
   const t = landingStrings(lang);
+  // Angemeldete sehen statt "Anmelden" den Weg zurück in ihr Portal.
+  let signedIn = false;
+  if (isConfigured()) {
+    const supabase = await createClient();
+    signedIn = !!(await supabase.auth.getUser()).data.user;
+  }
   const tiles = [
     [t.t1, t.d1], [t.t2, t.d2], [t.t3, t.d3], [t.t4, t.d4], [t.t5, t.d5], [t.t6, t.d6],
   ];
@@ -105,7 +112,7 @@ export default async function Home({
               </a>
             ))}
           </div>
-          <Link href="/login" className="lp-login">{t.login}</Link>
+          <Link href={signedIn ? "/portal" : "/login"} className="lp-login">{signedIn ? PORTAL_LABEL[lang] : t.login}</Link>
         </nav>
       </header>
 

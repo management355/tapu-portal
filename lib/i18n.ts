@@ -67,3 +67,9 @@ export const SCAN_STRINGS: Record<Lang, {
     language: "Язык",
   },
 };
+
+export const PORTAL_LABEL: Record<Lang, string> = {
+  de: "Mein Portal",
+  en: "My portal",
+  ru: "Мой портал",
+};
