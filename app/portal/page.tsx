@@ -3,6 +3,9 @@ import { SiteHead } from "@/app/site-head";
 import { redirect } from "next/navigation";
 import { getOrigin, normalizeShortId } from "@/lib/site";
 import { getAccount } from "@/lib/account";
+import { MediaView } from "@/app/media-view";
+import { ARCHIVE_BUCKET, USER_BUCKET } from "@/lib/media";
+import { signedUrl } from "@/lib/media-server";
 import { isConfigured } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 import { claimCode, createCode, updateCode } from "./actions";
@@ -19,8 +22,16 @@ type CodeRow = {
   is_active: boolean;
 };
 
-type ArchiveRow = { id: string; title: string; category: string | null; is_premium: boolean };
-type MessageRow = { id: string; kind: string; body: string | null };
+type ArchiveRow = {
+  id: string;
+  title: string;
+  category: string | null;
+  is_premium: boolean;
+  body: string | null;
+  media_path: string | null;
+};
+type MessageRow = { id: string; kind: string; body: string | null; media_path: string | null; status: string };
+type Preview = { title: string | null; body: string | null; path: string | null; url: string | null; blocked: boolean };
 type PlanRow = { id: string; name: string; code_limit: number; uploads_allowed: boolean };
 
 const KIND_LABELS: Record<string, string> = { text: "Text", image: "Bild", audio: "Audio", video: "Video" };
@@ -82,12 +93,12 @@ export default async function PortalPage({
       .order("created_at", { ascending: true }),
     supabase
       .from("archive_items")
-      .select("id, title, category, is_premium")
+      .select("id, title, category, is_premium, body, media_path")
       .eq("is_published", true)
       .order("title", { ascending: true }),
     supabase
       .from("messages")
-      .select("id, kind, body")
+      .select("id, kind, body, media_path, status")
       .eq("owner_id", user.id)
       .order("created_at", { ascending: false }),
     getOrigin(),
@@ -98,6 +109,34 @@ export default async function PortalPage({
   const archiveRows = (archive.data ?? []) as ArchiveRow[];
   const messageRows = (messages.data ?? []) as MessageRow[];
   const limit = plan?.code_limit ?? 0;
+
+  // Vorschau der hinterlegten Botschaft je Knopf (Dateien über kurzlebige Links).
+  const previews = new Map<string, Preview>();
+  await Promise.all(
+    codeRows.map(async (code) => {
+      if (code.target_type === "message" && code.message_id) {
+        const message = messageRows.find((row) => row.id === code.message_id);
+        if (!message) return;
+        previews.set(code.id, {
+          title: null,
+          body: message.body,
+          path: message.media_path,
+          url: await signedUrl(USER_BUCKET, message.media_path),
+          blocked: message.status === "blocked",
+        });
+      } else if (code.target_type === "archive" && code.archive_item_id) {
+        const item = archiveRows.find((row) => row.id === code.archive_item_id);
+        if (!item) return;
+        previews.set(code.id, {
+          title: item.title,
+          body: item.body,
+          path: item.media_path,
+          url: await signedUrl(ARCHIVE_BUCKET, item.media_path),
+          blocked: false,
+        });
+      }
+    }),
+  );
 
   return (
     <main>
@@ -158,24 +197,47 @@ export default async function PortalPage({
             : code.target_type === "message" && code.message_id
               ? `message:${code.message_id}`
               : "";
+        const preview = previews.get(code.id);
         return (
           <form key={code.id} className="card stack" action={updateCode}>
             <input type="hidden" name="id" value={code.id} />
-            <div className="row between">
-              <div>
-                <code className="id">{code.short_id}</code>{" "}
-                <span className="badge">{code.chip_uid ? "Knopf" : "QR-Code ohne Knopf"}</span>{" "}
-                {!code.is_active && <span className="badge">pausiert</span>}
+            <div className="knopf-row">
+              <div className="knopf-side">
+                <div className={code.is_active ? "knopf" : "knopf knopf-off"}>
+                  <span className="knopf-logo">taPu</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
+                  <span className="knopf-code">
+                    {code.short_id.slice(0, 5).toUpperCase()}·{code.short_id.slice(5).toUpperCase()}
+                  </span>
+                </div>
+                <div className="knopf-meta">
+                  <span className="badge">{code.chip_uid ? "Knopf" : "QR-Code ohne Knopf"}</span>{" "}
+                  {!code.is_active && <span className="badge">pausiert</span>}
+                </div>
+                <div className="row" style={{ justifyContent: "center" }}>
+                  <Link className="button secondary small" href={`/q/${code.short_id}`}>Ansehen</Link>
+                  <Link className="button secondary small" href={`/portal/druck/${code.short_id}`}>Drucken</Link>
+                </div>
               </div>
-              <div className="qr-box">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="qr" src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
-                <Link className="button secondary small" href={`/portal/druck/${code.short_id}`}>Drucken</Link>
+              <div className="knopf-message">
+                {preview ? (
+                  <>
+                    {code.title && <div className="knopf-title">{code.title}</div>}
+                    {preview.blocked && <div className="card error">Diese Botschaft ist gesperrt und wird nicht angezeigt.</div>}
+                    {preview.title && <div className="knopf-archive">{preview.title}</div>}
+                    <MediaView path={preview.path} url={preview.url} label={preview.title ?? "Hinterlegte Datei"} />
+                    {preview.body && <p className="message-body">{preview.body}</p>}
+                  </>
+                ) : (
+                  <div className="knopf-empty">
+                    {code.title && <div className="knopf-title">{code.title}</div>}
+                    <div className="knopf-void">Gähnende Leere</div>
+                    <p className="muted small">Wähle unten eine Botschaft aus.</p>
+                  </div>
+                )}
               </div>
             </div>
-            <p className="small">
-              <Link href={`/q/${code.short_id}`}>{link}</Link>
-            </p>
             <label>
               Name
               <input name="title" defaultValue={code.title ?? ""} maxLength={120} />
