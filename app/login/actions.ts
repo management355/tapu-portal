@@ -1,7 +1,6 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { isSocialProvider } from "@/lib/auth-providers";
 import { getOrigin } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 
@@ -49,19 +48,4 @@ export async function signup(formData: FormData) {
   // Ohne E-Mail-Bestaetigung ist man sofort angemeldet, sonst kommt eine Mail.
   if (data.session) redirect(next);
   redirect(`/login?notice=confirm&next=${encodeURIComponent(next)}`);
-}
-
-// Anmeldung über Google oder Facebook: leitet zum Anbieter und von dort zurück.
-export async function socialLogin(formData: FormData) {
-  const next = safeNext(formData.get("next"));
-  const provider = String(formData.get("provider") ?? "");
-  if (!isSocialProvider(provider)) redirect("/login?error=social");
-  const origin = await getOrigin();
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider,
-    options: { redirectTo: `${origin}/auth/callback?next=${encodeURIComponent(next)}` },
-  });
-  if (error || !data.url) redirect(`/login?error=social&next=${encodeURIComponent(next)}`);
-  redirect(data.url);
 }

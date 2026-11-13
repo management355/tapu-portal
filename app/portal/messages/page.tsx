@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { SiteHead } from "@/app/site-head";
 import { MediaView } from "@/app/media-view";
 import { getAccount } from "@/lib/account";
 import { USER_BUCKET } from "@/lib/media";
@@ -30,6 +31,7 @@ export default async function MessagesPage() {
 
   return (
     <main>
+      <SiteHead />
       <h1>Meine Botschaften</h1>
       <PortalNav current="/portal/messages" isAdmin={account.isAdmin} />
 

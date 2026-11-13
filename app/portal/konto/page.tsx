@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { SiteHead } from "@/app/site-head";
 import { getAccount } from "@/lib/account";
 import { PortalNav } from "../nav";
 import { deleteAccount } from "./actions";
@@ -20,6 +21,7 @@ export default async function KontoPage({
 
   return (
     <main>
+      <SiteHead />
       <h1>Konto</h1>
       <PortalNav current="/portal/konto" isAdmin={account.isAdmin} />
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteHead } from "@/app/site-head";
 import { redirect } from "next/navigation";
 import { getOrigin, normalizeShortId } from "@/lib/site";
 import { getAccount } from "@/lib/account";
@@ -100,6 +101,7 @@ export default async function PortalPage({
 
   return (
     <main>
+      <SiteHead />
       <div className="row between">
         <h1>Meine Knöpfe</h1>
         <form action="/auth/signout" method="post">

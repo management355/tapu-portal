@@ -1,4 +1,5 @@
 import { notFound, redirect } from "next/navigation";
+import { SiteHead } from "@/app/site-head";
 import { MediaView } from "@/app/media-view";
 import { PortalNav } from "@/app/portal/nav";
 import { getAccount } from "@/lib/account";
@@ -43,6 +44,7 @@ export default async function AdminPage() {
   if (!admin) {
     return (
       <main>
+        <SiteHead />
         <h1>Admin</h1>
         <div className="card error">Es fehlt die Angabe SUPABASE_SECRET_KEY.</div>
       </main>
@@ -79,6 +81,7 @@ export default async function AdminPage() {
 
   return (
     <main>
+      <SiteHead />
       <h1>Admin</h1>
       <PortalNav current="/admin" isAdmin />
       <p className="muted small">
