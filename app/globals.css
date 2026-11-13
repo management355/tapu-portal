@@ -227,3 +227,10 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
 .scan-langs a[aria-current="true"] { color: var(--accent); border-bottom-color: var(--accent); }
 .scan-logo { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
 .scan-home { margin: 2rem 0 0; }
+
+/* Hinweis nach der Registrierung */
+.confirm-screen { margin-top: 1rem; padding: 2rem 1.5rem; border: 2px solid var(--accent); border-radius: 4px; background: var(--surface); text-align: center; }
+.confirm-screen h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); margin: 0.5rem 0 1rem; }
+.confirm-icon { font-size: 3.5rem; line-height: 1; color: var(--accent); }
+.confirm-lead { font-size: 1.25rem; line-height: 1.5; font-weight: 600; margin: 0 0 1.25rem; }
+.confirm-screen ul { text-align: left; max-width: 28rem; margin: 0 auto 1.5rem; padding-left: 1.25rem; color: var(--soft); line-height: 1.6; }

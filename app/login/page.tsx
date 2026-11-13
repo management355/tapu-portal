@@ -36,6 +36,33 @@ export default async function LoginPage({
     const { data } = await supabase.auth.getUser();
     if (data.user) redirect(target);
   }
+  // Direkt nach der Registrierung: nur dieser eine Hinweis, groß und unübersehbar.
+  if (notice === "confirm") {
+    return (
+      <main>
+        <SiteHead />
+        <div className="confirm-screen" role="status">
+          <div className="confirm-icon" aria-hidden="true">✉</div>
+          <h1>Bitte bestätige zuerst deine E-Mail-Adresse</h1>
+          <p className="confirm-lead">
+            Wir haben dir gerade eine Mail geschickt. Klicke auf den Link darin. Erst danach kannst du dich
+            anmelden.
+          </p>
+          <ul>
+            <li>Die Mail kann ein paar Minuten brauchen.</li>
+            <li>Schau auch im Spam-Ordner nach. Der Absender lautet „Supabase Auth“.</li>
+            <li>Öffne den Link am besten auf demselben Gerät, auf dem du dich registriert hast.</li>
+          </ul>
+          <p>
+            <Link className="button" href={`/login?next=${encodeURIComponent(target)}`}>
+              Ich habe bestätigt, weiter zur Anmeldung
+            </Link>
+          </p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main>
       <SiteHead />
