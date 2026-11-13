@@ -22,7 +22,9 @@ export async function login(formData: FormData) {
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) {
-    redirect(`/login?error=login&next=${encodeURIComponent(next)}`);
+    // Häufigster Fall bei neuen Nutzern: registriert, aber die Mail noch nicht bestätigt.
+    const reason = error.code === "email_not_confirmed" ? "unconfirmed" : "login";
+    redirect(`/login?error=${reason}&next=${encodeURIComponent(next)}`);
   }
   redirect(next);
 }
@@ -43,9 +45,21 @@ export async function signup(formData: FormData) {
     },
   });
   if (error) {
-    redirect(`/login?error=signup&next=${encodeURIComponent(next)}`);
+    const reason =
+      error.code === "over_email_send_rate_limit"
+        ? "wait"
+        : error.code === "user_already_exists"
+          ? "exists"
+          : error.code === "weak_password"
+            ? "password"
+            : "signup";
+    redirect(`/login?error=${reason}&next=${encodeURIComponent(next)}`);
   }
   // Ohne E-Mail-Bestaetigung ist man sofort angemeldet, sonst kommt eine Mail.
   if (data.session) redirect(next);
+  // Gibt es das Konto schon, meldet Supabase keinen Fehler, liefert aber keine Identität.
+  if (data.user && (data.user.identities?.length ?? 0) === 0) {
+    redirect(`/login?error=exists&next=${encodeURIComponent(next)}`);
+  }
   redirect(`/login?notice=confirm&next=${encodeURIComponent(next)}`);
 }
