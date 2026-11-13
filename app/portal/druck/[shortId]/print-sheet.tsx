@@ -9,7 +9,7 @@ const SIZES = [
   { cm: 15, name: "15 cm (Plakat)" },
 ];
 
-export function PrintSheet({ qrSrc, label, link }: { qrSrc: string; label: string; link: string }) {
+export function PrintSheet({ logo, qrSrc, label, link }: { logo: string; qrSrc: string; label: string; link: string }) {
   const [cm, setCm] = useState(5);
   const [count, setCount] = useState(1);
   const [showLink, setShowLink] = useState(false);
@@ -50,7 +50,7 @@ export function PrintSheet({ qrSrc, label, link }: { qrSrc: string; label: strin
       <div className="print-sheet">
         {Array.from({ length: count }, (_, index) => (
           <div className="print-label" key={index} style={{ width: `${cm}cm`, fontSize: `${cm / 5}cm` }}>
-            <div className="print-logo">taPu</div>
+            <div className="print-logo">{logo}</div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={qrSrc} alt={`QR-Code ${label}`} />
             <div className="print-code">{label}</div>

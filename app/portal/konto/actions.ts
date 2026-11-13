@@ -24,18 +24,25 @@ export async function deleteAccount(formData: FormData) {
   if (paths.length > 0) await admin.storage.from(USER_BUCKET).remove(paths);
 
   await admin.from("codes").delete().eq("owner_id", userId).is("chip_uid", null);
-  await admin
-    .from("codes")
-    .update({
-      owner_id: null,
-      title: null,
-      target_type: null,
-      message_id: null,
-      archive_item_id: null,
-      pin_hash: null,
-      claimed_at: null,
-    })
-    .eq("owner_id", userId);
+  // Knöpfe aus der Fabrik werden wieder frei; ihr Zahlencode ist danach wieder der von der Karte.
+  const { data: owned } = await admin.from("codes").select("id, factory_pin_hash").eq("owner_id", userId);
+  for (const code of owned ?? []) {
+    await admin
+      .from("codes")
+      .update({
+        owner_id: null,
+        title: null,
+        target_type: null,
+        message_id: null,
+        archive_item_id: null,
+        pin_required: false,
+        pin_hash: code.factory_pin_hash ?? null,
+        pin_fail_count: 0,
+        pin_locked_until: null,
+        claimed_at: null,
+      })
+      .eq("id", code.id);
+  }
 
   const { error } = await admin.auth.admin.deleteUser(userId);
   if (error) redirect("/portal/konto?error=delete");

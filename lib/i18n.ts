@@ -41,6 +41,7 @@ export const SCAN_STRINGS: Record<Lang, {
   home: string; file: string; reported: string; report: string; reportQuestion: string; reportSend: string;
   emptyH: string; emptyP: string; unclaimedH: string; unclaimedP: string; claim: string;
   missingH: string; missingP: string; language: string;
+  lockedH: string; lockedP: string; pinLabel: string; open: string; wrong: string; tooMany: string;
 }> = {
   de: {
     home: "Zur Startseite", file: "Hinterlegte Datei", reported: "Danke, die Meldung ist angekommen.",
@@ -49,6 +50,9 @@ export const SCAN_STRINGS: Record<Lang, {
     unclaimedH: "Dieser Knopf wartet auf dich", unclaimedP: "Übernimm ihn in dein Konto und hinterlege deine erste Botschaft.",
     claim: "Knopf übernehmen", missingH: "Nichts gefunden", missingP: "Diese Adresse gehört zu keinem aktiven Knopf.",
     language: "Sprache",
+    lockedH: "Dieser Knopf ist geheim", lockedP: "Gib den Zahlencode ein, um die Botschaft zu sehen.",
+    pinLabel: "Zahlencode", open: "Öffnen", wrong: "Der Zahlencode stimmt nicht. Bitte versuche es noch einmal.",
+    tooMany: "Zu viele falsche Versuche. Bitte warte zehn Minuten und versuche es dann noch einmal.",
   },
   en: {
     home: "Go to home page", file: "Attached file", reported: "Thank you, your report has been received.",
@@ -57,6 +61,9 @@ export const SCAN_STRINGS: Record<Lang, {
     unclaimedH: "This button is waiting for you", unclaimedP: "Add it to your account and leave your first message.",
     claim: "Claim this button", missingH: "Nothing found", missingP: "This address does not belong to an active button.",
     language: "Language",
+    lockedH: "This button is secret", lockedP: "Enter the code to see the message.",
+    pinLabel: "Code", open: "Open", wrong: "That code is not correct. Please try again.",
+    tooMany: "Too many wrong attempts. Please wait ten minutes and try again.",
   },
   ru: {
     home: "На главную", file: "Прикреплённый файл", reported: "Спасибо, жалоба получена.",
@@ -65,6 +72,9 @@ export const SCAN_STRINGS: Record<Lang, {
     unclaimedH: "Эта кнопка ждёт тебя", unclaimedP: "Добавь её в свой аккаунт и оставь первое послание.",
     claim: "Забрать кнопку", missingH: "Ничего не найдено", missingP: "Этот адрес не принадлежит активной кнопке.",
     language: "Язык",
+    lockedH: "Эта кнопка секретная", lockedP: "Введи цифровой код, чтобы увидеть послание.",
+    pinLabel: "Цифровой код", open: "Открыть", wrong: "Код неверный. Попробуй ещё раз.",
+    tooMany: "Слишком много неверных попыток. Подожди десять минут и попробуй снова.",
   },
 };
 

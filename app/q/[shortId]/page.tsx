@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { isUnlocked, unlockCookieName } from "@/lib/pin";
+import { cookies, headers } from "next/headers";
 import Link from "next/link";
 import { MediaView } from "@/app/media-view";
 import { ARCHIVE_BUCKET, USER_BUCKET } from "@/lib/media";
@@ -7,7 +8,7 @@ import { signedUrl } from "@/lib/media-server";
 import { LANGS, SCAN_STRINGS, getLang } from "@/lib/i18n";
 import { normalizeShortId } from "@/lib/site";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { reportContent } from "./actions";
+import { reportContent, unlockCode } from "./actions";
 
 // Scan-Seite: wird beim Antippen des Knopfes oder Scannen des Codes geoeffnet.
 // Sie ist ohne Anmeldung erreichbar und gibt nur den hinterlegten Inhalt heraus.
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 type Shown =
   | { state: "unavailable" | "config" | "empty" }
   | { state: "unclaimed"; shortId: string }
+  | { state: "locked"; shortId: string; blocked: boolean }
   | {
       state: "content";
       shortId: string;
@@ -46,7 +48,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
 
   const { data: code } = await admin
     .from("codes")
-    .select("id, owner_id, is_active, target_type, message_id, archive_item_id")
+    .select("id, owner_id, is_active, target_type, message_id, archive_item_id, pin_required, pin_hash, pin_locked_until")
     .eq("short_id", shortId)
     .maybeSingle();
   if (!code || !code.is_active) return { state: "unavailable" };
@@ -58,6 +60,15 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
   }
 
   if (!code.owner_id) return { state: "unclaimed", shortId };
+
+  // Geheimer Knopf: ohne gültige Freigabe in diesem Browser gibt es nur die Code-Eingabe.
+  if (code.pin_required && code.pin_hash) {
+    const token = (await cookies()).get(unlockCookieName(shortId))?.value;
+    if (!isUnlocked(shortId, code.pin_hash, token)) {
+      const blocked = !!code.pin_locked_until && new Date(code.pin_locked_until).getTime() > Date.now();
+      return { state: "locked", shortId, blocked };
+    }
+  }
 
   if (code.target_type === "archive" && code.archive_item_id) {
     const { data } = await admin
@@ -105,11 +116,11 @@ export default async function ScanPage({
   searchParams,
 }: {
   params: Promise<{ shortId: string }>;
-  searchParams: Promise<{ gemeldet?: string; sprache?: string }>;
+  searchParams: Promise<{ gemeldet?: string; sprache?: string; offen?: string; code?: string }>;
 }) {
   const { shortId } = await params;
-  const { gemeldet, sprache } = await searchParams;
-  const shown = await load(shortId, !sprache && !gemeldet);
+  const { gemeldet, sprache, offen, code: codeError } = await searchParams;
+  const shown = await load(shortId, !sprache && !gemeldet && !offen && !codeError);
   const lang = await getLang();
   const t = SCAN_STRINGS[lang];
   const back = encodeURIComponent(`/q/${normalizeShortId(shortId) ?? ""}?sprache=1`);
@@ -149,6 +160,37 @@ export default async function ScanPage({
               </form>
             </details>
           )}
+        </>
+      )}
+      {shown.state === "locked" && (
+        <>
+          <h1>{t.lockedH}</h1>
+          <p className="muted">{t.lockedP}</p>
+          {shown.blocked ? (
+            <div className="card error" role="alert">{t.tooMany}</div>
+          ) : (
+            <>
+              {codeError === "falsch" && <div className="card error" role="alert">{t.wrong}</div>}
+              <form className="card stack" action={unlockCode}>
+                <input type="hidden" name="short_id" value={shown.shortId} />
+                <label>
+                  {t.pinLabel}
+                  <input
+                    className="pin-input"
+                    name="pin"
+                    inputMode="numeric"
+                    pattern="[0-9]{4,8}"
+                    maxLength={8}
+                    autoComplete="off"
+                    autoFocus
+                    required
+                  />
+                </label>
+                <div><button>{t.open}</button></div>
+              </form>
+            </>
+          )}
+          <p className="scan-home">{home}</p>
         </>
       )}
       {shown.state === "empty" && (

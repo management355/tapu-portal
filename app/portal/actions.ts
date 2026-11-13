@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { hashPin, isValidPin } from "@/lib/pin";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
 import { normalizeShortId } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
@@ -60,9 +62,38 @@ export async function updateCode(formData: FormData) {
     patch = { ...patch, target_type: "message", message_id: target.slice(8) };
   }
 
+  const pinRequired = formData.get("pin_required") === "on";
+  const pin = String(formData.get("pin") ?? "").trim();
+  if (pin !== "" && !isValidPin(pin)) back({ error: "pin_format" });
+
   const supabase = await createClient();
-  const { error } = await supabase.from("codes").update(patch).eq("id", id);
-  if (error) back({ error: "update" });
+  // Die Zugriffsregeln lassen nur eigene Knöpfe durch; das Ergebnis belegt zugleich den Besitz.
+  const { data: updated, error } = await supabase
+    .from("codes")
+    .update(patch)
+    .eq("id", id)
+    .select("id, has_pin, pin_required")
+    .maybeSingle();
+  if (error || !updated) back({ error: "update" });
+
+  // Zahlencode: offen oder geheim, und optional ein neuer Code. Läuft über den Server,
+  // damit der Prüfwert nie im Browser landet.
+  const hasPin = updated!.has_pin === true || pin !== "";
+  if (pinRequired && !hasPin) back({ error: "pin_missing" });
+  if (pin !== "" || pinRequired !== (updated!.pin_required === true)) {
+    const admin = createAdminClient();
+    if (!admin) back({ error: "update" });
+    const pinPatch: { pin_required: boolean; pin_hash?: string; pin_fail_count?: number; pin_locked_until?: null } = {
+      pin_required: pinRequired,
+    };
+    if (pin !== "") {
+      pinPatch.pin_hash = hashPin(pin);
+      pinPatch.pin_fail_count = 0;
+      pinPatch.pin_locked_until = null;
+    }
+    const { error: pinError } = await admin!.from("codes").update(pinPatch).eq("id", id);
+    if (pinError) back({ error: "update" });
+  }
   revalidatePath("/portal");
   back({ notice: "saved" });
 }

@@ -20,7 +20,7 @@ export default async function PrintPage({ params }: { params: Promise<{ shortId:
 
   const supabase = await createClient();
   // Die Zugriffsregeln lassen nur eigene Codes durch.
-  const { data } = await supabase.from("codes").select("short_id, title").eq("short_id", shortId).maybeSingle();
+  const { data } = await supabase.from("codes").select("short_id, title, pin_required").eq("short_id", shortId).maybeSingle();
   if (!data) notFound();
 
   const origin = await getOrigin();
@@ -32,7 +32,7 @@ export default async function PrintPage({ params }: { params: Promise<{ shortId:
       <p className="small no-print"><Link href="/portal">Zurück zu meinen Knöpfen</Link></p>
       <h1 className="no-print">QR-Code drucken</h1>
       {data.title && <p className="muted no-print">{data.title}</p>}
-      <PrintSheet qrSrc={`/portal/qr/${shortId}`} label={label} link={`${origin.replace(/^https?:\/\//, "")}/q/${shortId}`} />
+      <PrintSheet logo={data.pin_required ? "xtaPux" : "taPu"} qrSrc={`/portal/qr/${shortId}`} label={label} link={`${origin.replace(/^https?:\/\//, "")}/q/${shortId}`} />
     </main>
   );
 }

@@ -20,6 +20,8 @@ type CodeRow = {
   message_id: string | null;
   archive_item_id: string | null;
   is_active: boolean;
+  pin_required: boolean;
+  has_pin: boolean;
 };
 
 type ArchiveRow = {
@@ -52,6 +54,8 @@ const ERRORS: Record<string, string> = {
   claim: "Der Knopf konnte nicht übernommen werden.",
   create: "Der QR-Code konnte nicht erstellt werden. Vielleicht ist dein Limit erreicht.",
   update: "Die Änderung konnte nicht gespeichert werden.",
+  pin_format: "Der Zahlencode muss aus 4 bis 8 Ziffern bestehen.",
+  pin_missing: "Für einen geheimen Knopf brauchst du einen Zahlencode. Bitte trage einen ein.",
 };
 
 const NOTICES: Record<string, string> = {
@@ -88,7 +92,7 @@ export default async function PortalPage({
       .maybeSingle(),
     supabase
       .from("codes")
-      .select("id, short_id, chip_uid, title, target_type, message_id, archive_item_id, is_active")
+      .select("id, short_id, chip_uid, title, target_type, message_id, archive_item_id, is_active, pin_required, has_pin")
       .eq("owner_id", user.id)
       .order("created_at", { ascending: true }),
     supabase
@@ -204,7 +208,7 @@ export default async function PortalPage({
             <div className="knopf-row">
               <div className="knopf-side">
                 <div className={code.is_active ? "knopf" : "knopf knopf-off"}>
-                  <span className="knopf-logo">taPu</span>
+                  <span className="knopf-logo">{code.pin_required ? "xtaPux" : "taPu"}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
                   <span className="knopf-code">
@@ -213,6 +217,7 @@ export default async function PortalPage({
                 </div>
                 <div className="knopf-meta">
                   <span className="badge">{code.chip_uid ? "Knopf" : "QR-Code ohne Knopf"}</span>{" "}
+                  {code.pin_required && <span className="badge">geheim</span>}{" "}
                   {!code.is_active && <span className="badge">pausiert</span>}
                 </div>
                 <div className="row" style={{ justifyContent: "center" }}>
@@ -266,6 +271,29 @@ export default async function PortalPage({
                 )}
               </select>
             </label>
+            <fieldset className="pin-box">
+              <legend>Wer darf die Botschaft sehen?</legend>
+              <label className="check">
+                <input type="checkbox" name="pin_required" defaultChecked={code.pin_required} />
+                Nur mit Zahlencode öffnen (geheimer Knopf, xtaPux)
+              </label>
+              <label>
+                {code.has_pin ? "Zahlencode ändern (leer lassen, um den bisherigen zu behalten)" : "Zahlencode festlegen"}
+                <input
+                  name="pin"
+                  inputMode="numeric"
+                  pattern="[0-9]{4,8}"
+                  maxLength={8}
+                  autoComplete="off"
+                  placeholder="4 bis 8 Ziffern"
+                />
+              </label>
+              <p className="muted small" style={{ margin: 0 }}>
+                {code.has_pin
+                  ? "Für diesen Knopf ist ein Zahlencode hinterlegt. Ohne Haken sieht jeder die Botschaft sofort."
+                  : "Für diesen Knopf ist noch kein Zahlencode hinterlegt. Ohne Haken sieht jeder die Botschaft sofort."}
+              </p>
+            </fieldset>
             <label className="row" style={{ display: "flex" }}>
               <input type="checkbox" name="is_active" defaultChecked={code.is_active} style={{ width: "auto" }} />
               Aktiv
