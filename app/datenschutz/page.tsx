@@ -74,7 +74,8 @@ export default function DatenschutzPage() {
         Wir setzen nur Cookies, die für die Anmeldung technisch notwendig sind, sowie ein Cookie, das deine
         gewählte Sprache speichert, wenn du sie selbst umstellst, und ein Cookie, das für eine Stunde festhält,
         dass du den Zahlencode eines geheimen Knopfes richtig eingegeben hast (§ 25 Abs. 2 Nr. 2 TDDDG).
-        Schriften liefern wir selbst aus, das Erklärvideo liegt in unserem Speicher bei Supabase; es werden
+        Unter „Ausprobieren“ bleibt alles in deinem Browser; klickst du dort auf Speichern, merkt sich dein
+        Browser nur deinen Text, bis du ihn im Portal gespeichert hast. Schriften liefern wir selbst aus, das Erklärvideo liegt in unserem Speicher bei Supabase; es werden
         keine Schriften- oder Videodienste Dritter eingebunden.
         Es gibt keine Werbe- oder Analyse-Cookies und keine Einbindung von Tracking-Diensten.
       </p>

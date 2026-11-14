@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { ACCEPT, MAX_FILE_BYTES } from "@/lib/media";
+import { clearDraft, readDraft } from "@/lib/draft";
 import { uploadFile } from "@/lib/upload-client";
 import { createMessage } from "./actions";
 
@@ -10,11 +11,20 @@ function megabytes(bytes: number): string {
   return (bytes / (1024 * 1024)).toLocaleString("de-DE", { maximumFractionDigits: 1 });
 }
 
+function subscribeNever() {
+  return () => {};
+}
+
 export function MessageForm() {
   const router = useRouter();
   const fileInput = useRef<HTMLInputElement>(null);
   const cameraInput = useRef<HTMLInputElement>(null);
-  const [body, setBody] = useState("");
+  // Text aus "Ausprobieren", falls dort einer geschrieben wurde. Bis zur ersten Eingabe zeigt
+  // das Feld diesen Entwurf.
+  const draft = useSyncExternalStore(subscribeNever, readDraft, () => "");
+  const [typed, setTyped] = useState<string | null>(null);
+  const body = typed ?? draft;
+  const setBody = setTyped;
   const [file, setFile] = useState<File | null>(null);
   const [recorded, setRecorded] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
@@ -72,6 +82,7 @@ export function MessageForm() {
         setError(saved.error);
         return;
       }
+      clearDraft();
       setBody("");
       clearFile();
       router.refresh();
@@ -85,6 +96,9 @@ export function MessageForm() {
   return (
     <form className="card stack" onSubmit={onSubmit}>
       {error && <div className="card error" role="alert">{error}</div>}
+      {typed === null && draft !== "" && (
+        <div className="card notice" role="status">Dein Text aus „Ausprobieren“ ist übernommen. Wähle Foto, Audio oder Video hier noch einmal aus.</div>
+      )}
       <label>
         Text (optional, höchstens 2.000 Zeichen)
         <textarea value={body} onChange={(e) => setBody(e.target.value)} maxLength={2000} />

@@ -83,3 +83,43 @@ export const PORTAL_LABEL: Record<Lang, string> = {
   en: "My portal",
   ru: "Мой портал",
 };
+
+export const TRY_STRINGS: Record<Lang, {
+  title: string; lead: string; local: string; textLabel: string; fileLabel: string; record: string; remove: string;
+  previewH: string; previewEmpty: string; saveH: string; saveP: string; save: string; haveAccount: string;
+  carry: string; tooBig: string; example: string; home: string; language: string;
+}> = {
+  de: {
+    title: "Probier es aus", lead: "Schreib etwas, wähle ein Foto oder nimm ein Video auf. Rechts siehst du sofort, wie deine Botschaft nach dem Scannen aussieht.",
+    local: "Alles bleibt auf deinem Gerät. Es wird nichts hochgeladen und nichts gespeichert, solange du kein Konto anlegst.",
+    textLabel: "Dein Text", fileLabel: "Bild, Audio oder Video auswählen", record: "Video mit dem Handy aufnehmen", remove: "Datei entfernen",
+    previewH: "So sieht es nach dem Scannen aus", previewEmpty: "Noch leer. Schreib links etwas oder wähle eine Datei.",
+    saveH: "Gefällt es dir?", saveP: "Zum dauerhaften Speichern und für deinen eigenen QR-Code brauchst du ein Konto. Das dauert eine Minute.",
+    save: "Speichern und Konto anlegen", haveAccount: "Ich habe schon ein Konto",
+    carry: "Dein Text wird nach der Anmeldung übernommen. Foto, Audio oder Video wählst du dort noch einmal aus, weil es dein Gerät erst dann verlässt.",
+    tooBig: "Die Datei ist größer als 50 MB. Zum Ansehen hier geht das, speichern lässt sie sich später aber nicht.",
+    example: "Lieber erst ein Beispiel ansehen", home: "Startseite", language: "Sprache",
+  },
+  en: {
+    title: "Try it out", lead: "Write something, pick a photo or record a video. On the right you immediately see what your message looks like after scanning.",
+    local: "Everything stays on your device. Nothing is uploaded or stored until you create an account.",
+    textLabel: "Your text", fileLabel: "Choose a picture, audio or video", record: "Record a video with your phone", remove: "Remove file",
+    previewH: "What it looks like after scanning", previewEmpty: "Still empty. Write something on the left or choose a file.",
+    saveH: "Like it?", saveP: "To keep it and get your own QR code you need an account. It takes a minute.",
+    save: "Save and create an account", haveAccount: "I already have an account",
+    carry: "Your text is carried over after you sign in. You pick the photo, audio or video again there, because that is when it first leaves your device.",
+    tooBig: "The file is larger than 50 MB. You can look at it here, but it can't be saved later.",
+    example: "I'd rather see an example first", home: "Home", language: "Language",
+  },
+  ru: {
+    title: "Попробуй", lead: "Напиши что-нибудь, выбери фото или сними видео. Справа сразу видно, как твоё послание выглядит после сканирования.",
+    local: "Всё остаётся на твоём устройстве. Ничего не загружается и не сохраняется, пока ты не создашь аккаунт.",
+    textLabel: "Твой текст", fileLabel: "Выбрать картинку, аудио или видео", record: "Снять видео на телефон", remove: "Убрать файл",
+    previewH: "Так это выглядит после сканирования", previewEmpty: "Пока пусто. Напиши что-нибудь слева или выбери файл.",
+    saveH: "Нравится?", saveP: "Чтобы сохранить послание и получить свой QR-код, нужен аккаунт. Это займёт минуту.",
+    save: "Сохранить и создать аккаунт", haveAccount: "У меня уже есть аккаунт",
+    carry: "Текст перенесётся после входа. Фото, аудио или видео нужно будет выбрать ещё раз, потому что только тогда оно покинет твоё устройство.",
+    tooBig: "Файл больше 50 МБ. Посмотреть здесь можно, но сохранить его потом не получится.",
+    example: "Сначала посмотреть пример", home: "На главную", language: "Язык",
+  },
+};

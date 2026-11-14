@@ -40,7 +40,7 @@ export default async function IdeaPage({ params }: { params: Promise<{ slug: str
               </a>
             ))}
           </div>
-          <Link href="/portal" className="lp-login">{t.cta}</Link>
+          <Link href="/ausprobieren" className="lp-login">{t.ctaTry}</Link>
         </nav>
       </header>
 
@@ -87,7 +87,7 @@ export default async function IdeaPage({ params }: { params: Promise<{ slug: str
           <div className="idea-tip">
             <h2>{common.tipH}</h2>
             <p>{idea.tip}</p>
-            <Link href="/portal" className="lp-cta">{common.cta}</Link>
+            <Link href="/ausprobieren" className="lp-cta">{t.ctaTry}</Link>
           </div>
           <h2 className="idea-more">{common.moreH}</h2>
           <div className="lp-tiles">

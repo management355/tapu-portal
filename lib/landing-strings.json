@@ -9,8 +9,7 @@
   "h1b": "Botschaft drin.",
   "sub": "taPu ist ein Knopf mit Code. Kleb ihn an deine Jacke, dein Plakat, dein Vinyl. Wer ihn antippt oder scannt, sieht, was du dahinter gelegt hast: Text, Bild, Song oder Video.",
   "cta": "Botschaft hinterlegen",
-  "ctaHow": "Erst mal gucken, wie's geht",
-  "free": "Kostenlos. Ohne App.",
+  "free": "Kostenlose Testphase. Ohne App.",
   "cardCaption": "Für dich. Nur hier.",
   "cardNo": "NR. 0001",
   "marquee": [
@@ -52,8 +51,8 @@
   "videoLabel": "Werbevideo: So funktioniert taPu",
   "steps": [
    [
-    "Knopf holen",
-    "Nimm einen taPu-Knopf oder erstelle dir im Portal einen QR-Code zum Ausdrucken."
+    "Code holen",
+    "Erstelle im Portal einen QR-Code und drucke ihn als Sticker oder Etikett aus. Fertige Knöpfe zum Anfassen folgen."
    ],
    [
     "Botschaft hinterlegen",
@@ -86,7 +85,11 @@
    ],
    [
     "Was kostet das?",
-    "Im Moment nichts. Drei Knöpfe oder Codes und 100 MB für deine Dateien sind frei."
+    "Wir sind in der Testphase: Das Portal ist kostenlos, mit bis zu drei QR-Codes zum Selbstdrucken und 100 MB für deine Dateien. Was es nach der Testphase kostet, steht noch nicht fest."
+   ],
+   [
+    "Wo bekomme ich einen Knopf?",
+    "Noch nirgends. Die Knöpfe zum Anfassen sind in Vorbereitung und noch nicht bestellbar. Bis dahin erstellst du im Portal einen QR-Code und druckst ihn selbst aus."
    ],
    [
     "Kann ich die Botschaft ändern?",
@@ -100,7 +103,9 @@
   "endH": "Was liegt hinter deinem Knopf?",
   "imprint": "Impressum",
   "privacy": "Datenschutz",
-  "terms": "Nutzungsbedingungen"
+  "terms": "Nutzungsbedingungen",
+  "ctaTry": "Selbst ausprobieren",
+  "ctaExample": "Beispiel-Botschaft ansehen"
  },
  "en": {
   "navWhere": "Where's yours?",
@@ -112,8 +117,7 @@
   "h1b": "Leave a message.",
   "sub": "taPu is a button with a code. Stick it on your jacket, your poster, your vinyl. Whoever taps or scans it sees what you left behind it: text, a picture, a song or a video.",
   "cta": "Leave a message",
-  "ctaHow": "See how it works first",
-  "free": "Free. No app.",
+  "free": "Free test phase. No app.",
   "cardCaption": "For you. Only here.",
   "cardNo": "NO. 0001",
   "marquee": [
@@ -155,8 +159,8 @@
   "videoLabel": "Promo video: how taPu works",
   "steps": [
    [
-    "Get a button",
-    "Take a taPu button or create a QR code in the portal and print it."
+    "Get a code",
+    "Create a QR code in the portal and print it as a sticker or label. Physical buttons will follow."
    ],
    [
     "Leave a message",
@@ -189,7 +193,11 @@
    ],
    [
     "What does it cost?",
-    "Nothing right now. Three buttons or codes and 100 MB for your files are free."
+    "We're in a test phase: the portal is free, with up to three QR codes to print yourself and 100 MB for your files. What it will cost after the test phase hasn't been decided yet."
+   ],
+   [
+    "Where do I get a button?",
+    "Nowhere yet. The physical buttons are in preparation and can't be ordered yet. Until then you create a QR code in the portal and print it yourself."
    ],
    [
     "Can I change the message?",
@@ -203,7 +211,9 @@
   "endH": "What's behind your button?",
   "imprint": "Legal notice",
   "privacy": "Privacy",
-  "terms": "Terms of use"
+  "terms": "Terms of use",
+  "ctaTry": "Try it yourself",
+  "ctaExample": "See an example message"
  },
  "ru": {
   "navWhere": "Где твоя?",
@@ -215,8 +225,7 @@
   "h1b": "Послание внутри.",
   "sub": "taPu — это кнопка с кодом. Прикрепи её на куртку, афишу, винил. Кто коснётся или отсканирует, увидит то, что ты за ней оставил: текст, картинку, песню или видео.",
   "cta": "Оставить послание",
-  "ctaHow": "Сначала посмотреть, как это работает",
-  "free": "Бесплатно. Без приложения.",
+  "free": "Бесплатный тестовый период. Без приложения.",
   "cardCaption": "Для тебя. Только здесь.",
   "cardNo": "№ 0001",
   "marquee": [
@@ -258,8 +267,8 @@
   "videoLabel": "Рекламное видео: как работает taPu",
   "steps": [
    [
-    "Возьми кнопку",
-    "Возьми кнопку taPu или создай в портале QR-код и распечатай его."
+    "Получи код",
+    "Создай в портале QR-код и распечатай его как стикер или этикетку. Настоящие кнопки появятся позже."
    ],
    [
     "Оставь послание",
@@ -292,7 +301,11 @@
    ],
    [
     "Сколько это стоит?",
-    "Сейчас нисколько. Три кнопки или кода и 100 МБ для файлов бесплатны."
+    "Сейчас идёт тестовый период: портал бесплатный, до трёх QR-кодов для самостоятельной печати и 100 МБ для файлов. Сколько это будет стоить после теста, пока не решено."
+   ],
+   [
+    "Где взять кнопку?",
+    "Пока нигде. Настоящие кнопки готовятся, заказать их ещё нельзя. До тех пор ты создаёшь в портале QR-код и печатаешь его сам."
    ],
    [
     "Можно ли изменить послание?",
@@ -306,6 +319,8 @@
   "endH": "Что за твоей кнопкой?",
   "imprint": "Выходные данные",
   "privacy": "Конфиденциальность",
-  "terms": "Условия использования"
+  "terms": "Условия использования",
+  "ctaTry": "Попробовать самому",
+  "ctaExample": "Посмотреть пример послания"
  }
 }

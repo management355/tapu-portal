@@ -10,6 +10,9 @@ import { createClient } from "@/lib/supabase/server";
 const MEDIA_BASE = `${supabaseUrl}/storage/v1/object/public/site-media`;
 const POSTER_URL = `${MEDIA_BASE}/tapu-werbevideo-poster.jpg`;
 
+// Öffentliche Beispiel-Botschaft; ihr Inhalt wird im Admin-Bereich gepflegt.
+const EXAMPLE_ID = "beispiel22";
+
 const INK = "#111111";
 const ORANGE = "#FF5A1F";
 
@@ -93,8 +96,8 @@ export default async function Home({
             <h1>{t.h1a}<br />{t.h1b}</h1>
             <p className="lp-lead">{t.sub}</p>
             <div className="lp-actions">
-              <Link href="/portal" className="lp-cta">{t.cta}</Link>
-              <a href="#so" className="lp-link">{t.ctaHow}</a>
+              <Link href="/ausprobieren" className="lp-cta">{t.ctaTry}</Link>
+              <Link href={`/q/${EXAMPLE_ID}`} className="lp-link">{t.ctaExample}</Link>
             </div>
             <div className="lp-free">{t.free}</div>
           </div>
@@ -211,7 +214,7 @@ export default async function Home({
         <section className="lp-end">
           <div className="lp-wrap">
             <h2>{t.endH}</h2>
-            <Link href="/portal" className="lp-cta lp-cta-ink">{t.cta}</Link>
+            <Link href="/ausprobieren" className="lp-cta lp-cta-ink">{t.ctaTry}</Link>
           </div>
         </section>
       </main>

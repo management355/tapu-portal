@@ -33,7 +33,7 @@ export async function signup(formData: FormData) {
   const next = safeNext(formData.get("next"));
   const { email, password } = readCredentials(formData);
   if (password.length < 8) {
-    redirect(`/login?error=password&next=${encodeURIComponent(next)}`);
+    redirect(`/login?ansicht=neu&error=password&next=${encodeURIComponent(next)}`);
   }
   const origin = await getOrigin();
   const supabase = await createClient();
@@ -53,7 +53,7 @@ export async function signup(formData: FormData) {
           : error.code === "weak_password"
             ? "password"
             : "signup";
-    redirect(`/login?error=${reason}&next=${encodeURIComponent(next)}`);
+    redirect(`/login?${reason === "exists" ? "" : "ansicht=neu&"}error=${reason}&next=${encodeURIComponent(next)}`);
   }
   // Ohne E-Mail-Bestaetigung ist man sofort angemeldet, sonst kommt eine Mail.
   if (data.session) redirect(next);
@@ -62,4 +62,31 @@ export async function signup(formData: FormData) {
     redirect(`/login?error=exists&next=${encodeURIComponent(next)}`);
   }
   redirect(`/login?notice=confirm&next=${encodeURIComponent(next)}`);
+}
+
+// Passwort vergessen: Mail mit Link zum Zurücksetzen. Die Antwort ist immer dieselbe,
+// damit niemand herausfinden kann, ob es zu einer Adresse ein Konto gibt.
+export async function requestPasswordReset(formData: FormData) {
+  const email = String(formData.get("email") ?? "").trim();
+  if (email !== "") {
+    const origin = await getOrigin();
+    const supabase = await createClient();
+    await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${origin}/auth/callback?next=${encodeURIComponent("/login/neues-passwort")}`,
+    });
+  }
+  redirect("/login/passwort?notice=sent");
+}
+
+// Neues Passwort setzen; nur möglich, wenn der Link aus der Mail geöffnet wurde.
+export async function setNewPassword(formData: FormData) {
+  const password = String(formData.get("password") ?? "");
+  if (password.length < 8) redirect("/login/neues-passwort?error=password");
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) redirect("/login/passwort?error=link");
+  const { error } = await supabase.auth.updateUser({ password });
+  if (error) redirect(`/login/neues-passwort?error=${error.code === "same_password" ? "same" : "save"}`);
+  await supabase.auth.signOut();
+  redirect("/login?notice=reset");
 }
