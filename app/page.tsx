@@ -13,6 +13,9 @@ const POSTER_URL = `${MEDIA_BASE}/tapu-werbevideo-poster.jpg`;
 // Öffentliche Beispiel-Botschaft; ihr Inhalt wird im Admin-Bereich gepflegt.
 const EXAMPLE_ID = "beispiel22";
 
+// Bilder im Abschnitt "So sieht er aus" (vorerst KI-Darstellungen).
+const LOOK_IMAGES = ["hand", "seiten", "geschenk"];
+
 const INK = "#111111";
 const ORANGE = "#FF5A1F";
 
@@ -64,6 +67,7 @@ export default async function Home({
       <header className="lp-head">
         <Link href="/" className="lp-logo">taPu</Link>
         <nav aria-label={lang === "de" ? "Hauptnavigation" : lang === "ru" ? "Главная навигация" : "Main navigation"}>
+          <a href="#knopf">{t.navLook}</a>
           <a href="#wo">{t.navWhere}</a>
           <a href="#so">{t.navHow}</a>
           <a href="#geheim">{t.navSecret}</a>
@@ -122,6 +126,42 @@ export default async function Home({
             ))}
           </div>
         </div>
+
+        <section id="knopf" className="lp-wrap lp-section">
+          <div className="lp-intro">
+            <h2>{t.lookH}</h2>
+            <p className="lp-lead">{t.lookSub}</p>
+          </div>
+          <div className="lp-look">
+            {t.lookItems.map(([title, text]: string[], index: number) => (
+              <figure key={title}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`${MEDIA_BASE}/tapu-echt-${LOOK_IMAGES[index]}.jpg`} alt={`${title}. ${text}`} loading="lazy" width={1400} height={1050} />
+                <figcaption>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="lp-try">
+            <div className="lp-try-voice">
+              <h3>{t.voiceH}</h3>
+              <p>{t.voiceP}</p>
+              <audio controls preload="none" src={`${MEDIA_BASE}/tapu-echt-stimme.mp3`} aria-label={t.voiceH} />
+            </div>
+            <div className="lp-try-demo">
+              <video controls playsInline preload="none" poster={`${MEDIA_BASE}/tapu-echt-demo.jpg`} aria-label={t.demoLabel}>
+                <source src={`${MEDIA_BASE}/tapu-echt-demo.mp4`} type="video/mp4" />
+              </video>
+              <div>
+                <h3>{t.demoH}</h3>
+                <p>{t.demoP}</p>
+              </div>
+            </div>
+          </div>
+          <p className="lp-look-note">{t.lookNote}</p>
+        </section>
 
         <section id="wo" className="lp-wrap lp-section">
           <div className="lp-intro">

@@ -1,326 +1,395 @@
 {
- "de": {
-  "navWhere": "Wo klebt deiner?",
-  "navHow": "So geht's",
-  "navSecret": "xtaPu",
-  "login": "Anmelden",
-  "eyebrow": "TIPPEN. SCANNEN. STAUNEN.",
-  "h1a": "Knopf dran.",
-  "h1b": "Botschaft drin.",
-  "sub": "taPu ist ein Knopf mit Code. Kleb ihn an deine Jacke, dein Plakat, dein Vinyl. Wer ihn antippt oder scannt, sieht, was du dahinter gelegt hast: Text, Bild, Song oder Video.",
-  "cta": "Botschaft hinterlegen",
-  "free": "Kostenlose Testphase. Ohne App.",
-  "cardCaption": "Für dich. Nur hier.",
-  "cardNo": "NR. 0001",
-  "marquee": [
-   "JACKE",
-   "PLAKAT",
-   "STICKER",
-   "VINYL",
-   "SKATEBOARD",
-   "POSTKARTE",
-   "LAPTOP",
-   "GITARRENKOFFER",
-   "TÜR"
-  ],
-  "whereH": "Wo klebt deiner?",
-  "whereSub": "Der Knopf ist kleiner als eine Münze, der Code darf so groß sein wie eine Hauswand. Was dahinter liegt, änderst du jederzeit, ohne den Knopf anzufassen.",
-  "tiles": [
-   [
-    "01 / KLEIDUNG",
-    "An dir",
-    "Jacke, Tasche, Cap. Wer fragt, was das ist, darf scannen."
-   ],
-   [
-    "02 / STRASSE",
-    "An der Wand",
-    "Plakat, Sticker, Flyer. Der Code führt zum Song, zum Clip, zur Einladung."
-   ],
-   [
-    "03 / MUSIK",
-    "Am Merch",
-    "Vinyl, Shirt, Tape. Ein Extra, das nur findet, wer das Teil in der Hand hat."
-   ],
-   [
-    "04 / FÜR JEMANDEN",
-    "Als Geschenk",
-    "Dein Gesicht, deine Stimme, dein Lied, hinter einem Knopf zum Behalten."
-   ]
-  ],
-  "howH": "Drei Schritte. Fertig.",
-  "videoLabel": "Werbevideo: So funktioniert taPu",
-  "steps": [
-   [
-    "Code holen",
-    "Erstelle im Portal einen QR-Code und drucke ihn als Sticker oder Etikett aus. Fertige Knöpfe zum Anfassen folgen."
-   ],
-   [
-    "Botschaft hinterlegen",
-    "Text schreiben, Bild oder Song hochladen oder direkt ein Video mit dem Handy aufnehmen."
-   ],
-   [
-    "Ankleben und abwarten",
-    "Wer antippt oder scannt, sieht deine Botschaft im Browser. Eine App braucht niemand."
-   ]
-  ],
-  "secretH": "Für alle. Oder nur für manche.",
-  "secretSub": "Du entscheidest pro Knopf, wer die Botschaft sieht, und kannst jederzeit umschalten.",
-  "openTag": "Offen. Jeder darf gucken.",
-  "openList": [
-   "Scannen und sofort sehen",
-   "Gut für Plakate, Merch und alles, was viele erreichen soll",
-   "Botschaft jederzeit austauschbar"
-  ],
-  "secretTag": "Geheim. Nur mit Zahlencode.",
-  "secretList": [
-   "Wer scannt, sieht nur ein Code-Feld",
-   "Den Code gibst du weiter, an wen du willst",
-   "Nach fünf falschen Versuchen ist zehn Minuten Pause"
-  ],
-  "faqH": "Kurz gefragt",
-  "faq": [
-   [
-    "Brauche ich eine App?",
-    "Nein. Antippen oder scannen öffnet die Botschaft im Browser, auf jedem Handy."
-   ],
-   [
-    "Was kostet das?",
-    "Wir sind in der Testphase: Das Portal ist kostenlos, mit bis zu drei QR-Codes zum Selbstdrucken und 100 MB für deine Dateien. Was es nach der Testphase kostet, steht noch nicht fest."
-   ],
-   [
-    "Wo bekomme ich einen Knopf?",
-    "Noch nirgends. Die Knöpfe zum Anfassen sind in Vorbereitung und noch nicht bestellbar. Bis dahin erstellst du im Portal einen QR-Code und druckst ihn selbst aus."
-   ],
-   [
-    "Kann ich die Botschaft ändern?",
-    "So oft du willst. Der Knopf bleibt, der Inhalt wechselt."
-   ],
-   [
-    "Wer sieht meine Botschaft?",
-    "Bei taPu jeder, der den Knopf scannt. Bei xtaPu nur, wer deinen Zahlencode kennt."
-   ]
-  ],
-  "endH": "Was liegt hinter deinem Knopf?",
-  "imprint": "Impressum",
-  "privacy": "Datenschutz",
-  "terms": "Nutzungsbedingungen",
-  "ctaTry": "Selbst ausprobieren",
-  "ctaExample": "Beispiel-Botschaft ansehen"
- },
- "en": {
-  "navWhere": "Where's yours?",
-  "navHow": "How it works",
-  "navSecret": "xtaPu",
-  "login": "Sign in",
-  "eyebrow": "TAP. SCAN. BE SURPRISED.",
-  "h1a": "Stick it on.",
-  "h1b": "Leave a message.",
-  "sub": "taPu is a button with a code. Stick it on your jacket, your poster, your vinyl. Whoever taps or scans it sees what you left behind it: text, a picture, a song or a video.",
-  "cta": "Leave a message",
-  "free": "Free test phase. No app.",
-  "cardCaption": "For you. Only here.",
-  "cardNo": "NO. 0001",
-  "marquee": [
-   "JACKET",
-   "POSTER",
-   "STICKER",
-   "VINYL",
-   "SKATEBOARD",
-   "POSTCARD",
-   "LAPTOP",
-   "GUITAR CASE",
-   "DOOR"
-  ],
-  "whereH": "Where's yours?",
-  "whereSub": "The button is smaller than a coin, the code can be as big as a wall. You change what's behind it whenever you like, without touching the button.",
-  "tiles": [
-   [
-    "01 / CLOTHES",
-    "On you",
-    "Jacket, bag, cap. Anyone who asks what it is gets to scan."
-   ],
-   [
-    "02 / STREET",
-    "On the wall",
-    "Poster, sticker, flyer. The code leads to the song, the clip, the invitation."
-   ],
-   [
-    "03 / MUSIC",
-    "On the merch",
-    "Vinyl, shirt, tape. An extra only found by whoever holds the thing."
-   ],
-   [
-    "04 / FOR SOMEONE",
-    "As a gift",
-    "Your face, your voice, your song, behind a button to keep."
-   ]
-  ],
-  "howH": "Three steps. Done.",
-  "videoLabel": "Promo video: how taPu works",
-  "steps": [
-   [
-    "Get a code",
-    "Create a QR code in the portal and print it as a sticker or label. Physical buttons will follow."
-   ],
-   [
-    "Leave a message",
-    "Write a text, upload a picture or a song, or record a video straight from your phone."
-   ],
-   [
-    "Stick it on and wait",
-    "Whoever taps or scans sees your message in the browser. Nobody needs an app."
-   ]
-  ],
-  "secretH": "For everyone. Or just for some.",
-  "secretSub": "You decide for each button who sees the message, and you can switch at any time.",
-  "openTag": "Open. Anyone can look.",
-  "openList": [
-   "Scan and see it right away",
-   "Good for posters, merch and anything meant to reach many",
-   "Swap the message whenever you like"
-  ],
-  "secretTag": "Secret. Only with a code.",
-  "secretList": [
-   "Whoever scans only sees a code field",
-   "You pass the code on to whoever you want",
-   "After five wrong tries there's a ten-minute break"
-  ],
-  "faqH": "Quick questions",
-  "faq": [
-   [
-    "Do I need an app?",
-    "No. Tapping or scanning opens the message in the browser, on any phone."
-   ],
-   [
-    "What does it cost?",
-    "We're in a test phase: the portal is free, with up to three QR codes to print yourself and 100 MB for your files. What it will cost after the test phase hasn't been decided yet."
-   ],
-   [
-    "Where do I get a button?",
-    "Nowhere yet. The physical buttons are in preparation and can't be ordered yet. Until then you create a QR code in the portal and print it yourself."
-   ],
-   [
-    "Can I change the message?",
-    "As often as you like. The button stays, the content changes."
-   ],
-   [
-    "Who sees my message?",
-    "With taPu, anyone who scans the button. With xtaPu, only those who know your code."
-   ]
-  ],
-  "endH": "What's behind your button?",
-  "imprint": "Legal notice",
-  "privacy": "Privacy",
-  "terms": "Terms of use",
-  "ctaTry": "Try it yourself",
-  "ctaExample": "See an example message"
- },
- "ru": {
-  "navWhere": "Где твоя?",
-  "navHow": "Как это работает",
-  "navSecret": "xtaPu",
-  "login": "Войти",
-  "eyebrow": "КОСНИСЬ. СКАНИРУЙ. УДИВИСЬ.",
-  "h1a": "Кнопка есть.",
-  "h1b": "Послание внутри.",
-  "sub": "taPu — это кнопка с кодом. Прикрепи её на куртку, афишу, винил. Кто коснётся или отсканирует, увидит то, что ты за ней оставил: текст, картинку, песню или видео.",
-  "cta": "Оставить послание",
-  "free": "Бесплатный тестовый период. Без приложения.",
-  "cardCaption": "Для тебя. Только здесь.",
-  "cardNo": "№ 0001",
-  "marquee": [
-   "КУРТКА",
-   "АФИША",
-   "СТИКЕР",
-   "ВИНИЛ",
-   "СКЕЙТ",
-   "ОТКРЫТКА",
-   "НОУТБУК",
-   "ЧЕХОЛ ОТ ГИТАРЫ",
-   "ДВЕРЬ"
-  ],
-  "whereH": "Где твоя?",
-  "whereSub": "Кнопка меньше монеты, а код может быть размером со стену. То, что за ней, ты меняешь когда угодно, не трогая саму кнопку.",
-  "tiles": [
-   [
-    "01 / ОДЕЖДА",
-    "На тебе",
-    "Куртка, сумка, кепка. Кто спросит, что это, пусть сканирует."
-   ],
-   [
-    "02 / УЛИЦА",
-    "На стене",
-    "Афиша, стикер, флаер. Код ведёт к песне, клипу, приглашению."
-   ],
-   [
-    "03 / МУЗЫКА",
-    "На мерче",
-    "Винил, футболка, кассета. Бонус, который найдёт только тот, у кого вещь в руках."
-   ],
-   [
-    "04 / ДЛЯ КОГО-ТО",
-    "В подарок",
-    "Твоё лицо, твой голос, твоя песня — за кнопкой, которую можно сохранить."
-   ]
-  ],
-  "howH": "Три шага. Готово.",
-  "videoLabel": "Рекламное видео: как работает taPu",
-  "steps": [
-   [
-    "Получи код",
-    "Создай в портале QR-код и распечатай его как стикер или этикетку. Настоящие кнопки появятся позже."
-   ],
-   [
-    "Оставь послание",
-    "Напиши текст, загрузи картинку или песню или сразу сними видео на телефон."
-   ],
-   [
-    "Прикрепи и жди",
-    "Кто коснётся или отсканирует, увидит твоё послание в браузере. Приложение никому не нужно."
-   ]
-  ],
-  "secretH": "Для всех. Или только для своих.",
-  "secretSub": "Для каждой кнопки ты решаешь, кто увидит послание, и можешь переключить в любой момент.",
-  "openTag": "Открытая. Смотреть может каждый.",
-  "openList": [
-   "Отсканировал и сразу видишь",
-   "Подходит для афиш, мерча и всего, что должно дойти до многих",
-   "Послание можно менять когда угодно"
-  ],
-  "secretTag": "Секретная. Только по коду.",
-  "secretList": [
-   "Кто сканирует, видит только поле для кода",
-   "Код ты передаёшь тому, кому хочешь",
-   "После пяти неверных попыток — пауза десять минут"
-  ],
-  "faqH": "Коротко о главном",
-  "faq": [
-   [
-    "Нужно ли приложение?",
-    "Нет. Касание или сканирование открывает послание в браузере на любом телефоне."
-   ],
-   [
-    "Сколько это стоит?",
-    "Сейчас идёт тестовый период: портал бесплатный, до трёх QR-кодов для самостоятельной печати и 100 МБ для файлов. Сколько это будет стоить после теста, пока не решено."
-   ],
-   [
-    "Где взять кнопку?",
-    "Пока нигде. Настоящие кнопки готовятся, заказать их ещё нельзя. До тех пор ты создаёшь в портале QR-код и печатаешь его сам."
-   ],
-   [
-    "Можно ли изменить послание?",
-    "Сколько угодно раз. Кнопка остаётся, содержимое меняется."
-   ],
-   [
-    "Кто увидит моё послание?",
-    "С taPu — каждый, кто отсканирует кнопку. С xtaPu — только тот, кто знает твой код."
-   ]
-  ],
-  "endH": "Что за твоей кнопкой?",
-  "imprint": "Выходные данные",
-  "privacy": "Конфиденциальность",
-  "terms": "Условия использования",
-  "ctaTry": "Попробовать самому",
-  "ctaExample": "Посмотреть пример послания"
- }
+  "de": {
+    "navWhere": "Wo klebt deiner?",
+    "navHow": "So geht's",
+    "navSecret": "xtaPu",
+    "login": "Anmelden",
+    "eyebrow": "TIPPEN. SCANNEN. STAUNEN.",
+    "h1a": "Knopf dran.",
+    "h1b": "Botschaft drin.",
+    "sub": "taPu ist ein Knopf mit Code. Kleb ihn an deine Jacke, dein Plakat, dein Vinyl. Wer ihn antippt oder scannt, sieht, was du dahinter gelegt hast: Text, Bild, Song oder Video.",
+    "cta": "Botschaft hinterlegen",
+    "free": "Kostenlose Testphase. Ohne App.",
+    "cardCaption": "Für dich. Nur hier.",
+    "cardNo": "NR. 0001",
+    "marquee": [
+      "JACKE",
+      "PLAKAT",
+      "STICKER",
+      "VINYL",
+      "SKATEBOARD",
+      "POSTKARTE",
+      "LAPTOP",
+      "GITARRENKOFFER",
+      "TÜR"
+    ],
+    "whereH": "Wo klebt deiner?",
+    "whereSub": "Der Knopf ist kleiner als eine Münze, der Code darf so groß sein wie eine Hauswand. Was dahinter liegt, änderst du jederzeit, ohne den Knopf anzufassen.",
+    "tiles": [
+      [
+        "01 / KLEIDUNG",
+        "An dir",
+        "Jacke, Tasche, Cap. Wer fragt, was das ist, darf scannen."
+      ],
+      [
+        "02 / STRASSE",
+        "An der Wand",
+        "Plakat, Sticker, Flyer. Der Code führt zum Song, zum Clip, zur Einladung."
+      ],
+      [
+        "03 / MUSIK",
+        "Am Merch",
+        "Vinyl, Shirt, Tape. Ein Extra, das nur findet, wer das Teil in der Hand hat."
+      ],
+      [
+        "04 / FÜR JEMANDEN",
+        "Als Geschenk",
+        "Dein Gesicht, deine Stimme, dein Lied, hinter einem Knopf zum Behalten."
+      ]
+    ],
+    "howH": "Drei Schritte. Fertig.",
+    "videoLabel": "Werbevideo: So funktioniert taPu",
+    "steps": [
+      [
+        "Code holen",
+        "Erstelle im Portal einen QR-Code und drucke ihn als Sticker oder Etikett aus. Fertige Knöpfe zum Anfassen folgen."
+      ],
+      [
+        "Botschaft hinterlegen",
+        "Text schreiben, Bild oder Song hochladen oder direkt ein Video mit dem Handy aufnehmen."
+      ],
+      [
+        "Ankleben und abwarten",
+        "Wer antippt oder scannt, sieht deine Botschaft im Browser. Eine App braucht niemand."
+      ]
+    ],
+    "secretH": "Für alle. Oder nur für manche.",
+    "secretSub": "Du entscheidest pro Knopf, wer die Botschaft sieht, und kannst jederzeit umschalten.",
+    "openTag": "Offen. Jeder darf gucken.",
+    "openList": [
+      "Scannen und sofort sehen",
+      "Gut für Plakate, Merch und alles, was viele erreichen soll",
+      "Botschaft jederzeit austauschbar"
+    ],
+    "secretTag": "Geheim. Nur mit Zahlencode.",
+    "secretList": [
+      "Wer scannt, sieht nur ein Code-Feld",
+      "Den Code gibst du weiter, an wen du willst",
+      "Nach fünf falschen Versuchen ist zehn Minuten Pause"
+    ],
+    "faqH": "Kurz gefragt",
+    "faq": [
+      [
+        "Brauche ich eine App?",
+        "Nein. Antippen oder scannen öffnet die Botschaft im Browser, auf jedem Handy."
+      ],
+      [
+        "Was kostet das?",
+        "Wir sind in der Testphase: Das Portal ist kostenlos, mit bis zu drei QR-Codes zum Selbstdrucken und 100 MB für deine Dateien. Was es nach der Testphase kostet, steht noch nicht fest."
+      ],
+      [
+        "Wo bekomme ich einen Knopf?",
+        "Noch nirgends. Die Knöpfe zum Anfassen sind in Vorbereitung und noch nicht bestellbar. Bis dahin erstellst du im Portal einen QR-Code und druckst ihn selbst aus."
+      ],
+      [
+        "Kann ich die Botschaft ändern?",
+        "So oft du willst. Der Knopf bleibt, der Inhalt wechselt."
+      ],
+      [
+        "Wer sieht meine Botschaft?",
+        "Bei taPu jeder, der den Knopf scannt. Bei xtaPu nur, wer deinen Zahlencode kennt."
+      ]
+    ],
+    "endH": "Was liegt hinter deinem Knopf?",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "ctaTry": "Selbst ausprobieren",
+    "ctaExample": "Beispiel-Botschaft ansehen",
+    "lookH": "So sieht er aus",
+    "lookSub": "Ein Knopf, etwa so groß wie eine Zwei-Euro-Münze. Hinten eine Klebefläche, vorn Logo, QR-Code und Nummer.",
+    "lookItems": [
+      [
+        "In der Hand",
+        "Rund drei Zentimeter, ein paar Millimeter dick. Passt auf fast alles."
+      ],
+      [
+        "Vorn und hinten",
+        "Vorn der Code, hinten eine Klebefläche: Folie abziehen, andrücken, fertig."
+      ],
+      [
+        "Am Geschenk",
+        "Antippen oder scannen, und die Botschaft geht im Browser auf."
+      ]
+    ],
+    "lookNote": "KI-Darstellung für die Testphase. Echte Fotos folgen mit den ersten Mustern; Größe und Befestigung können sich noch ändern.",
+    "voiceH": "So kann es klingen",
+    "voiceP": "Eine kurze Sprachnachricht hinter einem Knopf. Hier mit KI-Stimme als Beispiel.",
+    "demoH": "So läuft es ab",
+    "demoP": "Handy dranhalten, Botschaft sehen. KI-Video als Beispiel.",
+    "demoLabel": "Beispielvideo: Knopf am Geschenk wird gescannt",
+    "navLook": "Der Knopf"
+  },
+  "en": {
+    "navWhere": "Where's yours?",
+    "navHow": "How it works",
+    "navSecret": "xtaPu",
+    "login": "Sign in",
+    "eyebrow": "TAP. SCAN. BE SURPRISED.",
+    "h1a": "Stick it on.",
+    "h1b": "Leave a message.",
+    "sub": "taPu is a button with a code. Stick it on your jacket, your poster, your vinyl. Whoever taps or scans it sees what you left behind it: text, a picture, a song or a video.",
+    "cta": "Leave a message",
+    "free": "Free test phase. No app.",
+    "cardCaption": "For you. Only here.",
+    "cardNo": "NO. 0001",
+    "marquee": [
+      "JACKET",
+      "POSTER",
+      "STICKER",
+      "VINYL",
+      "SKATEBOARD",
+      "POSTCARD",
+      "LAPTOP",
+      "GUITAR CASE",
+      "DOOR"
+    ],
+    "whereH": "Where's yours?",
+    "whereSub": "The button is smaller than a coin, the code can be as big as a wall. You change what's behind it whenever you like, without touching the button.",
+    "tiles": [
+      [
+        "01 / CLOTHES",
+        "On you",
+        "Jacket, bag, cap. Anyone who asks what it is gets to scan."
+      ],
+      [
+        "02 / STREET",
+        "On the wall",
+        "Poster, sticker, flyer. The code leads to the song, the clip, the invitation."
+      ],
+      [
+        "03 / MUSIC",
+        "On the merch",
+        "Vinyl, shirt, tape. An extra only found by whoever holds the thing."
+      ],
+      [
+        "04 / FOR SOMEONE",
+        "As a gift",
+        "Your face, your voice, your song, behind a button to keep."
+      ]
+    ],
+    "howH": "Three steps. Done.",
+    "videoLabel": "Promo video: how taPu works",
+    "steps": [
+      [
+        "Get a code",
+        "Create a QR code in the portal and print it as a sticker or label. Physical buttons will follow."
+      ],
+      [
+        "Leave a message",
+        "Write a text, upload a picture or a song, or record a video straight from your phone."
+      ],
+      [
+        "Stick it on and wait",
+        "Whoever taps or scans sees your message in the browser. Nobody needs an app."
+      ]
+    ],
+    "secretH": "For everyone. Or just for some.",
+    "secretSub": "You decide for each button who sees the message, and you can switch at any time.",
+    "openTag": "Open. Anyone can look.",
+    "openList": [
+      "Scan and see it right away",
+      "Good for posters, merch and anything meant to reach many",
+      "Swap the message whenever you like"
+    ],
+    "secretTag": "Secret. Only with a code.",
+    "secretList": [
+      "Whoever scans only sees a code field",
+      "You pass the code on to whoever you want",
+      "After five wrong tries there's a ten-minute break"
+    ],
+    "faqH": "Quick questions",
+    "faq": [
+      [
+        "Do I need an app?",
+        "No. Tapping or scanning opens the message in the browser, on any phone."
+      ],
+      [
+        "What does it cost?",
+        "We're in a test phase: the portal is free, with up to three QR codes to print yourself and 100 MB for your files. What it will cost after the test phase hasn't been decided yet."
+      ],
+      [
+        "Where do I get a button?",
+        "Nowhere yet. The physical buttons are in preparation and can't be ordered yet. Until then you create a QR code in the portal and print it yourself."
+      ],
+      [
+        "Can I change the message?",
+        "As often as you like. The button stays, the content changes."
+      ],
+      [
+        "Who sees my message?",
+        "With taPu, anyone who scans the button. With xtaPu, only those who know your code."
+      ]
+    ],
+    "endH": "What's behind your button?",
+    "imprint": "Legal notice",
+    "privacy": "Privacy",
+    "terms": "Terms of use",
+    "ctaTry": "Try it yourself",
+    "ctaExample": "See an example message",
+    "lookH": "This is what it looks like",
+    "lookSub": "A button about the size of a two-euro coin. Adhesive on the back; logo, QR code and number on the front.",
+    "lookItems": [
+      [
+        "In your hand",
+        "About three centimetres across, a few millimetres thick. Fits on almost anything."
+      ],
+      [
+        "Front and back",
+        "The code on the front, an adhesive pad on the back: peel, press, done."
+      ],
+      [
+        "On a gift",
+        "Tap or scan, and the message opens in the browser."
+      ]
+    ],
+    "lookNote": "AI illustration for the test phase. Real photos will follow with the first samples; size and fastening may still change.",
+    "voiceH": "This is how it can sound",
+    "voiceP": "A short voice message behind a button. Here with an AI voice as an example (in German).",
+    "demoH": "This is how it works",
+    "demoP": "Hold your phone to it, see the message. AI video as an example.",
+    "demoLabel": "Example video: a button on a gift is scanned",
+    "navLook": "The button"
+  },
+  "ru": {
+    "navWhere": "Где твоя?",
+    "navHow": "Как это работает",
+    "navSecret": "xtaPu",
+    "login": "Войти",
+    "eyebrow": "КОСНИСЬ. СКАНИРУЙ. УДИВИСЬ.",
+    "h1a": "Кнопка есть.",
+    "h1b": "Послание внутри.",
+    "sub": "taPu — это кнопка с кодом. Прикрепи её на куртку, афишу, винил. Кто коснётся или отсканирует, увидит то, что ты за ней оставил: текст, картинку, песню или видео.",
+    "cta": "Оставить послание",
+    "free": "Бесплатный тестовый период. Без приложения.",
+    "cardCaption": "Для тебя. Только здесь.",
+    "cardNo": "№ 0001",
+    "marquee": [
+      "КУРТКА",
+      "АФИША",
+      "СТИКЕР",
+      "ВИНИЛ",
+      "СКЕЙТ",
+      "ОТКРЫТКА",
+      "НОУТБУК",
+      "ЧЕХОЛ ОТ ГИТАРЫ",
+      "ДВЕРЬ"
+    ],
+    "whereH": "Где твоя?",
+    "whereSub": "Кнопка меньше монеты, а код может быть размером со стену. То, что за ней, ты меняешь когда угодно, не трогая саму кнопку.",
+    "tiles": [
+      [
+        "01 / ОДЕЖДА",
+        "На тебе",
+        "Куртка, сумка, кепка. Кто спросит, что это, пусть сканирует."
+      ],
+      [
+        "02 / УЛИЦА",
+        "На стене",
+        "Афиша, стикер, флаер. Код ведёт к песне, клипу, приглашению."
+      ],
+      [
+        "03 / МУЗЫКА",
+        "На мерче",
+        "Винил, футболка, кассета. Бонус, который найдёт только тот, у кого вещь в руках."
+      ],
+      [
+        "04 / ДЛЯ КОГО-ТО",
+        "В подарок",
+        "Твоё лицо, твой голос, твоя песня — за кнопкой, которую можно сохранить."
+      ]
+    ],
+    "howH": "Три шага. Готово.",
+    "videoLabel": "Рекламное видео: как работает taPu",
+    "steps": [
+      [
+        "Получи код",
+        "Создай в портале QR-код и распечатай его как стикер или этикетку. Настоящие кнопки появятся позже."
+      ],
+      [
+        "Оставь послание",
+        "Напиши текст, загрузи картинку или песню или сразу сними видео на телефон."
+      ],
+      [
+        "Прикрепи и жди",
+        "Кто коснётся или отсканирует, увидит твоё послание в браузере. Приложение никому не нужно."
+      ]
+    ],
+    "secretH": "Для всех. Или только для своих.",
+    "secretSub": "Для каждой кнопки ты решаешь, кто увидит послание, и можешь переключить в любой момент.",
+    "openTag": "Открытая. Смотреть может каждый.",
+    "openList": [
+      "Отсканировал и сразу видишь",
+      "Подходит для афиш, мерча и всего, что должно дойти до многих",
+      "Послание можно менять когда угодно"
+    ],
+    "secretTag": "Секретная. Только по коду.",
+    "secretList": [
+      "Кто сканирует, видит только поле для кода",
+      "Код ты передаёшь тому, кому хочешь",
+      "После пяти неверных попыток — пауза десять минут"
+    ],
+    "faqH": "Коротко о главном",
+    "faq": [
+      [
+        "Нужно ли приложение?",
+        "Нет. Касание или сканирование открывает послание в браузере на любом телефоне."
+      ],
+      [
+        "Сколько это стоит?",
+        "Сейчас идёт тестовый период: портал бесплатный, до трёх QR-кодов для самостоятельной печати и 100 МБ для файлов. Сколько это будет стоить после теста, пока не решено."
+      ],
+      [
+        "Где взять кнопку?",
+        "Пока нигде. Настоящие кнопки готовятся, заказать их ещё нельзя. До тех пор ты создаёшь в портале QR-код и печатаешь его сам."
+      ],
+      [
+        "Можно ли изменить послание?",
+        "Сколько угодно раз. Кнопка остаётся, содержимое меняется."
+      ],
+      [
+        "Кто увидит моё послание?",
+        "С taPu — каждый, кто отсканирует кнопку. С xtaPu — только тот, кто знает твой код."
+      ]
+    ],
+    "endH": "Что за твоей кнопкой?",
+    "imprint": "Выходные данные",
+    "privacy": "Конфиденциальность",
+    "terms": "Условия использования",
+    "ctaTry": "Попробовать самому",
+    "ctaExample": "Посмотреть пример послания",
+    "lookH": "Вот как он выглядит",
+    "lookSub": "Кнопка размером примерно с монету в два евро. Сзади клейкая основа, спереди логотип, QR-код и номер.",
+    "lookItems": [
+      [
+        "В руке",
+        "Около трёх сантиметров в диаметре, несколько миллиметров толщиной. Подходит почти ко всему."
+      ],
+      [
+        "Спереди и сзади",
+        "Спереди код, сзади клейкая основа: снять плёнку, прижать, готово."
+      ],
+      [
+        "На подарке",
+        "Коснись или отсканируй, и послание откроется в браузере."
+      ]
+    ],
+    "lookNote": "Изображения созданы ИИ на время тестового периода. Настоящие фото появятся с первыми образцами; размер и крепление ещё могут измениться.",
+    "voiceH": "Так это может звучать",
+    "voiceP": "Короткое голосовое сообщение за кнопкой. Здесь для примера голос ИИ (на немецком).",
+    "demoH": "Так это работает",
+    "demoP": "Поднеси телефон и смотри послание. Видео создано ИИ для примера.",
+    "demoLabel": "Пример: сканируют кнопку на подарке",
+    "navLook": "Кнопка"
+  }
 }

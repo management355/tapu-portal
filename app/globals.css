@@ -344,3 +344,19 @@ main.try-page { max-width: 62rem; }
 .loading-dot { width: 3rem; height: 3rem; border-radius: 50%; border: 0.45rem solid var(--text); border-top-color: var(--accent); animation: loading-spin 0.8s linear infinite; }
 @keyframes loading-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .loading-dot { animation: none; } }
+
+/* Startseite: So sieht er aus */
+.lp-look { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr)); gap: 1.5rem; }
+.lp-look figure { margin: 0; border: 2px solid var(--text); border-radius: 16px; overflow: hidden; background: #ffffff; }
+.lp-look img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 2px solid var(--text); }
+.lp-look figcaption { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.lp-look figcaption strong { font-family: var(--head); font-size: 1.25rem; }
+.lp-look figcaption span { color: var(--muted); }
+.lp-try { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.lp-try h3 { margin: 0 0 0.4rem; font-family: var(--head); font-size: 1.5rem; }
+.lp-try p { margin: 0; }
+.lp-try-voice { background: var(--accent); border: 2px solid var(--text); border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; justify-content: center; }
+.lp-try-voice audio { width: 100%; margin-top: 0.5rem; }
+.lp-try-demo { border: 2px solid var(--text); border-radius: 16px; padding: 1.25rem; display: flex; gap: 1.25rem; align-items: center; background: var(--surface-alt); }
+.lp-try-demo video { width: 9.5rem; flex: none; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; border: 2px solid var(--text); background: #000000; }
+.lp-look-note { margin: 1.25rem 0 0; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
