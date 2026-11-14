@@ -28,6 +28,7 @@ type Shown =
       title: string | null;
       body: string | null;
       mediaPath: string | null;
+      rotation?: number;
       mediaUrl: string | null;
       reportable: boolean;
     };
@@ -92,7 +93,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
   if (code.target_type === "message" && code.message_id) {
     const { data } = await admin
       .from("messages")
-      .select("body, media_path")
+      .select("body, media_path, media_rotation")
       .eq("id", code.message_id)
       .eq("status", "published")
       .maybeSingle();
@@ -104,6 +105,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
         body: data.body,
         mediaPath: data.media_path,
         mediaUrl: await signedUrl(USER_BUCKET, data.media_path),
+        rotation: data.media_rotation ?? 0,
         reportable: true,
       };
     }
@@ -141,7 +143,7 @@ export default async function ScanPage({
       {shown.state === "content" && (
         <>
           {shown.title && <h1>{shown.title}</h1>}
-          <MediaView path={shown.mediaPath} url={shown.mediaUrl} label={shown.title ?? t.file} />
+          <MediaView path={shown.mediaPath} url={shown.mediaUrl} label={shown.title ?? t.file} rotation={shown.rotation} />
           {shown.body && <p className="message-body">{shown.body}</p>}
           <p className="scan-home">{home}</p>
           {gemeldet && (

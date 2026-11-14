@@ -32,8 +32,8 @@ type ArchiveRow = {
   body: string | null;
   media_path: string | null;
 };
-type MessageRow = { id: string; title: string; kind: string; body: string | null; media_path: string | null; status: string };
-type Preview = { title: string | null; body: string | null; path: string | null; url: string | null; blocked: boolean };
+type MessageRow = { id: string; title: string; kind: string; media_rotation: number; body: string | null; media_path: string | null; status: string };
+type Preview = { rotation?: number; title: string | null; body: string | null; path: string | null; url: string | null; blocked: boolean };
 type PlanRow = { id: string; name: string; code_limit: number; uploads_allowed: boolean };
 
 const KIND_LABELS: Record<string, string> = { text: "Text", image: "Bild", audio: "Audio", video: "Video" };
@@ -99,7 +99,7 @@ export default async function PortalPage({
       .order("title", { ascending: true }),
     supabase
       .from("messages")
-      .select("id, title, kind, body, media_path, status")
+      .select("id, title, kind, body, media_path, media_rotation, status")
       .eq("owner_id", user.id)
       .order("created_at", { ascending: false }),
     getOrigin(),
@@ -119,6 +119,7 @@ export default async function PortalPage({
         const message = messageRows.find((row) => row.id === code.message_id);
         if (!message) return;
         previews.set(code.id, {
+          rotation: message.media_rotation,
           title: message.title,
           body: message.body,
           path: message.media_path,
@@ -228,7 +229,7 @@ export default async function PortalPage({
                     {code.title && <div className="knopf-title">{code.title}</div>}
                     {preview.blocked && <div className="card error">Diese Botschaft ist gesperrt und wird nicht angezeigt.</div>}
                     {preview.title && <div className="knopf-archive">{preview.title}</div>}
-                    <MediaView path={preview.path} url={preview.url} label={preview.title ?? "Hinterlegte Datei"} />
+                    <MediaView path={preview.path} url={preview.url} label={preview.title ?? "Hinterlegte Datei"} rotation={preview.rotation} />
                     {preview.body && <p className="message-body">{preview.body}</p>}
                   </>
                 ) : (

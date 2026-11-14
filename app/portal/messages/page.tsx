@@ -13,6 +13,7 @@ type MessageRow = {
   id: string;
   title: string;
   updated_at: string;
+  media_rotation: number;
   body: string | null;
   media_path: string | null;
   status: "published" | "blocked";
@@ -31,7 +32,7 @@ export default async function MessagesPage() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("messages")
-    .select("id, title, updated_at, body, media_path, status")
+    .select("id, title, updated_at, body, media_path, media_rotation, status")
     .eq("owner_id", account.userId)
     .order("updated_at", { ascending: false });
   const rows = (data ?? []) as MessageRow[];
@@ -66,7 +67,7 @@ export default async function MessagesPage() {
           {row.status === "blocked" && (
             <div><span className="badge">gesperrt</span></div>
           )}
-          <MediaView path={row.media_path} url={urls[index]} label="Deine Datei" />
+          <MediaView path={row.media_path} url={urls[index]} label="Deine Datei" rotation={row.media_rotation} />
           {row.body && <p className="message-body" style={{ fontSize: "1rem" }}>{row.body}</p>}
           <form action={renameMessage} className="row message-rename">
             <input type="hidden" name="id" value={row.id} />

@@ -18,7 +18,7 @@ function autoTitle(kind: string): string {
   return `${KIND_NAMES[kind] ?? "Botschaft"} vom ${when}`;
 }
 
-export async function createMessage(input: { title?: string; body: string; path: string | null }): Promise<SaveResult> {
+export async function createMessage(input: { title?: string; body: string; path: string | null; rotation?: number }): Promise<SaveResult> {
   const account = await getAccount();
   if (!account) return { ok: false, error: "Bitte melde dich an." };
   if (!account.plan?.uploads_allowed) {
@@ -43,6 +43,7 @@ export async function createMessage(input: { title?: string; body: string; path:
   const { error } = await supabase.from("messages").insert({
     title: title || autoTitle(kind),
     kind,
+    media_rotation: kind === "video" && [90, 180, 270].includes(Number(input?.rotation)) ? Number(input.rotation) : 0,
     body: body || null,
     media_path: path,
   });

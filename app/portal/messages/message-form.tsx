@@ -5,6 +5,8 @@ import { useRef, useState, useSyncExternalStore } from "react";
 import { ACCEPT, MAX_FILE_BYTES } from "@/lib/media";
 import { clearDraft, readDraft } from "@/lib/draft";
 import { uploadFile } from "@/lib/upload-client";
+import { RotatableVideo } from "@/app/rotatable-video";
+import { readVideoHint } from "@/lib/video-rotation";
 import { createMessage } from "./actions";
 
 function megabytes(bytes: number): string {
@@ -29,6 +31,8 @@ export function MessageForm() {
   const [file, setFile] = useState<File | null>(null);
   const [recorded, setRecorded] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  // In der Videodatei vermerkte Drehung; wird mit der Botschaft gespeichert.
+  const [rotation, setRotation] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,6 +45,7 @@ export function MessageForm() {
 
   function clearFile() {
     setFile(null);
+    setRotation(0);
     setRecorded(false);
     replacePreview(null);
     if (fileInput.current) fileInput.current.value = "";
@@ -53,6 +58,8 @@ export function MessageForm() {
     if (fromCamera && fileInput.current) fileInput.current.value = "";
     if (!fromCamera && cameraInput.current) cameraInput.current.value = "";
     setFile(next);
+    setRotation(0);
+    if (next.type.startsWith("video/")) void readVideoHint(next).then((hint) => setRotation(hint?.rotation ?? 0));
     setRecorded(fromCamera);
     replacePreview(fromCamera ? URL.createObjectURL(next) : null);
     if (next.size > MAX_FILE_BYTES) {
@@ -78,7 +85,7 @@ export function MessageForm() {
         }
         path = uploaded.path;
       }
-      const saved = await createMessage({ title, body, path });
+      const saved = await createMessage({ title, body, path, rotation });
       if (!saved.ok) {
         setError(saved.error);
         return;
@@ -150,7 +157,7 @@ export function MessageForm() {
 
       {file && recorded && (
         <div className="stack">
-          {preview && <video className="media" src={preview} controls playsInline preload="metadata" style={{ margin: 0 }} />}
+          {preview && <RotatableVideo key={preview} src={preview} rotation={rotation} playLabel="Abspielen" />}
           <div className="row between">
             <span className="small">Aufgenommenes Video, {megabytes(file.size)} MB</span>
             <button type="button" className="secondary" disabled={busy} onClick={clearFile}>Verwerfen</button>

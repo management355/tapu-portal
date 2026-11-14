@@ -79,7 +79,7 @@ export function TryIt({ t }: { t: Texts }) {
             {empty && <p className="muted">{t.previewEmpty}</p>}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             {picked?.kind === "image" && <img className="media" src={picked.url} alt="" />}
-            {picked?.kind === "video" && <RotatableVideo key={picked.url} src={picked.url} hint={hint} rotateLabel={t.rotate} playLabel={t.play} />}
+            {picked?.kind === "video" && <RotatableVideo key={picked.url} src={picked.url} rotation={hint?.rotation ?? 0} rotateLabel={t.rotate} playLabel={t.play} />}
             {picked?.kind === "audio" && <audio className="media" src={picked.url} controls preload="metadata" />}
             {body.trim() !== "" && <p className="message-body">{body}</p>}
           </div>
