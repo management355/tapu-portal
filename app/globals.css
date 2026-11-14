@@ -384,3 +384,17 @@ main.try-page { max-width: 62rem; }
 /* Meine Botschaften: Bezeichnung */
 .message-title { margin: 0 0 0.2rem; font-family: var(--head); font-size: 1.4rem; overflow-wrap: anywhere; }
 .message-rename input { flex: 1 1 12rem; min-width: 0; }
+
+/* Startseite auf dem Handy: die Grafik steht links neben dem Einleitungstext statt weit unten */
+@media (max-width: 43.99rem) {
+  .lp-hero { display: grid; grid-template-columns: 40% 1fr; column-gap: 1.1rem; row-gap: 1.25rem; align-items: center; padding-bottom: 3rem; }
+  .lp-hero-text { display: contents; }
+  .lp-hero .lp-eyebrow, .lp-hero h1, .lp-hero .lp-actions, .lp-hero .lp-free { grid-column: 1 / -1; }
+  .lp-hero-art { grid-column: 1; grid-row: 3; padding: 0.4rem 0.5rem 0.8rem 0.2rem; }
+  .lp-hero .lp-lead { grid-column: 2; grid-row: 3; font-size: 1rem; line-height: 1.45; margin: 0; }
+  .lp-hero .lp-photo-card { padding: 0.5rem 0.5rem 0.6rem; border-width: 2px; border-radius: 10px; box-shadow: 4px 5px 0 var(--text); }
+  .lp-hero .lp-photo-back { border-radius: 14px; }
+  .lp-hero .lp-photo-image { padding: 8%; border-radius: 4px; }
+  .lp-hero .lp-photo-caption { padding-top: 0.45rem; font-size: 0.72rem; letter-spacing: 0; }
+  .lp-hero .lp-photo-no { display: none; }
+}
