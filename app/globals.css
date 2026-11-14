@@ -156,13 +156,13 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
 
 .lp-eyebrow { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; color: var(--blue); }
 .lp h1, .lp h2 { margin: 0; font-family: var(--head); font-weight: 800; text-wrap: balance; }
-.lp h1 { font-size: clamp(3.4rem, 8.5vw, 7.75rem); line-height: 0.92; letter-spacing: -0.03em; }
+.lp h1 { font-size: clamp(3.1rem, 6.3vw, 5.6rem); line-height: 0.92; letter-spacing: -0.03em; }
 .lp h2 { font-size: clamp(2.6rem, 6vw, 4.75rem); line-height: 0.95; letter-spacing: -0.03em; }
-.lp:lang(ru) h1 { font-size: clamp(2.8rem, 7vw, 6.25rem); }
+.lp:lang(ru) h1 { font-size: clamp(2.6rem, 5.4vw, 4.75rem); }
 .lp-lead { margin: 0; font-size: 1.2rem; line-height: 1.5; color: var(--soft); max-width: 34rem; }
 
 .lp-hero { padding-top: 1.5rem; padding-bottom: 4.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 2.5rem; }
-.lp-hero-text { flex: 1 1 28rem; min-width: 0; display: flex; flex-direction: column; gap: 1.6rem; }
+.lp-hero-text { flex: 1.35 1 30rem; min-width: 0; display: flex; flex-direction: column; gap: 1.6rem; }
 .lp-hero-art { flex: 1 1 24rem; min-width: 0; display: flex; justify-content: center; padding: 1rem 1.25rem 2rem; }
 .lp-photo { position: relative; width: 100%; max-width: 31rem; }
 .lp-photo-back { position: absolute; inset: 9% -4% -5% 8%; background: var(--blue); border-radius: 28px; transform: rotate(4deg); }
@@ -247,6 +247,7 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
   .lp-kind { padding: 1.4rem; }
   .lp-kind-head svg { width: 6rem; }
   .lp-photo-card { box-shadow: 6px 8px 0 var(--text); }
+  .lp-sound { top: 0.6rem; right: 0.6rem; font-size: 0.8rem; padding: 0.45rem 0.9rem; }
 }
 
 /* QR-Code drucken */
