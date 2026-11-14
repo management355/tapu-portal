@@ -123,3 +123,5 @@ export const TRY_STRINGS: Record<Lang, {
     example: "Сначала посмотреть пример", home: "На главную", language: "Язык",
   },
 };
+
+export const BACK_LABEL: Record<Lang, string> = { de: "Zurück", en: "Back", ru: "Назад" };

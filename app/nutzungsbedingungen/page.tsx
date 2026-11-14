@@ -1,3 +1,4 @@
+import { BackButton } from "@/app/back-button";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { OPERATOR } from "@/lib/operator";
@@ -7,6 +8,7 @@ export const metadata: Metadata = { title: `Nutzungsbedingungen – ${OPERATOR.p
 export default function NutzungsbedingungenPage() {
   return (
     <main className="legal">
+      <p className="back-row"><BackButton fallback="/" label="Zurück" /></p>
       <h1>Nutzungsbedingungen</h1>
       <p className="muted small">Stand: {OPERATOR.legalDate}</p>
 

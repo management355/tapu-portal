@@ -10,7 +10,7 @@ export default async function ForgotPasswordPage({
   const { notice, error } = await searchParams;
   return (
     <main>
-      <SiteHead />
+      <SiteHead back="/login" />
       <h1>Passwort vergessen</h1>
       {error === "link" && (
         <div className="card error" role="alert">

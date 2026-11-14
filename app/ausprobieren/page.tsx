@@ -1,6 +1,7 @@
+import { BackButton } from "@/app/back-button";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LANGS, TRY_STRINGS, getLang } from "@/lib/i18n";
+import { BACK_LABEL, LANGS, TRY_STRINGS, getLang } from "@/lib/i18n";
 import { TryIt } from "./try-it";
 
 export const metadata: Metadata = { title: "taPu – Ausprobieren" };
@@ -12,7 +13,10 @@ export default async function TryPage() {
   return (
     <main className="try-page" lang={lang}>
       <div className="scan-head">
-        <Link href="/" className="scan-logo" aria-label={`taPu, ${t.home}`}>taPu</Link>
+        <div className="row">
+          <BackButton fallback="/" label={BACK_LABEL[lang]} />
+          <Link href="/" className="scan-logo" aria-label={`taPu, ${t.home}`}>taPu</Link>
+        </div>
         <nav className="scan-langs" aria-label={t.language}>
           {LANGS.map((code) => (
             <a key={code} href={`/lang/${code}?next=%2Fausprobieren`} hrefLang={code} aria-current={code === lang ? "true" : undefined}>

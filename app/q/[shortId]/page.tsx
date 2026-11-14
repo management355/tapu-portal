@@ -1,3 +1,4 @@
+import { BackButton } from "@/app/back-button";
 import type { Metadata } from "next";
 import { isUnlocked, unlockCookieName } from "@/lib/pin";
 import { cookies, headers } from "next/headers";
@@ -5,7 +6,7 @@ import Link from "next/link";
 import { MediaView } from "@/app/media-view";
 import { ARCHIVE_BUCKET, USER_BUCKET } from "@/lib/media";
 import { signedUrl } from "@/lib/media-server";
-import { LANGS, SCAN_STRINGS, getLang } from "@/lib/i18n";
+import { LANGS, BACK_LABEL, SCAN_STRINGS, getLang } from "@/lib/i18n";
 import { normalizeShortId } from "@/lib/site";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { reportContent, unlockCode } from "./actions";
@@ -131,7 +132,10 @@ export default async function ScanPage({
   return (
     <main>
       <div className="scan-head">
-        <Link href="/" className="scan-logo">taPu</Link>
+        <div className="row">
+          <BackButton fallback="/" label={BACK_LABEL[lang]} onlyInternal />
+          <Link href="/" className="scan-logo">taPu</Link>
+        </div>
         <nav className="scan-langs" aria-label={t.language}>
           {LANGS.map((code) => (
             <a key={code} href={`/lang/${code}?next=${back}`} hrefLang={code} aria-current={code === lang ? "true" : undefined}>

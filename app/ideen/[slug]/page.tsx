@@ -1,8 +1,9 @@
+import { BackButton } from "@/app/back-button";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ExplainerVideo } from "@/app/explainer-video";
-import { LANGS, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
+import { BACK_LABEL, LANGS, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
 import { IDEA_SLUGS, IDEA_STYLE, ideaTexts, isIdeaSlug } from "@/lib/ideas";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 
@@ -30,9 +31,11 @@ export default async function IdeaPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="lp" lang={lang}>
       <header className="lp-head">
-        <Link href="/" className="lp-logo">taPu</Link>
+        <div className="row">
+          <BackButton fallback="/#wo" label={BACK_LABEL[lang]} />
+          <Link href="/" className="lp-logo">taPu</Link>
+        </div>
         <nav aria-label={common.back}>
-          <Link href="/#wo">{common.back}</Link>
           <div className="lp-langs">
             {LANGS.map((code) => (
               <a key={code} href={`/lang/${code}?next=${back}`} hrefLang={code} aria-current={code === lang ? "true" : undefined}>

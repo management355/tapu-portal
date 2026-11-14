@@ -42,7 +42,7 @@ export default async function LoginPage({
   if (notice === "confirm") {
     return (
       <main>
-        <SiteHead />
+        <SiteHead back="/" />
         <div className="confirm-screen" role="status">
           <div className="confirm-icon" aria-hidden="true">✉</div>
           <h1>Bitte bestätige zuerst deine E-Mail-Adresse</h1>
@@ -68,7 +68,7 @@ export default async function LoginPage({
   const nextParam = `next=${encodeURIComponent(target)}`;
   return (
     <main>
-      <SiteHead />
+      <SiteHead back="/" />
       <nav className="tabs login-tabs" aria-label="Anmelden oder Konto erstellen">
         <Link href={`/login?${nextParam}`} aria-current={isSignup ? undefined : "page"}>Anmelden</Link>
         <Link href={`/login?ansicht=neu&${nextParam}`} aria-current={isSignup ? "page" : undefined}>Konto erstellen</Link>

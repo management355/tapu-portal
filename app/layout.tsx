@@ -1,3 +1,4 @@
+import { NavTracker } from "./nav-tracker";
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/bricolage-grotesque/wght.css";
 import "@fontsource-variable/inter/wght.css";
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={lang}>
       <body>
+        <NavTracker />
         {children}
         <LegalFooter />
       </body>

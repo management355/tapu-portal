@@ -419,3 +419,9 @@ a.lp-tile.is-passing .lp-tile-more span { transform: translateX(6px); }
 }
 .lp .lp-kind-secret a.lp-kind-more { color: #ffffff; }
 .lp .lp-kind-secret a.lp-kind-more:hover { color: var(--text); }
+
+/* Zurück-Schaltfläche auf den Unterseiten */
+.back-button, .lp a.back-button { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; padding: 0.5rem 1rem; border: 2px solid var(--text); border-radius: 999px; background: #ffffff; color: var(--text); font-weight: 700; font-size: 0.94rem; text-decoration: none; white-space: nowrap; }
+.back-button:hover, .lp a.back-button:hover { background: var(--text); color: #ffffff; }
+.back-row { margin: 0 0 1.5rem; }
+.scan-head .row, .lp-head .row { align-items: center; gap: 0.9rem; flex-wrap: nowrap; }
