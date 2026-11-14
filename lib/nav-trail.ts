@@ -22,9 +22,8 @@ export function recordVisit(path: string) {
 }
 
 // Gibt es eine andere Seite der Website, von der man auf die aktuelle gekommen ist?
-export function hasPreviousPage(): boolean {
+export function hasPreviousPage(current: string): boolean {
   if (typeof window === "undefined") return false;
-  const current = window.location.pathname;
   const trail = read();
   const previous = trail[trail.length - 1] === current ? trail[trail.length - 2] : trail[trail.length - 1];
   return !!previous && previous !== current && window.history.length > 1;
