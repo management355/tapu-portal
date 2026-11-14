@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
 import { ACCOUNT_DELETED, LANGS, PORTAL_LABEL, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
+import { IDEA_SLUGS, IDEA_STYLE, ideaTexts } from "@/lib/ideas";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
@@ -30,8 +31,6 @@ function Knopf({ secret, label }: { secret?: boolean; label: string }) {
   );
 }
 
-const TILE_CLASSES = ["lp-tile-orange", "lp-tile-blue", "lp-tile-grey", "lp-tile-ink"];
-
 export default async function Home({
   searchParams,
 }: {
@@ -47,6 +46,7 @@ export default async function Home({
     signedIn = !!(await supabase.auth.getUser()).data.user;
   }
   const marquee = [...t.marquee, ...t.marquee];
+  const ideaOpen = ideaTexts(lang).common.open;
 
   return (
     <div className="lp" lang={lang}>
@@ -127,13 +127,14 @@ export default async function Home({
           </div>
           <div className="lp-tiles">
             {t.tiles.map(([tag, title, text], index) => (
-              <div className={`lp-tile ${TILE_CLASSES[index % TILE_CLASSES.length]}`} key={tag}>
+              <Link href={`/ideen/${IDEA_SLUGS[index]}`} className={`lp-tile lp-tile-${IDEA_STYLE[IDEA_SLUGS[index]]}`} key={tag}>
                 <div className="lp-tile-tag">{tag}</div>
                 <div>
                   <h3>{title}</h3>
                   <p>{text}</p>
+                  <span className="lp-tile-more">{ideaOpen} <span aria-hidden="true">→</span></span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

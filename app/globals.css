@@ -194,7 +194,15 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
 .lp-band-grey { background: var(--surface-alt); }
 
 .lp-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16.9rem, 100%), 1fr)); gap: 1.25rem; }
-.lp-tile { border-radius: 20px; padding: 1.75rem; min-height: 16.25rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+.lp-tile { border-radius: 20px; padding: 1.75rem; min-height: 16.25rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; text-decoration: none; transition: transform 0.18s ease, box-shadow 0.18s ease; }
+a.lp-tile:hover, a.lp-tile:focus-visible { transform: translate(-4px, -6px) rotate(-1deg); box-shadow: 8px 10px 0 var(--text); }
+a.lp-tile.lp-tile-ink:hover, a.lp-tile.lp-tile-ink:focus-visible { box-shadow: 8px 10px 0 var(--accent); }
+.lp a.lp-tile-orange, .lp a.lp-tile-grey { color: var(--text); }
+.lp a.lp-tile-blue, .lp a.lp-tile-ink { color: #ffffff; }
+.lp-tile-more { display: inline-block; margin-top: 1rem; font-weight: 700; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 2px; }
+.lp-tile-more span { display: inline-block; transition: transform 0.18s ease; }
+a.lp-tile:hover .lp-tile-more span { transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) { .lp-tile, .lp-tile-more span { transition: none; } a.lp-tile:hover, a.lp-tile:focus-visible { transform: none; } }
 .lp-tile-tag { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; }
 .lp-tile h3 { margin: 0 0 0.6rem; font-family: var(--head); font-weight: 800; font-size: 2.1rem; line-height: 1; letter-spacing: -0.5px; }
 .lp-tile p { margin: 0; line-height: 1.5; }
@@ -240,6 +248,17 @@ h3 { font-size: 1rem; margin: 1.25rem 0 0.5rem; }
 .lp-end .lp-wrap { padding-top: 6rem; padding-bottom: 6rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1.75rem; }
 .lp-end h2 { font-size: clamp(3rem, 8vw, 7rem); line-height: 0.92; }
 .lp .card { margin-top: 1rem; }
+
+/* Ideen-Seiten */
+.idea-hero .lp-wrap { padding-top: 4.5rem; padding-bottom: 4.5rem; display: flex; flex-direction: column; gap: 1.4rem; }
+.idea-hero h1 { max-width: 60rem; }
+.idea-lead { margin: 0; font-size: 1.35rem; line-height: 1.45; max-width: 42rem; font-weight: 500; }
+.idea-body { padding-top: 4rem; padding-bottom: 4.5rem; display: flex; flex-direction: column; gap: 2.5rem; }
+.idea-story { margin: 0; font-size: 1.3rem; line-height: 1.6; max-width: 46rem; }
+.idea-tip { border: 3px solid var(--text); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; box-shadow: 10px 12px 0 var(--text); max-width: 52rem; }
+.lp .idea-tip h2 { font-size: clamp(2rem, 4vw, 2.75rem); }
+.idea-tip p { margin: 0; font-size: 1.15rem; line-height: 1.55; }
+.lp h2.idea-more { margin-top: 2.5rem; font-size: clamp(2.25rem, 5vw, 3.75rem); }
 
 @media (max-width: 40rem) {
   .lp-wrap, .lp-head, .legal-footer-inner { padding-left: 1.25rem; padding-right: 1.25rem; }

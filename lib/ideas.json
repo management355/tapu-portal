@@ -1,0 +1,305 @@
+{
+ "de": {
+  "common": {
+   "back": "Alle Ideen",
+   "examplesH": "So könnte es aussehen",
+   "tipH": "taPu oder xtaPu?",
+   "cta": "Botschaft hinterlegen",
+   "moreH": "Noch mehr Ideen",
+   "videoLabel": "Kurzes Video zur Idee",
+   "open": "Idee ansehen"
+  },
+  "ideas": {
+   "kleidung": {
+    "tag": "01 / KLEIDUNG",
+    "title": "An dir",
+    "headline": "Dein Outfit kann jetzt reden.",
+    "lead": "Ein Knopf an Jacke, Tasche oder Cap, und jeder, der neugierig genug ist, bekommt etwas von dir zu sehen. Ohne dass du ein Wort sagen musst.",
+    "story": "Du trägst ihn wie einen Pin. Dahinter liegt, was du heute zeigen willst: dein neuer Song, ein Video von gestern Nacht, dein Insta, ein Satz, der zu dir passt. Morgen ist es etwas anderes, der Knopf bleibt derselbe. Wer fragt, was das ist, darf scannen. So fängt ein Gespräch an, das sonst nie stattgefunden hätte.",
+    "examples": [
+     [
+      "Der Eisbrecher",
+      "Auf der Party, im Club, auf dem Festival: „Was ist das an deiner Jacke?“ ist die einfachste erste Frage der Welt."
+     ],
+     [
+      "Die Visitenkarte",
+      "Dein Portfolio, dein Mixtape, dein Shop. Immer dabei, nie im Portemonnaie vergessen."
+     ],
+     [
+      "Die Laune des Tages",
+      "Montag ein Meme, Freitag dein Lieblingssong. Du wechselst die Botschaft in zehn Sekunden vom Handy aus."
+     ]
+    ],
+    "tip": "Mit taPu sieht jeder, der scannt, deine Botschaft sofort. Mit xtaPu gibst du den Zahlencode nur denen, die du magst. Dann ist der Knopf ein Geheimnis, das du trägst."
+   },
+   "strasse": {
+    "tag": "02 / STRASSE",
+    "title": "An der Wand",
+    "headline": "Mach die Stadt zu deiner Bühne.",
+    "lead": "Ein Plakat, ein Sticker, ein Flyer zeigen nur ein Bild. Mit einem taPu-Code führen sie zu allem, was nicht draufpasst.",
+    "story": "Der Code darf so groß sein wie eine Hauswand oder so klein wie ein Sticker an der Ampel. Wer ihn scannt, landet bei deinem Song, deinem Clip, deiner Einladung. Und weil du den Inhalt jederzeit austauschst, bleibt dasselbe Plakat wochenlang aktuell: heute der Teaser, nächste Woche das ganze Video, am Konzerttag die Wegbeschreibung.",
+    "examples": [
+     [
+      "Das Konzertplakat",
+      "Scannen und reinhören, bevor man hingeht. Nach dem Konzert liegt dort das Live-Video."
+     ],
+     [
+      "Die Schnitzeljagd",
+      "Fünf Sticker, fünf Orte, fünf Teile einer Geschichte. Wer alle findet, kennt das Ende."
+     ],
+     [
+      "Die Ausstellung",
+      "Neben jedem Bild ein Code: Die Künstlerin erzählt selbst, was sie sich dabei gedacht hat."
+     ]
+    ],
+    "tip": "Plakate sind für alle da, also taPu. Für eine Schnitzeljagd oder eine Gästeliste nimmst du xtaPu und verrätst den Code nur den Eingeweihten."
+   },
+   "musik": {
+    "tag": "03 / MUSIK",
+    "title": "Am Merch",
+    "headline": "Das Extra, das man nicht streamen kann.",
+    "lead": "Ein Knopf am Vinyl, am Shirt, am Tape. Dahinter liegt etwas, das nur findet, wer das Teil wirklich in der Hand hat.",
+    "story": "Streaming hat alle Songs überall verfügbar gemacht. Besonders ist nur noch, was man anfassen kann. Mit taPu bekommt jedes Stück Merch eine zweite Ebene: einen unveröffentlichten Track, ein Video aus dem Proberaum, einen Gruß der Band. Du kannst den Inhalt nach jedem Konzert wechseln und siehst, wie oft gescannt wurde.",
+    "examples": [
+     [
+      "Der Bonustrack",
+      "Auf der Platte sind zehn Songs. Der elfte liegt hinter dem Knopf auf der Hülle."
+     ],
+     [
+      "Der Backstage-Gruß",
+      "Nach der Show nimmt die Band dreißig Sekunden auf. Am nächsten Morgen sehen es alle, die ein Shirt gekauft haben."
+     ],
+     [
+      "Die limitierte Auflage",
+      "Hundert Tapes, hundert Knöpfe, jeder mit eigenem Zahlencode. Wer eins hat, gehört dazu."
+     ]
+    ],
+    "tip": "taPu für alles, was Fans teilen sollen. xtaPu, wenn der Inhalt wirklich nur den Käufern gehören soll: Der Zahlencode liegt dann im Booklet oder in der Hülle."
+   },
+   "geschenk": {
+    "tag": "04 / FÜR JEMANDEN",
+    "title": "Als Geschenk",
+    "headline": "Schenk etwas, das antwortet.",
+    "lead": "Hinter dem Knopf an deinem Geschenk warten dein Gesicht, deine Stimme, euer Lied. Zum Immer-wieder-Ansehen.",
+    "story": "Eine Karte liest man einmal. Einen Knopf tippt man immer wieder an. Nimm ein Video auf, sing ein Lied, sammle Grüße von allen Freunden und leg sie hinter einen einzigen Knopf. Er hängt am Geschenkband, klebt im Fotoalbum oder sitzt am Schlüsselbund. Und wenn du Jahre später etwas Neues sagen willst, tauschst du die Botschaft einfach aus.",
+    "examples": [
+     [
+      "Der Geburtstagsgruß",
+      "Alle Freunde in einem Video, auch die, die nicht kommen konnten."
+     ],
+     [
+      "Der Abschied",
+      "Ein Knopf am Koffer für das Auslandsjahr. Dahinter: eine Nachricht für den ersten Abend allein."
+     ],
+     [
+      "Die Erinnerung",
+      "Omas Stimme, wie sie ihr Lieblingsrezept erklärt. Am Kochbuch, für immer."
+     ]
+    ],
+    "tip": "Für etwas Persönliches ist xtaPu oft die bessere Wahl: Nur wer den Zahlencode kennt, sieht die Botschaft. Den Code schreibst du in die Karte."
+   }
+  }
+ },
+ "en": {
+  "common": {
+   "back": "All ideas",
+   "examplesH": "What it could look like",
+   "tipH": "taPu or xtaPu?",
+   "cta": "Leave a message",
+   "moreH": "More ideas",
+   "videoLabel": "Short video about the idea",
+   "open": "See the idea"
+  },
+  "ideas": {
+   "kleidung": {
+    "tag": "01 / CLOTHES",
+    "title": "On you",
+    "headline": "Your outfit can talk now.",
+    "lead": "A button on your jacket, bag or cap, and anyone curious enough gets to see something from you. Without you saying a word.",
+    "story": "You wear it like a pin. Behind it is whatever you want to show today: your new song, a video from last night, your Insta, a line that fits you. Tomorrow it's something else, and the button stays the same. Anyone who asks what it is gets to scan. That's how a conversation starts that would never have happened otherwise.",
+    "examples": [
+     [
+      "The icebreaker",
+      "At the party, in the club, at the festival: \"What's that on your jacket?\" is the easiest first question in the world."
+     ],
+     [
+      "The business card",
+      "Your portfolio, your mixtape, your shop. Always with you, never left in your wallet."
+     ],
+     [
+      "The mood of the day",
+      "A meme on Monday, your favourite song on Friday. You swap the message in ten seconds from your phone."
+     ]
+    ],
+    "tip": "With taPu, anyone who scans sees your message right away. With xtaPu, you give the code only to people you like. Then the button is a secret you wear."
+   },
+   "strasse": {
+    "tag": "02 / STREET",
+    "title": "On the wall",
+    "headline": "Make the city your stage.",
+    "lead": "A poster, a sticker, a flyer only show a picture. With a taPu code they lead to everything that doesn't fit on them.",
+    "story": "The code can be as big as a wall or as small as a sticker on a lamp post. Whoever scans it lands on your song, your clip, your invitation. And because you can swap the content at any time, the same poster stays fresh for weeks: the teaser today, the full video next week, directions on the day of the show.",
+    "examples": [
+     [
+      "The gig poster",
+      "Scan and listen before you go. After the show, the live video is waiting there."
+     ],
+     [
+      "The scavenger hunt",
+      "Five stickers, five places, five parts of a story. Whoever finds them all knows the ending."
+     ],
+     [
+      "The exhibition",
+      "A code next to every picture: the artist tells you herself what she had in mind."
+     ]
+    ],
+    "tip": "Posters are for everyone, so taPu. For a scavenger hunt or a guest list, use xtaPu and share the code only with those in the know."
+   },
+   "musik": {
+    "tag": "03 / MUSIC",
+    "title": "On the merch",
+    "headline": "The extra you can't stream.",
+    "lead": "A button on the vinyl, the shirt, the tape. Behind it is something only found by whoever really holds the thing.",
+    "story": "Streaming made every song available everywhere. What's special now is what you can touch. With taPu, every piece of merch gets a second layer: an unreleased track, a video from the rehearsal room, a hello from the band. You can change the content after every show and see how often it was scanned.",
+    "examples": [
+     [
+      "The bonus track",
+      "There are ten songs on the record. The eleventh is behind the button on the sleeve."
+     ],
+     [
+      "The backstage hello",
+      "After the show the band records thirty seconds. Next morning everyone who bought a shirt sees it."
+     ],
+     [
+      "The limited edition",
+      "A hundred tapes, a hundred buttons, each with its own code. If you have one, you belong."
+     ]
+    ],
+    "tip": "taPu for everything fans should share. xtaPu when the content should really belong to buyers only: the code goes in the booklet or the sleeve."
+   },
+   "geschenk": {
+    "tag": "04 / FOR SOMEONE",
+    "title": "As a gift",
+    "headline": "Give something that answers back.",
+    "lead": "Behind the button on your gift: your face, your voice, your song. To watch again and again.",
+    "story": "A card is read once. A button gets tapped again and again. Record a video, sing a song, collect greetings from all your friends and put them behind a single button. It hangs on the ribbon, sticks in the photo album or sits on a key ring. And if you want to say something new years later, you simply swap the message.",
+    "examples": [
+     [
+      "The birthday greeting",
+      "All your friends in one video, even those who couldn't come."
+     ],
+     [
+      "The farewell",
+      "A button on the suitcase for a year abroad. Behind it: a message for the first evening alone."
+     ],
+     [
+      "The memory",
+      "Grandma's voice explaining her favourite recipe. On the cookbook, for good."
+     ]
+    ],
+    "tip": "For something personal, xtaPu is often the better choice: only those who know the code see the message. You write the code in the card."
+   }
+  }
+ },
+ "ru": {
+  "common": {
+   "back": "Все идеи",
+   "examplesH": "Как это может выглядеть",
+   "tipH": "taPu или xtaPu?",
+   "cta": "Оставить послание",
+   "moreH": "Ещё идеи",
+   "videoLabel": "Короткое видео об идее",
+   "open": "Смотреть идею"
+  },
+  "ideas": {
+   "kleidung": {
+    "tag": "01 / ОДЕЖДА",
+    "title": "На тебе",
+    "headline": "Твой образ теперь умеет говорить.",
+    "lead": "Кнопка на куртке, сумке или кепке — и каждый, кому достаточно любопытно, увидит что-то от тебя. Без единого слова.",
+    "story": "Ты носишь её как значок. За ней то, что ты хочешь показать сегодня: новая песня, видео со вчерашней ночи, твой профиль, фраза, которая тебе подходит. Завтра там что-то другое, а кнопка та же. Кто спросит, что это, пусть сканирует. Так начинается разговор, которого иначе бы не было.",
+    "examples": [
+     [
+      "Повод заговорить",
+      "На вечеринке, в клубе, на фестивале: «Что это у тебя на куртке?» — самый простой первый вопрос на свете."
+     ],
+     [
+      "Визитка",
+      "Твоё портфолио, твой микстейп, твой магазин. Всегда с собой, никогда не забыта в кошельке."
+     ],
+     [
+      "Настроение дня",
+      "В понедельник мем, в пятницу любимая песня. Послание меняется за десять секунд с телефона."
+     ]
+    ],
+    "tip": "С taPu послание сразу видит каждый, кто сканирует. С xtaPu код ты даёшь только тем, кто тебе нравится. Тогда кнопка — это секрет, который ты носишь."
+   },
+   "strasse": {
+    "tag": "02 / УЛИЦА",
+    "title": "На стене",
+    "headline": "Сделай город своей сценой.",
+    "lead": "Афиша, стикер, флаер показывают только картинку. С кодом taPu они ведут ко всему, что на них не поместилось.",
+    "story": "Код может быть размером со стену или маленьким, как стикер на светофоре. Кто его сканирует, попадает к твоей песне, клипу, приглашению. А раз содержимое можно менять когда угодно, одна и та же афиша неделями остаётся свежей: сегодня тизер, через неделю всё видео, в день концерта — как добраться.",
+    "examples": [
+     [
+      "Афиша концерта",
+      "Отсканируй и послушай до того, как идти. После концерта там лежит живое видео."
+     ],
+     [
+      "Квест",
+      "Пять стикеров, пять мест, пять частей истории. Кто найдёт все, узнает финал."
+     ],
+     [
+      "Выставка",
+      "Рядом с каждой работой код: художница сама рассказывает, что она задумала."
+     ]
+    ],
+    "tip": "Афиши — для всех, значит taPu. Для квеста или списка гостей бери xtaPu и говори код только посвящённым."
+   },
+   "musik": {
+    "tag": "03 / МУЗЫКА",
+    "title": "На мерче",
+    "headline": "Бонус, который не найти в стриминге.",
+    "lead": "Кнопка на виниле, футболке, кассете. За ней то, что найдёт только тот, у кого вещь действительно в руках.",
+    "story": "Стриминг сделал все песни доступными везде. Особенным осталось только то, что можно потрогать. С taPu у каждой вещи появляется второй слой: неизданный трек, видео с репетиции, привет от группы. Содержимое можно менять после каждого концерта и видеть, сколько раз кнопку сканировали.",
+    "examples": [
+     [
+      "Бонус-трек",
+      "На пластинке десять песен. Одиннадцатая — за кнопкой на конверте."
+     ],
+     [
+      "Привет из-за кулис",
+      "После шоу группа записывает тридцать секунд. Утром это видят все, кто купил футболку."
+     ],
+     [
+      "Лимитированный тираж",
+      "Сто кассет, сто кнопок, у каждой свой код. Есть такая — значит, ты свой."
+     ]
+    ],
+    "tip": "taPu — для всего, чем фанаты должны делиться. xtaPu — когда содержимое должно принадлежать только покупателям: код лежит в буклете или в конверте."
+   },
+   "geschenk": {
+    "tag": "04 / ДЛЯ КОГО-ТО",
+    "title": "В подарок",
+    "headline": "Подари то, что отвечает.",
+    "lead": "За кнопкой на твоём подарке — твоё лицо, твой голос, ваша песня. Чтобы смотреть снова и снова.",
+    "story": "Открытку читают один раз. Кнопки касаются снова и снова. Сними видео, спой песню, собери поздравления от всех друзей и положи их за одну кнопку. Она висит на ленте, приклеена в фотоальбоме или живёт на связке ключей. А если через годы захочешь сказать что-то новое, просто замени послание.",
+    "examples": [
+     [
+      "Поздравление",
+      "Все друзья в одном видео — даже те, кто не смог приехать."
+     ],
+     [
+      "Прощание",
+      "Кнопка на чемодане перед годом за границей. За ней — слова для первого вечера в одиночестве."
+     ],
+     [
+      "Память",
+      "Голос бабушки, которая объясняет любимый рецепт. На кулинарной книге, навсегда."
+     ]
+    ],
+    "tip": "Для личного часто лучше xtaPu: послание увидит только тот, кто знает код. Код ты пишешь в открытке."
+   }
+  }
+ }
+}
