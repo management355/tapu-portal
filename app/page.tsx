@@ -1,73 +1,36 @@
 import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
-import { ACCOUNT_DELETED, PORTAL_LABEL, SOUND_ON, LANGS, getLang, landingStrings } from "@/lib/i18n";
+import { ACCOUNT_DELETED, LANGS, PORTAL_LABEL, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
 
-// Das Erklärvideo liegt im öffentlichen Ordner "site-media" unseres Supabase-Speichers.
+// Das Werbevideo liegt im öffentlichen Ordner "site-media" unseres Supabase-Speichers.
 const MEDIA_BASE = `${supabaseUrl}/storage/v1/object/public/site-media`;
-const POSTER_URL = `${MEDIA_BASE}/tapu-erklaervideo-poster.jpg`;
+const POSTER_URL = `${MEDIA_BASE}/tapu-werbevideo-poster.jpg`;
 
-function Qr({ x, y, size }: { x: number; y: number; size: number }) {
-  const pad = size * 0.08;
+const INK = "#111111";
+const ORANGE = "#FF5A1F";
+
+// Der Knopf als Zeichnung: offen (taPu) oder geheim (xtaPu).
+function Knopf({ secret, label }: { secret?: boolean; label: string }) {
   return (
-    <>
-      <rect x={x - pad} y={y - pad} width={size + 2 * pad} height={size + 2 * pad} rx={pad * 0.75} fill="#FFFFFF" stroke="none" />
-      <use href="#tapu-qr" x={x} y={y} width={size} height={size} />
-    </>
+    <svg role="img" aria-label={label} viewBox="0 0 600 600">
+      <circle cx="300" cy="300" r="286" fill={secret ? ORANGE : INK} />
+      <circle cx="300" cy="300" r="246" fill={secret ? INK : "#FFFFFF"} />
+      <text x="300" y="166" textAnchor="middle" className="lp-svg-logo" fontSize="64" fontWeight="800" letterSpacing="-1.5" fill={secret ? "#FFFFFF" : INK}>
+        {secret ? "xtaPu" : "taPu"}
+      </text>
+      <rect x="192" y="192" width="216" height="216" rx="10" fill="#FFFFFF" />
+      <use href="#tapu-qr" x="206" y="206" width="188" height="188" />
+      <text x="300" y="462" textAnchor="middle" className="lp-svg-code" fontSize="27" fontWeight="700" letterSpacing="2" fill={secret ? ORANGE : INK}>
+        A9GSB·NE6H9
+      </text>
+    </svg>
   );
 }
 
-function Dot({ cx, cy, r }: { cx: number; cy: number; r: number }) {
-  return (
-    <>
-      <circle cx={cx} cy={cy} r={r} fill="#F0B35E" stroke="none" />
-      <circle cx={cx} cy={cy} r={r + 6} />
-    </>
-  );
-}
-
-const ICONS = [
-  <>
-    <circle cx="160" cy="34" r="22" />
-    <path d="M138 62h44l14 58h-72z" />
-    <path d="M146 120v34M174 120v34M138 72l-28 30M182 72l28 30" />
-    <Dot cx={174} cy={158} r={6} />
-  </>,
-  <>
-    <path d="M110 30l-50 26 16 30 22-10v72h124V76l22 10 16-30-50-26c-8 14-22 20-50 20s-42-6-50-20z" />
-    <Dot cx={196} cy={122} r={6} />
-  </>,
-  <>
-    <rect x="50" y="18" width="220" height="104" rx="3" />
-    <path d="M110 122v36M210 122v36M90 158h140" />
-    <path d="M70 44h70M70 62h50M70 80h60" />
-    <Qr x={196} y={40} size={54} />
-  </>,
-  <>
-    <path d="M20 150h280M36 150V46c0-16 12-28 28-28h192c16 0 28 12 28 28v104" />
-    <rect x="60" y="44" width="76" height="60" rx="4" />
-    <rect x="184" y="44" width="76" height="60" rx="4" />
-    <path d="M160 18v132" />
-    <Qr x={200} y={52} size={44} />
-    <path d="M76 62h44M76 78h30" />
-  </>,
-  <>
-    <rect x="40" y="26" width="240" height="124" rx="3" />
-    <path d="M160 40v96M178 78h84M178 96h84M178 114h60" />
-    <rect x="232" y="38" width="32" height="26" />
-    <Qr x={64} y={56} size={62} />
-  </>,
-  <>
-    <Dot cx={70} cy={60} r={9} />
-    <Dot cx={160} cy={112} r={13} />
-    <Dot cx={250} cy={52} r={7} />
-    <Dot cx={118} cy={132} r={5} />
-    <Dot cx={214} cy={128} r={6} />
-    <path d="M92 66l48 34M182 104l56-44" />
-  </>,
-];
+const TILE_CLASSES = ["lp-tile-orange", "lp-tile-blue", "lp-tile-grey", "lp-tile-ink"];
 
 export default async function Home({
   searchParams,
@@ -83,19 +46,14 @@ export default async function Home({
     const supabase = await createClient();
     signedIn = !!(await supabase.auth.getUser()).data.user;
   }
-  const tiles = [
-    [t.t1, t.d1], [t.t2, t.d2], [t.t3, t.d3], [t.t4, t.d4], [t.t5, t.d5], [t.t6, t.d6],
-  ];
-  const steps = [
-    [t.s1, t.sd1], [t.s2, t.sd2], [t.s3, t.sd3], [t.s4, t.sd4],
-  ];
+  const marquee = [...t.marquee, ...t.marquee];
 
   return (
     <div className="lp" lang={lang}>
       <svg aria-hidden="true" width="0" height="0" style={{ position: "absolute" }}>
         <defs>
           <symbol id="tapu-qr" viewBox="0 0 33 33">
-            <path stroke="#15111C" strokeWidth="1" strokeLinecap="butt" shapeRendering="crispEdges" d={QR_PATH} />
+            <path stroke={INK} strokeWidth="1" strokeLinecap="butt" shapeRendering="crispEdges" d={QR_PATH} />
           </symbol>
         </defs>
       </svg>
@@ -103,8 +61,9 @@ export default async function Home({
       <header className="lp-head">
         <Link href="/" className="lp-logo">taPu</Link>
         <nav aria-label={lang === "de" ? "Hauptnavigation" : lang === "ru" ? "Главная навигация" : "Main navigation"}>
-          <a href="#ueberall">{t.navWhere}</a>
-          <a href="#video">{t.navHow}</a>
+          <a href="#wo">{t.navWhere}</a>
+          <a href="#so">{t.navHow}</a>
+          <a href="#geheim">{t.navSecret}</a>
           <div className="lp-langs">
             {LANGS.map((code) => (
               <a key={code} href={`/lang/${code}`} hrefLang={code} aria-current={code === lang ? "true" : undefined}>
@@ -131,51 +90,73 @@ export default async function Home({
         <section className="lp-hero lp-wrap">
           <div className="lp-hero-text">
             <div className="lp-eyebrow">{t.eyebrow}</div>
-            <h1>{t.h1}</h1>
+            <h1>{t.h1a}<br />{t.h1b}</h1>
             <p className="lp-lead">{t.sub}</p>
             <div className="lp-actions">
               <Link href="/portal" className="lp-cta">{t.cta}</Link>
-              <a href="#video" className="lp-link">{t.navHow}</a>
+              <a href="#so" className="lp-link">{t.ctaHow}</a>
             </div>
+            <div className="lp-free">{t.free}</div>
           </div>
-          <div className="lp-hero-video" id="video-top">
-            {isConfigured() && (
-              <ExplainerVideo src={`${MEDIA_BASE}/tapu-erklaervideo-${lang}.mp4`} poster={POSTER_URL} label={t.videoH} soundOn={SOUND_ON[lang]} lang={lang} key={lang} />
-            )}
+          <div className="lp-hero-art">
+            <div className="lp-photo">
+              <div className="lp-photo-back" aria-hidden="true" />
+              <div className="lp-photo-card">
+                <div className="lp-photo-image"><Knopf label="taPu: Logo, QR-Code, A9GSB NE6H9" /></div>
+                <div className="lp-photo-caption">
+                  <span>{t.cardCaption}</span>
+                  <span className="lp-photo-no">{t.cardNo}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section id="ueberall" className="lp-band">
-          <div className="lp-wrap lp-section">
-            <div className="lp-intro">
-              <div className="lp-eyebrow">{t.whereEyebrow}</div>
-              <h2>{t.whereH}</h2>
-              <p className="lp-lead">{t.whereSub}</p>
-            </div>
-            <div className="lp-tiles">
-              {tiles.map(([title, text], index) => (
-                <div className="lp-tile" key={title}>
-                  <svg aria-hidden="true" viewBox="0 0 320 170" fill="none" stroke="#F0B35E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {ICONS[index]}
-                  </svg>
+        <div className="lp-marquee" aria-hidden="true">
+          <div className="lp-marquee-track">
+            {marquee.map((word, index) => (
+              <span key={index}>{word}<i>●</i></span>
+            ))}
+          </div>
+        </div>
+
+        <section id="wo" className="lp-wrap lp-section">
+          <div className="lp-intro">
+            <h2>{t.whereH}</h2>
+            <p className="lp-lead">{t.whereSub}</p>
+          </div>
+          <div className="lp-tiles">
+            {t.tiles.map(([tag, title, text], index) => (
+              <div className={`lp-tile ${TILE_CLASSES[index % TILE_CLASSES.length]}`} key={tag}>
+                <div className="lp-tile-tag">{tag}</div>
+                <div>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section id="video" className="lp-band lp-band-alt">
+        <section id="so" className="lp-band-grey">
           <div className="lp-wrap lp-section">
-            <div className="lp-intro">
-              <div className="lp-eyebrow">{t.videoEyebrow}</div>
-              <h2>{t.videoH}</h2>
-            </div>
+            <h2>{t.howH}</h2>
+            {isConfigured() && (
+              <div className="lp-video">
+                <ExplainerVideo
+                  src={`${MEDIA_BASE}/tapu-werbevideo-${lang}.mp4`}
+                  poster={POSTER_URL}
+                  label={t.videoLabel}
+                  soundOn={SOUND_ON[lang]}
+                  lang={lang}
+                  key={lang}
+                />
+              </div>
+            )}
             <ol className="lp-steps">
-              {steps.map(([title, text], index) => (
+              {t.steps.map(([title, text], index) => (
                 <li key={title}>
-                  <div className="lp-step-no">0{index + 1}</div>
+                  <div className="lp-step-no">{index + 1}</div>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </li>
@@ -184,11 +165,52 @@ export default async function Home({
           </div>
         </section>
 
-        <section className="lp-band">
-          <div className="lp-wrap lp-end">
+        <section id="geheim" className="lp-wrap lp-section">
+          <div className="lp-intro">
+            <h2>{t.secretH}</h2>
+            <p className="lp-lead">{t.secretSub}</p>
+          </div>
+          <div className="lp-kinds">
+            <div className="lp-kind">
+              <div className="lp-kind-head">
+                <Knopf label="taPu" />
+                <div>
+                  <h3>taPu</h3>
+                  <div className="lp-kind-tag">{t.openTag}</div>
+                </div>
+              </div>
+              <ul>{t.openList.map((item) => <li key={item}>{item}</li>)}</ul>
+            </div>
+            <div className="lp-kind lp-kind-secret">
+              <div className="lp-kind-head">
+                <Knopf secret label="xtaPu" />
+                <div>
+                  <h3>xtaPu</h3>
+                  <div className="lp-kind-tag">{t.secretTag}</div>
+                </div>
+              </div>
+              <ul>{t.secretList.map((item) => <li key={item}>{item}</li>)}</ul>
+              <div className="lp-pin" aria-hidden="true"><span>4</span><span>7</span><span className="lp-pin-now" /><span className="lp-pin-empty" /></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-wrap lp-faq">
+          <h2>{t.faqH}</h2>
+          <div className="lp-faq-list">
+            {t.faq.map(([question, answer]) => (
+              <div key={question}>
+                <h3>{question}</h3>
+                <p>{answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="lp-end">
+          <div className="lp-wrap">
             <h2>{t.endH}</h2>
-            <p className="lp-lead">{t.endSub}</p>
-            <Link href="/portal" className="lp-cta lp-cta-big">{t.cta}</Link>
+            <Link href="/portal" className="lp-cta lp-cta-ink">{t.cta}</Link>
           </div>
         </section>
       </main>

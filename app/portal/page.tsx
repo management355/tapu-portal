@@ -207,7 +207,7 @@ export default async function PortalPage({
             <input type="hidden" name="id" value={code.id} />
             <div className="knopf-row">
               <div className="knopf-side">
-                <div className={code.is_active ? "knopf" : "knopf knopf-off"}>
+                <div className={`knopf${code.pin_required ? " knopf-secret" : ""}${code.is_active ? "" : " knopf-off"}`}>
                   <span className="knopf-logo">{code.pin_required ? "xtaPu" : "taPu"}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
