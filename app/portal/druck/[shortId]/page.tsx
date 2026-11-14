@@ -32,7 +32,7 @@ export default async function PrintPage({ params }: { params: Promise<{ shortId:
       <p className="small no-print"><Link href="/portal">Zurück zu meinen Knöpfen</Link></p>
       <h1 className="no-print">QR-Code drucken</h1>
       {data.title && <p className="muted no-print">{data.title}</p>}
-      <PrintSheet logo={data.pin_required ? "xtaPux" : "taPu"} qrSrc={`/portal/qr/${shortId}`} label={label} link={`${origin.replace(/^https?:\/\//, "")}/q/${shortId}`} />
+      <PrintSheet logo={data.pin_required ? "xtaPu" : "taPu"} qrSrc={`/portal/qr/${shortId}`} label={label} link={`${origin.replace(/^https?:\/\//, "")}/q/${shortId}`} />
     </main>
   );
 }

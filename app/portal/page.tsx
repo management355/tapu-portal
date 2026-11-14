@@ -208,7 +208,7 @@ export default async function PortalPage({
             <div className="knopf-row">
               <div className="knopf-side">
                 <div className={code.is_active ? "knopf" : "knopf knopf-off"}>
-                  <span className="knopf-logo">{code.pin_required ? "xtaPux" : "taPu"}</span>
+                  <span className="knopf-logo">{code.pin_required ? "xtaPu" : "taPu"}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
                   <span className="knopf-code">
@@ -275,7 +275,7 @@ export default async function PortalPage({
               <legend>Wer darf die Botschaft sehen?</legend>
               <label className="check">
                 <input type="checkbox" name="pin_required" defaultChecked={code.pin_required} />
-                Nur mit Zahlencode öffnen (geheimer Knopf, xtaPux)
+                Nur mit Zahlencode öffnen (geheimer Knopf, xtaPu)
               </label>
               <label>
                 {code.has_pin ? "Zahlencode ändern (leer lassen, um den bisherigen zu behalten)" : "Zahlencode festlegen"}
