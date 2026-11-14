@@ -126,7 +126,7 @@
     "voiceH": "So kann es klingen",
     "voiceP": "Eine kurze Sprachnachricht hinter einem Knopf. Hier mit KI-Stimme als Beispiel.",
     "demoH": "So läuft es ab",
-    "demoP": "Handy dranhalten, Botschaft sehen. KI-Video als Beispiel.",
+    "demoP": "Knopf mit der Handykamera erfassen, auf den Link tippen, Botschaft sehen. KI-Video als Beispiel.",
     "demoLabel": "Beispielvideo: Knopf am Geschenk wird gescannt",
     "navLook": "Der Knopf"
   },
@@ -257,7 +257,7 @@
     "voiceH": "This is how it can sound",
     "voiceP": "A short voice message behind a button. Here with an AI voice as an example.",
     "demoH": "This is how it works",
-    "demoP": "Hold your phone to it, see the message. AI video as an example.",
+    "demoP": "Point your phone camera at the button, tap the link, see the message. AI video as an example.",
     "demoLabel": "Example video: a button on a gift is scanned",
     "navLook": "The button"
   },
@@ -388,7 +388,7 @@
     "voiceH": "Так это может звучать",
     "voiceP": "Короткое голосовое сообщение за кнопкой. Здесь для примера голос ИИ.",
     "demoH": "Так это работает",
-    "demoP": "Поднеси телефон и смотри послание. Видео создано ИИ для примера.",
+    "demoP": "Наведи камеру телефона на кнопку, нажми на ссылку и смотри послание. Видео создано ИИ для примера.",
     "demoLabel": "Пример: сканируют кнопку на подарке",
     "navLook": "Кнопка"
   }

@@ -153,8 +153,8 @@ export default async function Home({
               <audio controls preload="none" src={`${MEDIA_BASE}/tapu-echt-stimme${lang === "de" ? "" : `-${lang}`}.mp3`} aria-label={t.voiceH} />
             </div>
             <div className="lp-try-demo">
-              <video controls playsInline preload="none" poster={`${MEDIA_BASE}/tapu-echt-demo.jpg`} aria-label={t.demoLabel}>
-                <source src={`${MEDIA_BASE}/tapu-echt-demo.mp4`} type="video/mp4" />
+              <video controls playsInline preload="none" poster={`${MEDIA_BASE}/tapu-echt-demo2.jpg`} aria-label={t.demoLabel}>
+                <source src={`${MEDIA_BASE}/tapu-echt-demo2.mp4`} type="video/mp4" />
               </video>
               <div>
                 <h3>{t.demoH}</h3>
