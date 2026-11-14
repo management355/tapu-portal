@@ -417,3 +417,5 @@ a.lp-tile.is-passing .lp-tile-more span { transform: translateX(6px); }
   .lp-kind, .lp-kind-more span { transition: none; }
   .lp-kind:hover, .lp-kind:focus-within, a.lp-tile.is-passing, .lp-kind.is-passing { transform: none; }
 }
+.lp .lp-kind-secret a.lp-kind-more { color: #ffffff; }
+.lp .lp-kind-secret a.lp-kind-more:hover { color: var(--text); }
