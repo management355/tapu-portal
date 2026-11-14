@@ -85,14 +85,14 @@ export const PORTAL_LABEL: Record<Lang, string> = {
 };
 
 export const TRY_STRINGS: Record<Lang, {
-  title: string; lead: string; local: string; textLabel: string; fileLabel: string; record: string; remove: string;
+  title: string; lead: string; local: string; textLabel: string; fileLabel: string; record: string; remove: string; rotate: string; play: string;
   previewH: string; previewEmpty: string; saveH: string; saveP: string; save: string; haveAccount: string;
   carry: string; tooBig: string; example: string; home: string; language: string;
 }> = {
   de: {
     title: "Probier es aus", lead: "Schreib etwas, wähle ein Foto oder nimm ein Video auf. Rechts siehst du sofort, wie deine Botschaft nach dem Scannen aussieht.",
     local: "Alles bleibt auf deinem Gerät. Es wird nichts hochgeladen und nichts gespeichert, solange du kein Konto anlegst.",
-    textLabel: "Dein Text", fileLabel: "Bild, Audio oder Video auswählen", record: "Video mit dem Handy aufnehmen", remove: "Datei entfernen",
+    textLabel: "Dein Text", fileLabel: "Bild, Audio oder Video auswählen", record: "Video mit dem Handy aufnehmen", remove: "Datei entfernen", rotate: "Video drehen", play: "Abspielen",
     previewH: "So sieht es nach dem Scannen aus", previewEmpty: "Noch leer. Schreib links etwas oder wähle eine Datei.",
     saveH: "Gefällt es dir?", saveP: "Zum dauerhaften Speichern und für deinen eigenen QR-Code brauchst du ein Konto. Das dauert eine Minute.",
     save: "Speichern und Konto anlegen", haveAccount: "Ich habe schon ein Konto",
@@ -103,7 +103,7 @@ export const TRY_STRINGS: Record<Lang, {
   en: {
     title: "Try it out", lead: "Write something, pick a photo or record a video. On the right you immediately see what your message looks like after scanning.",
     local: "Everything stays on your device. Nothing is uploaded or stored until you create an account.",
-    textLabel: "Your text", fileLabel: "Choose a picture, audio or video", record: "Record a video with your phone", remove: "Remove file",
+    textLabel: "Your text", fileLabel: "Choose a picture, audio or video", record: "Record a video with your phone", remove: "Remove file", rotate: "Rotate video", play: "Play",
     previewH: "What it looks like after scanning", previewEmpty: "Still empty. Write something on the left or choose a file.",
     saveH: "Like it?", saveP: "To keep it and get your own QR code you need an account. It takes a minute.",
     save: "Save and create an account", haveAccount: "I already have an account",
@@ -114,7 +114,7 @@ export const TRY_STRINGS: Record<Lang, {
   ru: {
     title: "Попробуй", lead: "Напиши что-нибудь, выбери фото или сними видео. Справа сразу видно, как твоё послание выглядит после сканирования.",
     local: "Всё остаётся на твоём устройстве. Ничего не загружается и не сохраняется, пока ты не создашь аккаунт.",
-    textLabel: "Твой текст", fileLabel: "Выбрать картинку, аудио или видео", record: "Снять видео на телефон", remove: "Убрать файл",
+    textLabel: "Твой текст", fileLabel: "Выбрать картинку, аудио или видео", record: "Снять видео на телефон", remove: "Убрать файл", rotate: "Повернуть видео", play: "Воспроизвести",
     previewH: "Так это выглядит после сканирования", previewEmpty: "Пока пусто. Напиши что-нибудь слева или выбери файл.",
     saveH: "Нравится?", saveP: "Чтобы сохранить послание и получить свой QR-код, нужен аккаунт. Это займёт минуту.",
     save: "Сохранить и создать аккаунт", haveAccount: "У меня уже есть аккаунт",

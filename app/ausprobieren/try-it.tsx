@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { ACCEPT, MAX_FILE_BYTES } from "@/lib/media";
 import { saveDraft } from "@/lib/draft";
+import { RotatableVideo } from "@/app/rotatable-video";
+import { readVideoHint, type VideoHint } from "@/lib/video-rotation";
 
 type Texts = {
-  local: string; textLabel: string; fileLabel: string; record: string; remove: string;
+  local: string; textLabel: string; fileLabel: string; record: string; remove: string; rotate: string; play: string;
   previewH: string; previewEmpty: string; saveH: string; saveP: string; save: string; haveAccount: string;
   carry: string; tooBig: string;
 };
@@ -22,8 +24,11 @@ export function TryIt({ t }: { t: Texts }) {
   const cameraInput = useRef<HTMLInputElement>(null);
   const [body, setBody] = useState("");
   const [picked, setPicked] = useState<Picked | null>(null);
+  const [hint, setHint] = useState<VideoHint | null>(null);
 
   function choose(file: File | null) {
+    setHint(null);
+    if (file?.type.startsWith("video/")) void readVideoHint(file).then(setHint);
     setPicked((old) => {
       if (old) URL.revokeObjectURL(old.url);
       if (!file) return null;
@@ -74,7 +79,7 @@ export function TryIt({ t }: { t: Texts }) {
             {empty && <p className="muted">{t.previewEmpty}</p>}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             {picked?.kind === "image" && <img className="media" src={picked.url} alt="" />}
-            {picked?.kind === "video" && <video className="media" src={picked.url} controls playsInline preload="metadata" />}
+            {picked?.kind === "video" && <RotatableVideo key={picked.url} src={picked.url} hint={hint} rotateLabel={t.rotate} playLabel={t.play} />}
             {picked?.kind === "audio" && <audio className="media" src={picked.url} controls preload="metadata" />}
             {body.trim() !== "" && <p className="message-body">{body}</p>}
           </div>

@@ -372,3 +372,11 @@ main.try-page { max-width: 62rem; }
   .idea-body:has(.kind-video) { flex-direction: row; align-items: center; gap: 3.5rem; }
   .kind-video { flex: none; width: 20rem; }
 }
+
+/* Video-Vorschau, die sich drehen lässt */
+.rot-video { margin: 0 0 1rem; }
+.rot-video .media { margin: 0; }
+.rot-frame { position: relative; width: 100%; overflow: hidden; border-radius: 14px; background: #000000; }
+.rot-frame video { position: absolute; top: 50%; left: 50%; height: auto; max-width: none; cursor: pointer; }
+.rot-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 4rem; height: 4rem; padding: 0; border-radius: 50%; font-size: 1.4rem; }
+.rot-turn { margin-top: 0.6rem; padding: 0.45rem 0.9rem; font-size: 0.9rem; }
