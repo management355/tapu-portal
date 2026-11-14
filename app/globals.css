@@ -398,3 +398,22 @@ main.try-page { max-width: 62rem; }
   .lp-hero .lp-photo-caption { padding-top: 0.45rem; font-size: 0.72rem; letter-spacing: 0; }
   .lp-hero .lp-photo-no { display: none; }
 }
+
+/* Bewegung beim Scrollen und beim Überfahren: Ideen-Kacheln und die Karten taPu / xtaPu */
+a.lp-tile.is-passing { transform: translate(-4px, -6px) rotate(-1deg); box-shadow: 8px 10px 0 var(--text); }
+a.lp-tile.is-passing:nth-child(even) { transform: translate(4px, -6px) rotate(1deg); }
+a.lp-tile.lp-tile-ink.is-passing { box-shadow: 8px 10px 0 var(--accent); }
+a.lp-tile.is-passing .lp-tile-more span { transform: translateX(6px); }
+.lp-tiles > .lp-tile:nth-child(2) { transition-delay: 0.06s; }
+.lp-tiles > .lp-tile:nth-child(3) { transition-delay: 0.12s; }
+.lp-tiles > .lp-tile:nth-child(4) { transition-delay: 0.18s; }
+.lp-kind { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.lp-kind:hover, .lp-kind:focus-within, .lp-kind.is-passing { transform: translate(-4px, -6px) rotate(-1deg); box-shadow: 8px 10px 0 var(--text); }
+.lp-kind-secret:hover, .lp-kind-secret:focus-within, .lp-kind-secret.is-passing { transform: translate(4px, -6px) rotate(1deg); box-shadow: 8px 10px 0 var(--accent); }
+.lp-kind-secret { transition-delay: 0.06s; }
+.lp-kind-more span { display: inline-block; transition: transform 0.18s ease; }
+.lp-kind:hover .lp-kind-more span, .lp-kind.is-passing .lp-kind-more span { transform: translateX(6px); }
+@media (prefers-reduced-motion: reduce) {
+  .lp-kind, .lp-kind-more span { transition: none; }
+  .lp-kind:hover, .lp-kind:focus-within, a.lp-tile.is-passing, .lp-kind.is-passing { transform: none; }
+}

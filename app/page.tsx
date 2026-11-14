@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
+import { ScrollMotion } from "./scroll-motion";
 import { ACCOUNT_DELETED, LANGS, PORTAL_LABEL, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
 import { IDEA_SLUGS, IDEA_STYLE, ideaTexts } from "@/lib/ideas";
 import { kindTexts } from "@/lib/kinds";
@@ -58,6 +59,7 @@ export default async function Home({
 
   return (
     <div className="lp" lang={lang}>
+      <ScrollMotion />
       <svg aria-hidden="true" width="0" height="0" style={{ position: "absolute" }}>
         <defs>
           <symbol id="tapu-qr" viewBox="0 0 33 33">
@@ -172,7 +174,7 @@ export default async function Home({
           </div>
           <div className="lp-tiles">
             {t.tiles.map(([tag, title, text], index) => (
-              <Link href={`/ideen/${IDEA_SLUGS[index]}`} className={`lp-tile lp-tile-${IDEA_STYLE[IDEA_SLUGS[index]]}`} key={tag}>
+              <Link href={`/ideen/${IDEA_SLUGS[index]}`} data-scroll-move="" className={`lp-tile lp-tile-${IDEA_STYLE[IDEA_SLUGS[index]]}`} key={tag}>
                 <div className="lp-tile-tag">{tag}</div>
                 <div>
                   <h3>{title}</h3>
@@ -217,7 +219,7 @@ export default async function Home({
             <p className="lp-lead">{t.secretSub}</p>
           </div>
           <div className="lp-kinds">
-            <div className="lp-kind">
+            <div className="lp-kind" data-scroll-move="">
               <div className="lp-kind-head">
                 <Knopf label="taPu" />
                 <div>
@@ -228,7 +230,7 @@ export default async function Home({
               <ul>{t.openList.map((item) => <li key={item}>{item}</li>)}</ul>
               <Link href="/knopf/tapu" className="lp-kind-more">{kindMore} <span aria-hidden="true">→</span></Link>
             </div>
-            <div className="lp-kind lp-kind-secret">
+            <div className="lp-kind lp-kind-secret" data-scroll-move="">
               <div className="lp-kind-head">
                 <Knopf secret label="xtaPu" />
                 <div>
