@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ExplainerVideo } from "./explainer-video";
 import { ACCOUNT_DELETED, LANGS, PORTAL_LABEL, SOUND_ON, getLang, landingStrings } from "@/lib/i18n";
 import { IDEA_SLUGS, IDEA_STYLE, ideaTexts } from "@/lib/ideas";
+import { kindTexts } from "@/lib/kinds";
 import { QR_PATH } from "@/lib/landing-qr";
 import { isConfigured, supabaseUrl } from "@/lib/supabase/env";
 import { createClient } from "@/lib/supabase/server";
@@ -53,6 +54,7 @@ export default async function Home({
   }
   const marquee = [...t.marquee, ...t.marquee];
   const ideaOpen = ideaTexts(lang).common.open;
+  const kindMore = kindTexts(lang).common.more;
 
   return (
     <div className="lp" lang={lang}>
@@ -224,6 +226,7 @@ export default async function Home({
                 </div>
               </div>
               <ul>{t.openList.map((item) => <li key={item}>{item}</li>)}</ul>
+              <Link href="/knopf/tapu" className="lp-kind-more">{kindMore} <span aria-hidden="true">→</span></Link>
             </div>
             <div className="lp-kind lp-kind-secret">
               <div className="lp-kind-head">
@@ -235,6 +238,7 @@ export default async function Home({
               </div>
               <ul>{t.secretList.map((item) => <li key={item}>{item}</li>)}</ul>
               <div className="lp-pin" aria-hidden="true"><span>4</span><span>7</span><span className="lp-pin-now" /><span className="lp-pin-empty" /></div>
+              <Link href="/knopf/xtapu" className="lp-kind-more">{kindMore} <span aria-hidden="true">→</span></Link>
             </div>
           </div>
         </section>

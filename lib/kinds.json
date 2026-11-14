@@ -1,0 +1,212 @@
+{
+  "de": {
+    "common": {
+      "back": "Startseite",
+      "stepsH": "Was beim Scannen passiert",
+      "forH": "Gut für",
+      "videoLabel": "Kurzes Video: So sieht es auf dem Handy aus",
+      "videoNote": "KI-Video als Beispiel. Die Anzeige auf dem Handy kann im Detail abweichen.",
+      "otherH": "Und die andere Art?",
+      "open": "Ansehen",
+      "more": "So funktioniert es"
+    },
+    "kinds": {
+      "tapu": {
+        "tag": "OFFEN",
+        "title": "taPu",
+        "headline": "Offen. Jeder darf gucken.",
+        "lead": "Scannen oder antippen, und deine Botschaft ist sofort da. Ohne App, ohne Anmeldung, ohne Code.",
+        "story": "Ein taPu ist wie ein Plakat mit Geheimfach: Jeder, der ihn findet, darf hineinschauen. Das Handy öffnet die Botschaft direkt im Browser. Was dahinter liegt, tauschst du im Portal aus, so oft du willst; der Knopf bleibt derselbe.",
+        "steps": [
+          [
+            "Scannen",
+            "Kamera auf den QR-Code halten oder das Handy an den Knopf tippen."
+          ],
+          [
+            "Seite öffnet sich",
+            "Der Browser lädt deine Botschaft. Eine App braucht niemand."
+          ],
+          [
+            "Botschaft ist da",
+            "Text, Bild, Song oder Video erscheinen sofort."
+          ]
+        ],
+        "for": [
+          "Plakate, Sticker und Flyer",
+          "Merch, Vinyl und Verpackungen",
+          "Alles, was möglichst viele sehen sollen"
+        ],
+        "tipH": "Gut zu wissen",
+        "tip": "Wer den Knopf scannt, sieht die Botschaft. Leg hier nichts ab, was nicht jeder sehen darf. Für Privates gibt es xtaPu, und du kannst jeden Knopf im Portal jederzeit umschalten."
+      },
+      "xtapu": {
+        "tag": "GEHEIM",
+        "title": "xtaPu",
+        "headline": "Geheim. Nur mit Zahlencode.",
+        "lead": "Wer scannt, sieht zuerst nur ein Code-Feld. Die Botschaft öffnet sich erst mit deinem Zahlencode.",
+        "story": "Ein xtaPu ist ein Knopf mit Schloss. Du legst im Portal einen Zahlencode mit vier bis acht Ziffern fest und gibst ihn nur an die weiter, die deine Botschaft sehen sollen. Alle anderen stehen vor verschlossener Tür.",
+        "steps": [
+          [
+            "Scannen",
+            "Kamera auf den QR-Code halten oder das Handy an den Knopf tippen."
+          ],
+          [
+            "Code eingeben",
+            "Statt der Botschaft erscheint ein Feld für den Zahlencode."
+          ],
+          [
+            "Botschaft ist da",
+            "Stimmt der Code, öffnet sich die Botschaft. Auf diesem Handy bleibt sie eine Stunde lang offen."
+          ]
+        ],
+        "for": [
+          "Nachrichten nur für eine Person",
+          "Geschenke mit Überraschung",
+          "Gruppen, Crews und Gästelisten"
+        ],
+        "tipH": "Gut zu wissen",
+        "tip": "Nach fünf falschen Versuchen ist zehn Minuten Pause. Wir speichern den Code nicht im Klartext, sondern nur einen Prüfwert. Du kannst den Code im Portal jederzeit ändern oder den Knopf wieder auf offen stellen."
+      }
+    }
+  },
+  "en": {
+    "common": {
+      "back": "Home",
+      "stepsH": "What happens when you scan",
+      "forH": "Good for",
+      "videoLabel": "Short video: what it looks like on the phone",
+      "videoNote": "AI video as an example. What you see on the phone may differ in detail.",
+      "otherH": "And the other kind?",
+      "open": "Take a look",
+      "more": "How it works"
+    },
+    "kinds": {
+      "tapu": {
+        "tag": "OPEN",
+        "title": "taPu",
+        "headline": "Open. Anyone can look.",
+        "lead": "Scan or tap, and your message is there right away. No app, no sign-in, no code.",
+        "story": "A taPu is like a poster with a hidden compartment: anyone who finds it may look inside. The phone opens the message straight in the browser. You swap what's behind it in the portal as often as you like; the button stays the same.",
+        "steps": [
+          [
+            "Scan",
+            "Point the camera at the QR code or tap the phone on the button."
+          ],
+          [
+            "Page opens",
+            "The browser loads your message. Nobody needs an app."
+          ],
+          [
+            "Message appears",
+            "Text, picture, song or video show up immediately."
+          ]
+        ],
+        "for": [
+          "Posters, stickers and flyers",
+          "Merch, vinyl and packaging",
+          "Anything that many people should see"
+        ],
+        "tipH": "Good to know",
+        "tip": "Whoever scans the button sees the message. Don't put anything here that not everyone may see. For private things there is xtaPu, and you can switch any button in the portal at any time."
+      },
+      "xtapu": {
+        "tag": "SECRET",
+        "title": "xtaPu",
+        "headline": "Secret. Only with a code.",
+        "lead": "Whoever scans sees only a code field at first. The message opens only with your numeric code.",
+        "story": "An xtaPu is a button with a lock. In the portal you set a numeric code of four to eight digits and pass it on only to the people who should see your message. Everyone else is left at a closed door.",
+        "steps": [
+          [
+            "Scan",
+            "Point the camera at the QR code or tap the phone on the button."
+          ],
+          [
+            "Enter the code",
+            "Instead of the message, a field for the numeric code appears."
+          ],
+          [
+            "Message appears",
+            "If the code is right, the message opens. On that phone it stays open for one hour."
+          ]
+        ],
+        "for": [
+          "Messages for one person only",
+          "Gifts with a surprise",
+          "Groups, crews and guest lists"
+        ],
+        "tipH": "Good to know",
+        "tip": "After five wrong attempts there is a ten-minute break. We don't store the code in plain text, only a check value. You can change the code in the portal at any time or set the button back to open."
+      }
+    }
+  },
+  "ru": {
+    "common": {
+      "back": "Главная",
+      "stepsH": "Что происходит при сканировании",
+      "forH": "Подходит для",
+      "videoLabel": "Короткое видео: как это выглядит на телефоне",
+      "videoNote": "Видео создано ИИ для примера. Изображение на телефоне может отличаться в деталях.",
+      "otherH": "А другой вид?",
+      "open": "Посмотреть",
+      "more": "Как это работает"
+    },
+    "kinds": {
+      "tapu": {
+        "tag": "ОТКРЫТО",
+        "title": "taPu",
+        "headline": "Открыто. Смотреть может каждый.",
+        "lead": "Отсканируй или коснись, и послание сразу перед тобой. Без приложения, без входа, без кода.",
+        "story": "taPu похож на плакат с тайником: каждый, кто его найдёт, может заглянуть внутрь. Телефон открывает послание прямо в браузере. Содержимое ты меняешь в портале сколько угодно раз, а кнопка остаётся той же.",
+        "steps": [
+          [
+            "Сканируй",
+            "Наведи камеру на QR-код или коснись кнопки телефоном."
+          ],
+          [
+            "Страница открывается",
+            "Браузер загружает твоё послание. Приложение никому не нужно."
+          ],
+          [
+            "Послание на экране",
+            "Текст, картинка, песня или видео появляются сразу."
+          ]
+        ],
+        "for": [
+          "Плакаты, стикеры и флаеры",
+          "Мерч, винил и упаковка",
+          "Всё, что должны увидеть многие"
+        ],
+        "tipH": "Полезно знать",
+        "tip": "Кто сканирует кнопку, тот видит послание. Не клади сюда то, что не должен видеть каждый. Для личного есть xtaPu, и любую кнопку можно в любой момент переключить в портале."
+      },
+      "xtapu": {
+        "tag": "СЕКРЕТНО",
+        "title": "xtaPu",
+        "headline": "Секретно. Только с кодом.",
+        "lead": "Кто сканирует, сначала видит только поле для кода. Послание открывается лишь по твоему цифровому коду.",
+        "story": "xtaPu — это кнопка с замком. В портале ты задаёшь цифровой код от четырёх до восьми цифр и сообщаешь его только тем, кто должен увидеть послание. Все остальные остаются перед закрытой дверью.",
+        "steps": [
+          [
+            "Сканируй",
+            "Наведи камеру на QR-код или коснись кнопки телефоном."
+          ],
+          [
+            "Введи код",
+            "Вместо послания появляется поле для цифрового кода."
+          ],
+          [
+            "Послание на экране",
+            "Если код верный, послание открывается. На этом телефоне оно остаётся открытым один час."
+          ]
+        ],
+        "for": [
+          "Сообщения только для одного человека",
+          "Подарки с сюрпризом",
+          "Группы, команды и списки гостей"
+        ],
+        "tipH": "Полезно знать",
+        "tip": "После пяти неверных попыток пауза десять минут. Мы не храним код открытым текстом, только проверочное значение. Код можно в любой момент изменить в портале или снова сделать кнопку открытой."
+      }
+    }
+  }
+}

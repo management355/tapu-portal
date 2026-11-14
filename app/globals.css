@@ -360,3 +360,15 @@ main.try-page { max-width: 62rem; }
 .lp-try-demo { border: 2px solid var(--text); border-radius: 16px; padding: 1.25rem; display: flex; gap: 1.25rem; align-items: center; background: var(--surface-alt); }
 .lp-try-demo video { width: 9.5rem; flex: none; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 14px; border: 2px solid var(--text); background: #000000; }
 .lp-look-note { margin: 1.25rem 0 0; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+
+/* Knopf-Arten: taPu und xtaPu */
+.lp-kind-more { margin-top: auto; align-self: flex-start; font-weight: 700; color: inherit; text-decoration: none; border: 2px solid currentColor; border-radius: 999px; padding: 0.6rem 1.1rem; }
+.lp-kind-more:hover { background: var(--accent); border-color: var(--accent); color: var(--text); }
+.kind-video { max-width: 22rem; }
+.kind-h { margin: 0; font-family: var(--head); font-size: 1.75rem; }
+.kind-tip { margin: 0; }
+.kind-video video { aspect-ratio: 9 / 16; }
+@media (min-width: 48rem) {
+  .idea-body:has(.kind-video) { flex-direction: row; align-items: center; gap: 3.5rem; }
+  .kind-video { flex: none; width: 20rem; }
+}
