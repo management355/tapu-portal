@@ -32,18 +32,15 @@ type ArchiveRow = {
   body: string | null;
   media_path: string | null;
 };
-type MessageRow = { id: string; kind: string; body: string | null; media_path: string | null; status: string };
+type MessageRow = { id: string; title: string; kind: string; body: string | null; media_path: string | null; status: string };
 type Preview = { title: string | null; body: string | null; path: string | null; url: string | null; blocked: boolean };
 type PlanRow = { id: string; name: string; code_limit: number; uploads_allowed: boolean };
 
 const KIND_LABELS: Record<string, string> = { text: "Text", image: "Bild", audio: "Audio", video: "Video" };
 
-// Zeigt in der Auswahl, ob eine Botschaft ein Medium enthaelt.
+// In der Auswahl steht die Bezeichnung der Botschaft, dahinter ihre Art.
 function messageLabel(message: MessageRow): string {
-  const kind = KIND_LABELS[message.kind] ?? "Botschaft";
-  const text = (message.body ?? "").slice(0, 50);
-  if (message.kind === "text") return text || kind;
-  return text ? `${kind} mit Text: ${text}` : `${kind} ohne Text`;
+  return `${message.title} (${KIND_LABELS[message.kind] ?? "Botschaft"})`;
 }
 
 const ERRORS: Record<string, string> = {
@@ -102,7 +99,7 @@ export default async function PortalPage({
       .order("title", { ascending: true }),
     supabase
       .from("messages")
-      .select("id, kind, body, media_path, status")
+      .select("id, title, kind, body, media_path, status")
       .eq("owner_id", user.id)
       .order("created_at", { ascending: false }),
     getOrigin(),
@@ -122,7 +119,7 @@ export default async function PortalPage({
         const message = messageRows.find((row) => row.id === code.message_id);
         if (!message) return;
         previews.set(code.id, {
-          title: null,
+          title: message.title,
           body: message.body,
           path: message.media_path,
           url: await signedUrl(USER_BUCKET, message.media_path),

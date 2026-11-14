@@ -25,6 +25,7 @@ export function MessageForm() {
   const [typed, setTyped] = useState<string | null>(null);
   const body = typed ?? draft;
   const setBody = setTyped;
+  const [title, setTitle] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [recorded, setRecorded] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
@@ -77,13 +78,14 @@ export function MessageForm() {
         }
         path = uploaded.path;
       }
-      const saved = await createMessage({ body, path });
+      const saved = await createMessage({ title, body, path });
       if (!saved.ok) {
         setError(saved.error);
         return;
       }
       clearDraft();
       setBody("");
+      setTitle("");
       clearFile();
       router.refresh();
     } catch {
@@ -99,6 +101,14 @@ export function MessageForm() {
       {typed === null && draft !== "" && (
         <div className="card notice" role="status">Dein Text aus „Ausprobieren“ ist übernommen. Wähle Foto, Audio oder Video hier noch einmal aus.</div>
       )}
+      <label>
+        Bezeichnung (optional)
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={80} placeholder="z. B. Geburtstag Oma" />
+      </label>
+      <p className="muted small" style={{ margin: 0 }}>
+        Unter der Bezeichnung findest du die Botschaft wieder. Wer scannt, sieht sie nicht. Ohne Eingabe vergeben wir
+        eine, etwa „Video vom 14.11.2026, 10:56“.
+      </p>
       <label>
         Text (optional, höchstens 2.000 Zeichen)
         <textarea value={body} onChange={(e) => setBody(e.target.value)} maxLength={2000} />

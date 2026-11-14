@@ -6,15 +6,23 @@ import { USER_BUCKET } from "@/lib/media";
 import { signedUrl } from "@/lib/media-server";
 import { createClient } from "@/lib/supabase/server";
 import { PortalNav } from "../nav";
-import { deleteMessage } from "./actions";
+import { deleteMessage, renameMessage } from "./actions";
 import { MessageForm } from "./message-form";
 
 type MessageRow = {
   id: string;
+  title: string;
+  updated_at: string;
   body: string | null;
   media_path: string | null;
   status: "published" | "blocked";
 };
+
+function changedOn(value: string): string {
+  return new Date(value).toLocaleString("de-DE", {
+    timeZone: "Europe/Berlin", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit",
+  });
+}
 
 export default async function MessagesPage() {
   const account = await getAccount();
@@ -23,9 +31,9 @@ export default async function MessagesPage() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("messages")
-    .select("id, body, media_path, status")
+    .select("id, title, updated_at, body, media_path, status")
     .eq("owner_id", account.userId)
-    .order("created_at", { ascending: false });
+    .order("updated_at", { ascending: false });
   const rows = (data ?? []) as MessageRow[];
   const urls = await Promise.all(rows.map((row) => signedUrl(USER_BUCKET, row.media_path)));
 
@@ -51,11 +59,20 @@ export default async function MessagesPage() {
       {rows.length === 0 && <p className="muted">Noch keine eigenen Botschaften.</p>}
       {rows.map((row, index) => (
         <div key={row.id} className="card stack">
+          <div>
+            <h3 className="message-title">{row.title}</h3>
+            <p className="muted small" style={{ margin: 0 }}>Zuletzt geändert: {changedOn(row.updated_at)} Uhr</p>
+          </div>
           {row.status === "blocked" && (
             <div><span className="badge">gesperrt</span></div>
           )}
           <MediaView path={row.media_path} url={urls[index]} label="Deine Datei" />
           {row.body && <p className="message-body" style={{ fontSize: "1rem" }}>{row.body}</p>}
+          <form action={renameMessage} className="row message-rename">
+            <input type="hidden" name="id" value={row.id} />
+            <input type="text" name="title" defaultValue={row.title} maxLength={80} aria-label="Bezeichnung" />
+            <button className="secondary">Umbenennen</button>
+          </form>
           <form action={deleteMessage}>
             <input type="hidden" name="id" value={row.id} />
             <button className="secondary">Löschen</button>
