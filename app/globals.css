@@ -425,3 +425,42 @@ a.lp-tile.is-passing .lp-tile-more span { transform: translateX(6px); }
 .back-button:hover, .lp a.back-button:hover { background: var(--text); color: #ffffff; }
 .back-row { margin: 0 0 1.5rem; }
 .scan-head .row, .lp-head .row { align-items: center; gap: 0.9rem; flex-wrap: nowrap; }
+
+/* Öffnungs-Animation der Scan-Seite: Schriftzug mit Flügeln, Feuerwerk, dann die Botschaft. */
+.opening { position: fixed; inset: 0; z-index: 50; background: var(--bg); overflow: hidden; transition: opacity 0.35s ease; }
+.opening-out { opacity: 0; pointer-events: none; }
+.opening-tap { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background: transparent; border-radius: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.opening-tap:focus-visible { outline: none; }
+.opening-sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.opening-stage { position: absolute; left: 50%; top: 40%; width: 0; height: 0; pointer-events: none; }
+.opening-flyer { position: absolute; left: 0; top: 0; will-change: transform; animation: opening-enter 1.3s cubic-bezier(0.2, 0.7, 0.3, 1) both, opening-path 9s ease-in-out 1.3s infinite; }
+.opening-bird { display: flex; align-items: center; transform: translate(-50%, -50%); animation: opening-bob 1.1s ease-in-out infinite alternate; }
+.opening-logo { font-family: var(--head); font-weight: 800; font-size: 3.4rem; letter-spacing: -2px; line-height: 1; color: var(--text); padding: 0 0.1rem; position: relative; z-index: 1; }
+.opening-wing { display: block; width: 86px; height: 53px; margin: -1.9rem -0.6rem 0; }
+.opening-wing svg { display: block; width: 100%; height: 100%; overflow: visible; transform-origin: 4% 76%; animation: opening-flap 0.26s ease-in-out infinite alternate; }
+.opening-wing-left { transform: scaleX(-1); }
+.opening-boom .opening-wing svg { animation-duration: 0.13s; }
+.opening-boom .opening-logo { animation: opening-pop 0.5s ease-out both; }
+.opening-short .opening-flyer { animation: opening-pop 0.5s ease-out both; }
+.opening-hint { position: absolute; left: 0; right: 0; bottom: 22%; margin: 0; padding: 0 1rem; text-align: center; font-family: var(--head); font-weight: 800; font-size: 1.35rem; letter-spacing: -0.3px; pointer-events: none; animation: opening-hint 1.4s ease-in-out 1.2s infinite alternate both; }
+.opening-skip { position: absolute; right: 0.75rem; bottom: 0.75rem; min-height: 44px; padding: 0 1rem; border: 0; background: transparent; color: var(--muted); font-family: var(--sans); font-size: 0.9rem; font-weight: 500; text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; border-radius: 8px; }
+.opening-skip:hover { color: var(--text); background: transparent; }
+.opening-content.opening-hidden { visibility: hidden; }
+.opening-content.opening-shown { animation: opening-reveal 0.5s ease-out both; }
+@keyframes opening-enter { from { transform: translate(-80vw, -6vh) rotate(-10deg); } to { transform: translate(-18vw, -12vh) rotate(4deg); } }
+@keyframes opening-path {
+  0% { transform: translate(-18vw, -12vh) rotate(4deg); }
+  14% { transform: translate(14vw, -20vh) rotate(-6deg); }
+  28% { transform: translate(24vw, -2vh) rotate(8deg); }
+  42% { transform: translate(8vw, 12vh) rotate(3deg); }
+  57% { transform: translate(-16vw, 14vh) rotate(-7deg); }
+  71% { transform: translate(-26vw, 0vh) rotate(-3deg); }
+  85% { transform: translate(-4vw, -22vh) rotate(6deg); }
+  100% { transform: translate(-18vw, -12vh) rotate(4deg); }
+}
+@keyframes opening-bob { from { margin-top: -6px; } to { margin-top: 6px; } }
+@keyframes opening-flap { from { transform: rotate(-36deg) scaleY(1.05); } to { transform: rotate(6deg) scaleY(0.75); } }
+@keyframes opening-pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+@keyframes opening-hint { from { opacity: 0.35; transform: scale(0.98); } to { opacity: 1; transform: scale(1.03); } }
+@keyframes opening-reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (max-width: 420px) { .opening-logo { font-size: 2.8rem; } .opening-wing { width: 72px; height: 44px; } }

@@ -42,6 +42,7 @@ export const SCAN_STRINGS: Record<Lang, {
   emptyH: string; emptyP: string; unclaimedH: string; unclaimedP: string; claim: string;
   missingH: string; missingP: string; language: string;
   lockedH: string; lockedP: string; pinLabel: string; open: string; wrong: string; tooMany: string;
+  openHint: string; skip: string;
 }> = {
   de: {
     home: "Zur Startseite", file: "Hinterlegte Datei", reported: "Danke, die Meldung ist angekommen.",
@@ -53,6 +54,7 @@ export const SCAN_STRINGS: Record<Lang, {
     lockedH: "Dieser Knopf ist geheim", lockedP: "Gib den Zahlencode ein, um die Botschaft zu sehen.",
     pinLabel: "Zahlencode", open: "Öffnen", wrong: "Der Zahlencode stimmt nicht. Bitte versuche es noch einmal.",
     tooMany: "Zu viele falsche Versuche. Dieser Knopf ist vorübergehend gesperrt. Bitte versuche es später noch einmal.",
+    openHint: "Antippen zum Öffnen", skip: "Überspringen",
   },
   en: {
     home: "Go to home page", file: "Attached file", reported: "Thank you, your report has been received.",
@@ -64,6 +66,7 @@ export const SCAN_STRINGS: Record<Lang, {
     lockedH: "This button is secret", lockedP: "Enter the code to see the message.",
     pinLabel: "Code", open: "Open", wrong: "That code is not correct. Please try again.",
     tooMany: "Too many wrong attempts. This button is locked for a while. Please try again later.",
+    openHint: "Tap to open", skip: "Skip",
   },
   ru: {
     home: "На главную", file: "Прикреплённый файл", reported: "Спасибо, жалоба получена.",
@@ -75,6 +78,7 @@ export const SCAN_STRINGS: Record<Lang, {
     lockedH: "Эта кнопка секретная", lockedP: "Введи цифровой код, чтобы увидеть послание.",
     pinLabel: "Цифровой код", open: "Открыть", wrong: "Код неверный. Попробуй ещё раз.",
     tooMany: "Слишком много неверных попыток. Кнопка временно заблокирована. Попробуй позже.",
+    openHint: "Нажми, чтобы открыть", skip: "Пропустить",
   },
 };
 

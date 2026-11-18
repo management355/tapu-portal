@@ -10,6 +10,7 @@ import { LANGS, BACK_LABEL, SCAN_STRINGS, getLang } from "@/lib/i18n";
 import { normalizeShortId } from "@/lib/site";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { reportContent, unlockCode } from "./actions";
+import { Opening } from "./opening";
 
 // Scan-Seite: wird beim Antippen des Knopfes oder Scannen des Codes geoeffnet.
 // Sie ist ohne Anmeldung erreichbar und gibt nur den hinterlegten Inhalt heraus.
@@ -145,7 +146,8 @@ export default async function ScanPage({
         </nav>
       </div>
       {shown.state === "content" && (
-        <>
+        // Nach Sprachwechsel oder Meldung wird die Seite nur neu geladen: dann ohne Öffnungs-Animation.
+        <Opening shortId={shown.shortId} play={!sprache && !gemeldet} hint={t.openHint} skipLabel={t.skip}>
           {shown.title && <h1>{shown.title}</h1>}
           <MediaView path={shown.mediaPath} url={shown.mediaUrl} label={shown.title ?? t.file} rotation={shown.rotation} />
           {shown.body && <p className="message-body">{shown.body}</p>}
@@ -166,7 +168,7 @@ export default async function ScanPage({
               </form>
             </details>
           )}
-        </>
+        </Opening>
       )}
       {shown.state === "locked" && (
         <>
