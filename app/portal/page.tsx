@@ -20,6 +20,7 @@ type CodeRow = {
   message_id: string | null;
   archive_item_id: string | null;
   is_active: boolean;
+  opening: "fireworks" | "calm" | "none";
   pin_required: boolean;
   has_pin: boolean;
 };
@@ -89,7 +90,7 @@ export default async function PortalPage({
       .maybeSingle(),
     supabase
       .from("codes")
-      .select("id, short_id, chip_uid, title, target_type, message_id, archive_item_id, is_active, pin_required, has_pin")
+      .select("id, short_id, chip_uid, title, target_type, message_id, archive_item_id, is_active, opening, pin_required, has_pin")
       .eq("owner_id", user.id)
       .order("created_at", { ascending: true }),
     supabase
@@ -267,6 +268,14 @@ export default async function PortalPage({
                     ))}
                   </optgroup>
                 )}
+              </select>
+            </label>
+            <label>
+              Was beim Öffnen vor der Botschaft läuft
+              <select name="opening" defaultValue={code.opening}>
+                <option value="fireworks">Feuerwerk mit Jingle</option>
+                <option value="calm">Ruhig, ohne Ton</option>
+                <option value="none">Nichts, die Botschaft erscheint sofort</option>
               </select>
             </label>
             <fieldset className="pin-box">

@@ -7,15 +7,18 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "
 // - Ton darf ein Browser erst nach einem Antippen abspielen, deshalb startet der Jingle mit dem Tippen.
 // - Beim ersten Öffnen auf einem Gerät läuft die volle Fassung, danach nur eine kurze ohne Ton.
 // - Wer im Gerät „Bewegung reduzieren“ eingestellt hat, sieht die Botschaft sofort.
+// - Ruhige Fassung (je Knopf wählbar): Der Schriftzug gleitet ohne Ton in die Mitte, ein paar Punkte
+//   steigen auf, dann erscheint die Botschaft von selbst. Ein Antippen ist nicht nötig.
 
 const JINGLE = "/sounds/tapu-jingle.mp3";
 const BOOM_MS = 2300; // Länge des Jingles plus Ausklang
 const SHORT_MS = 1000;
+const CALM_MS = 2600;
 const FADE_MS = 350;
 const COLORS = ["#ff5a1f", "#2437ff", "#111111", "#ffc21f"];
 
 type Start = "full" | "short" | "none";
-type Stage = "fly" | "boom" | "short" | "out" | "done";
+type Stage = "fly" | "boom" | "calm" | "short" | "out" | "done";
 
 // Einmal je Seitenaufruf festgelegt, damit sich die Fassung nicht mitten im Ablauf ändert.
 const starts = new Map<string, Start>();
@@ -108,6 +111,49 @@ function runFireworks(canvas: HTMLCanvasElement, bursts: number, spanMs: number)
   };
 }
 
+// Ruhige Fassung: einzelne Punkte steigen langsam auf und verblassen.
+function runDrift(canvas: HTMLCanvasElement): () => void {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return () => {};
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  canvas.width = Math.round(width * ratio);
+  canvas.height = Math.round(height * ratio);
+  ctx.scale(ratio, ratio);
+  const dots = Array.from({ length: 22 }, (_, i) => ({
+    x: width * (0.08 + Math.random() * 0.84),
+    y: height * (0.55 + Math.random() * 0.5),
+    speed: 0.35 + Math.random() * 0.6,
+    sway: Math.random() * Math.PI * 2,
+    size: 3 + Math.random() * 4,
+    color: COLORS[i % COLORS.length],
+  }));
+  const begin = performance.now();
+  let frame = 0;
+  let last = begin;
+  const tick = (now: number) => {
+    const step = Math.min(2.5, (now - last) / 16.7);
+    last = now;
+    const age = (now - begin) / CALM_MS;
+    const alpha = Math.max(0, Math.min(1, age * 4, (1 - age) * 3)) * 0.55;
+    ctx.clearRect(0, 0, width, height);
+    ctx.globalAlpha = alpha;
+    for (const dot of dots) {
+      dot.y -= dot.speed * step;
+      dot.sway += 0.02 * step;
+      ctx.fillStyle = dot.color;
+      ctx.beginPath();
+      ctx.arc(dot.x + Math.sin(dot.sway) * 10, dot.y, dot.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    frame = window.requestAnimationFrame(tick);
+  };
+  frame = window.requestAnimationFrame(tick);
+  return () => window.cancelAnimationFrame(frame);
+}
+
 function Wing({ side }: { side: "left" | "right" }) {
   return (
     <span className={`opening-wing opening-wing-${side}`} aria-hidden="true">
@@ -127,12 +173,14 @@ function Wing({ side }: { side: "left" | "right" }) {
 export function Opening({
   shortId,
   play,
+  variant,
   hint,
   skipLabel,
   children,
 }: {
   shortId: string;
   play: boolean;
+  variant: "fireworks" | "calm";
   hint: string;
   skipLabel: string;
   children: React.ReactNode;
@@ -146,6 +194,7 @@ export function Opening({
     : progress === "out" ? "out"
     : progress === "boom" ? "boom"
     : start === "short" ? "short"
+    : variant === "calm" ? "calm"
     : "fly";
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -180,18 +229,19 @@ export function Opening({
     };
   }, [stage]);
 
-  // Feuerwerk: groß nach dem Antippen, klein in der Kurzfassung.
+  // Feuerwerk: groß nach dem Antippen, klein in der Kurzfassung. Die ruhige Fassung bleibt ohne Feuerwerk.
   useEffect(() => {
-    if (stage !== "boom" && stage !== "short") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
-    return runFireworks(canvas, stage === "boom" ? 7 : 2, stage === "boom" ? BOOM_MS - 500 : 400);
-  }, [stage]);
+    if (stage === "calm") return runDrift(canvas);
+    if (stage === "boom") return runFireworks(canvas, 7, BOOM_MS - 500);
+    if (stage === "short" && variant === "fireworks") return runFireworks(canvas, 2, 400);
+  }, [stage, variant]);
 
-  // Die Kurzfassung endet von selbst.
+  // Kurzfassung und ruhige Fassung enden von selbst.
   useEffect(() => {
-    if (stage !== "short") return;
-    const timer = window.setTimeout(finish, SHORT_MS);
+    if (stage !== "short" && stage !== "calm") return;
+    const timer = window.setTimeout(finish, stage === "calm" ? CALM_MS : SHORT_MS);
     return () => window.clearTimeout(timer);
   }, [stage, finish]);
 
@@ -211,7 +261,7 @@ export function Opening({
       audioRef.current?.play().catch(() => {});
       setProgress("boom");
       later(finish, BOOM_MS);
-    } else if (stage === "boom" || stage === "short") {
+    } else if (stage === "boom" || stage === "short" || stage === "calm") {
       audioRef.current?.pause();
       finish();
     }
@@ -228,7 +278,7 @@ export function Opening({
     <>
       {stage !== "done" && (
         <div className={`opening opening-${stage}`}>
-          <button type="button" className="opening-tap" onClick={tap} aria-label={hint} autoFocus />
+          <button type="button" className="opening-tap" onClick={tap} aria-label={stage === "fly" ? hint : skipLabel} autoFocus />
           <canvas ref={canvasRef} className="opening-sky" aria-hidden="true" />
           <div className="opening-stage" aria-hidden="true">
             <div className="opening-flyer" ref={flyerRef}>

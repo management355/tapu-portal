@@ -33,6 +33,7 @@ type Shown =
       rotation?: number;
       mediaUrl: string | null;
       reportable: boolean;
+      opening: "fireworks" | "calm" | "none";
     };
 
 function deviceClass(userAgent: string): "ios" | "android" | "desktop" | "other" {
@@ -51,7 +52,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
 
   const { data: code } = await admin
     .from("codes")
-    .select("id, owner_id, is_active, target_type, message_id, archive_item_id, pin_required, pin_hash, pin_locked_until")
+    .select("id, owner_id, is_active, target_type, message_id, archive_item_id, pin_required, pin_hash, pin_locked_until, opening")
     .eq("short_id", shortId)
     .maybeSingle();
   if (!code || !code.is_active) return { state: "unavailable" };
@@ -73,6 +74,8 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
     }
   }
 
+  const opening = code.opening === "calm" || code.opening === "none" ? code.opening : "fireworks";
+
   if (code.target_type === "archive" && code.archive_item_id) {
     const { data } = await admin
       .from("archive_items")
@@ -89,6 +92,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
         mediaPath: data.media_path,
         mediaUrl: await signedUrl(ARCHIVE_BUCKET, data.media_path),
         reportable: false,
+        opening,
       };
     }
   }
@@ -109,6 +113,7 @@ async function load(rawId: string, countScan: boolean): Promise<Shown> {
         mediaUrl: await signedUrl(USER_BUCKET, data.media_path),
         rotation: data.media_rotation ?? 0,
         reportable: true,
+        opening,
       };
     }
   }
@@ -147,7 +152,13 @@ export default async function ScanPage({
       </div>
       {shown.state === "content" && (
         // Nach Sprachwechsel oder Meldung wird die Seite nur neu geladen: dann ohne Öffnungs-Animation.
-        <Opening shortId={shown.shortId} play={!sprache && !gemeldet} hint={t.openHint} skipLabel={t.skip}>
+        <Opening
+          shortId={shown.shortId}
+          play={shown.opening !== "none" && !sprache && !gemeldet}
+          variant={shown.opening === "calm" ? "calm" : "fireworks"}
+          hint={t.openHint}
+          skipLabel={t.skip}
+        >
           {shown.title && <h1>{shown.title}</h1>}
           <MediaView path={shown.mediaPath} url={shown.mediaUrl} label={shown.title ?? t.file} rotation={shown.rotation} />
           {shown.body && <p className="message-body">{shown.body}</p>}

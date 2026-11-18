@@ -42,16 +42,20 @@ export async function updateCode(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim().slice(0, 120);
   const target = String(formData.get("target") ?? "");
   const isActive = formData.get("is_active") === "on";
+  const openingRaw = String(formData.get("opening") ?? "");
+  const opening = openingRaw === "calm" || openingRaw === "none" ? openingRaw : "fireworks";
 
   let patch: {
     title: string | null;
     is_active: boolean;
+    opening: "fireworks" | "calm" | "none";
     target_type: "message" | "archive" | null;
     message_id: string | null;
     archive_item_id: string | null;
   } = {
     title: title || null,
     is_active: isActive,
+    opening,
     target_type: null,
     message_id: null,
     archive_item_id: null,
