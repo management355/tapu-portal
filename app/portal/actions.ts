@@ -83,13 +83,14 @@ export async function updateCode(formData: FormData) {
   if (pin !== "" || pinRequired !== (updated!.pin_required === true)) {
     const admin = createAdminClient();
     if (!admin) back({ error: "update" });
-    const pinPatch: { pin_required: boolean; pin_hash?: string; pin_fail_count?: number; pin_locked_until?: null } = {
+    const pinPatch: { pin_required: boolean; pin_hash?: string; pin_fail_count?: number; pin_locked_until?: null; pin_lock_level?: number } = {
       pin_required: pinRequired,
     };
     if (pin !== "") {
       pinPatch.pin_hash = hashPin(pin);
       pinPatch.pin_fail_count = 0;
       pinPatch.pin_locked_until = null;
+      pinPatch.pin_lock_level = 0;
     }
     const { error: pinError } = await admin!.from("codes").update(pinPatch).eq("id", id);
     if (pinError) back({ error: "update" });

@@ -1,5 +1,5 @@
 import QRCode from "qrcode";
-import { getOrigin, normalizeShortId } from "@/lib/site";
+import { getOrigin, normalizeShortId, scanLink } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 
 // Liefert den QR-Code eines eigenen Codes als SVG.
@@ -13,11 +13,12 @@ export async function GET(_request: Request, { params }: { params: Promise<{ sho
   const { data } = await supabase.from("codes").select("short_id").eq("short_id", shortId).maybeSingle();
   if (!data) return new Response("Not found", { status: 404 });
 
-  const origin = await getOrigin();
-  const svg = await QRCode.toString(`${origin}/q/${shortId}`, {
+  const link = scanLink(await getOrigin(), shortId);
+  // Die kurze Adresse lässt Platz für mehr Fehlerkorrektur: Der Code bleibt lesbar, auch wenn der Knopf verkratzt.
+  const svg = await QRCode.toString(link.qr, {
     type: "svg",
     margin: 1,
-    errorCorrectionLevel: "M",
+    errorCorrectionLevel: link.compact ? "Q" : "M",
   });
   return new Response(svg, {
     headers: { "Content-Type": "image/svg+xml", "Cache-Control": "private, max-age=300" },

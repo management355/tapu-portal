@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getAccount } from "@/lib/account";
-import { getOrigin, normalizeShortId } from "@/lib/site";
+import { formatShortId, getOrigin, normalizeShortId, scanLink } from "@/lib/site";
 import { createClient } from "@/lib/supabase/server";
 import { SiteHead } from "@/app/site-head";
 import { PrintSheet } from "./print-sheet";
@@ -23,8 +23,8 @@ export default async function PrintPage({ params }: { params: Promise<{ shortId:
   const { data } = await supabase.from("codes").select("short_id, title, pin_required").eq("short_id", shortId).maybeSingle();
   if (!data) notFound();
 
-  const origin = await getOrigin();
-  const label = `${shortId.slice(0, 5)}·${shortId.slice(5)}`.toUpperCase();
+  const link = scanLink(await getOrigin(), shortId);
+  const label = formatShortId(shortId);
 
   return (
     <main className="print-page">
@@ -32,7 +32,7 @@ export default async function PrintPage({ params }: { params: Promise<{ shortId:
       <p className="small no-print"><Link href="/portal">Zurück zu meinen Knöpfen</Link></p>
       <h1 className="no-print">QR-Code drucken</h1>
       {data.title && <p className="muted no-print">{data.title}</p>}
-      <PrintSheet logo={data.pin_required ? "xtaPu" : "taPu"} qrSrc={`/portal/qr/${shortId}`} label={label} link={`${origin.replace(/^https?:\/\//, "")}/q/${shortId}`} />
+      <PrintSheet logo={data.pin_required ? "xtaPu" : "taPu"} qrSrc={`/portal/qr/${shortId}`} label={label} link={link.display} />
     </main>
   );
 }

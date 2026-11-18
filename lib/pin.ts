@@ -1,8 +1,13 @@
 import "server-only";
 import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
 
-// Zahlencode eines geheimen Knopfes: 4 bis 8 Ziffern.
+// Neuer Zahlencode eines geheimen Knopfes: genau 6 Ziffern.
 export function isValidPin(pin: string): boolean {
+  return /^\d{6}$/.test(pin);
+}
+
+// Bei der Eingabe gelten auch ältere Codes mit 4 bis 8 Ziffern weiter.
+export function isEnterablePin(pin: string): boolean {
   return /^\d{4,8}$/.test(pin);
 }
 
@@ -22,8 +27,6 @@ export function verifyPin(pin: string, stored: string | null): boolean {
   return timingSafeEqual(actual, expected);
 }
 
-export const MAX_PIN_ATTEMPTS = 5;
-export const PIN_LOCK_MINUTES = 10;
 const UNLOCK_SECONDS = 60 * 60;
 
 export function unlockCookieName(shortId: string): string {

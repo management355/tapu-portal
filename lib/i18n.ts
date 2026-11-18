@@ -52,7 +52,7 @@ export const SCAN_STRINGS: Record<Lang, {
     language: "Sprache",
     lockedH: "Dieser Knopf ist geheim", lockedP: "Gib den Zahlencode ein, um die Botschaft zu sehen.",
     pinLabel: "Zahlencode", open: "Öffnen", wrong: "Der Zahlencode stimmt nicht. Bitte versuche es noch einmal.",
-    tooMany: "Zu viele falsche Versuche. Bitte warte zehn Minuten und versuche es dann noch einmal.",
+    tooMany: "Zu viele falsche Versuche. Dieser Knopf ist vorübergehend gesperrt. Bitte versuche es später noch einmal.",
   },
   en: {
     home: "Go to home page", file: "Attached file", reported: "Thank you, your report has been received.",
@@ -63,7 +63,7 @@ export const SCAN_STRINGS: Record<Lang, {
     language: "Language",
     lockedH: "This button is secret", lockedP: "Enter the code to see the message.",
     pinLabel: "Code", open: "Open", wrong: "That code is not correct. Please try again.",
-    tooMany: "Too many wrong attempts. Please wait ten minutes and try again.",
+    tooMany: "Too many wrong attempts. This button is locked for a while. Please try again later.",
   },
   ru: {
     home: "На главную", file: "Прикреплённый файл", reported: "Спасибо, жалоба получена.",
@@ -74,7 +74,7 @@ export const SCAN_STRINGS: Record<Lang, {
     language: "Язык",
     lockedH: "Эта кнопка секретная", lockedP: "Введи цифровой код, чтобы увидеть послание.",
     pinLabel: "Цифровой код", open: "Открыть", wrong: "Код неверный. Попробуй ещё раз.",
-    tooMany: "Слишком много неверных попыток. Подожди десять минут и попробуй снова.",
+    tooMany: "Слишком много неверных попыток. Кнопка временно заблокирована. Попробуй позже.",
   },
 };
 

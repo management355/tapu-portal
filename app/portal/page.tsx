@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiteHead } from "@/app/site-head";
 import { redirect } from "next/navigation";
-import { getOrigin, normalizeShortId } from "@/lib/site";
+import { formatShortId, getOrigin, normalizeShortId, scanLink } from "@/lib/site";
 import { getAccount } from "@/lib/account";
 import { MediaView } from "@/app/media-view";
 import { ARCHIVE_BUCKET, USER_BUCKET } from "@/lib/media";
@@ -44,14 +44,14 @@ function messageLabel(message: MessageRow): string {
 }
 
 const ERRORS: Record<string, string> = {
-  invalid_id: "Diese Nummer hat nicht das richtige Format. Sie besteht aus 10 Zeichen.",
+  invalid_id: "Diese Nummer hat nicht das richtige Format. Sie besteht aus 6 Zeichen (bei den ersten Knöpfen aus 10).",
   code_limit_reached: "Dein Limit an Knöpfen ist erreicht. Mit einem Abo sind mehr möglich.",
   code_not_claimable: "Dieser Knopf ist schon vergeben oder nicht aktiv.",
   not_authenticated: "Bitte melde dich zuerst an.",
   claim: "Der Knopf konnte nicht übernommen werden.",
   create: "Der QR-Code konnte nicht erstellt werden. Vielleicht ist dein Limit erreicht.",
   update: "Die Änderung konnte nicht gespeichert werden.",
-  pin_format: "Der Zahlencode muss aus 4 bis 8 Ziffern bestehen.",
+  pin_format: "Der Zahlencode muss aus genau 6 Ziffern bestehen.",
   pin_missing: "Für einen geheimen Knopf brauchst du einen Zahlencode. Bitte trage einen ein.",
 };
 
@@ -165,11 +165,11 @@ export default async function PortalPage({
       <form className="card stack" action={claimCode}>
         <label>
           Nummer deines Knopfes
-          <input name="short_id" defaultValue={claimId ?? ""} autoCapitalize="none" autoCorrect="off" placeholder="z. B. a9gsbne6h9" required />
+          <input name="short_id" defaultValue={claimId ?? ""} autoCapitalize="characters" autoCorrect="off" placeholder="z. B. A7K2M9" required />
         </label>
         <p className="muted small">
-          Von Hand eintragen musst du sie nur, wenn das Antippen nicht klappt. Du findest die 10 Zeichen
-          am Ende der Adresse, die der Knopf öffnet, nach /q/.
+          Von Hand eintragen musst du sie nur, wenn das Antippen nicht klappt. Die 6 Zeichen stehen auf
+          dem Knopf und am Ende der Adresse, die er öffnet. Groß- oder Kleinschreibung ist egal.
         </p>
         <div><button>Übernehmen</button></div>
       </form>
@@ -192,7 +192,7 @@ export default async function PortalPage({
         <p className="muted">Noch nichts hier. Übernimm einen Knopf oder erstelle einen QR-Code.</p>
       )}
       {codeRows.map((code) => {
-        const link = `${origin}/q/${code.short_id}`;
+        const link = scanLink(origin, code.short_id).url;
         const current =
           code.target_type === "archive" && code.archive_item_id
             ? `archive:${code.archive_item_id}`
@@ -210,7 +210,7 @@ export default async function PortalPage({
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/portal/qr/${code.short_id}`} alt={`QR-Code für ${link}`} />
                   <span className="knopf-code">
-                    {code.short_id.slice(0, 5).toUpperCase()}·{code.short_id.slice(5).toUpperCase()}
+                    {formatShortId(code.short_id)}
                   </span>
                 </div>
                 <div className="knopf-meta">
@@ -280,10 +280,10 @@ export default async function PortalPage({
                 <input
                   name="pin"
                   inputMode="numeric"
-                  pattern="[0-9]{4,8}"
-                  maxLength={8}
+                  pattern="[0-9]{6}"
+                  maxLength={6}
                   autoComplete="off"
-                  placeholder="4 bis 8 Ziffern"
+                  placeholder="6 Ziffern"
                 />
               </label>
               <p className="muted small" style={{ margin: 0 }}>

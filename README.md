@@ -2,6 +2,8 @@
 
 Portal für Knöpfe mit hinterlegten Botschaften: Antippen (NFC) oder Scannen (QR) öffnet `/q/<Kennung>` und zeigt, was der Besitzer hinterlegt hat.
 
+Die Kennung hat 6 Zeichen (Buchstaben und Ziffern ohne 0/O und 1/I/L), Groß- und Kleinschreibung zählen nicht. Die Kurzform `/<Kennung>` leitet auf `/q/<Kennung>` weiter. Dieses Format steht in gedruckten QR-Codes und darf sich nicht mehr ändern.
+
 ## Stand
 
 - Anmelden und Registrieren mit E-Mail und Passwort
@@ -15,13 +17,14 @@ Noch nicht enthalten: Abo-Zahlung, Zugangscode, Statistik, Branding.
 
 ## Einrichtung bei Vercel
 
-Unter „Settings → Environment Variables" drei Angaben eintragen:
+Unter „Settings → Environment Variables" diese Angaben eintragen:
 
 | Name | Wert |
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Projekt-Adresse aus Supabase |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Schlüssel „publishable" aus Supabase |
 | `SUPABASE_SECRET_KEY` | Schlüssel „secret" aus Supabase. Geheim halten. |
+| `SHORT_LINK_HOST` | Optional: Kurzadresse für Knöpfe und QR-Codes, z. B. `tapu.one`. Erst eintragen, wenn die Domain mit dem Projekt verbunden ist. |
 
 Danach in Supabase unter „Authentication → URL Configuration" die Vercel-Adresse als „Site URL" eintragen und `https://<adresse>/auth/callback` als „Redirect URL" hinzufügen.
 

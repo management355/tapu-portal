@@ -2,14 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import {
-  MAX_PIN_ATTEMPTS,
-  PIN_LOCK_MINUTES,
-  createUnlockToken,
-  isValidPin,
-  unlockCookieName,
-  verifyPin,
-} from "@/lib/pin";
+import { createUnlockToken, isEnterablePin, unlockCookieName, verifyPin } from "@/lib/pin";
 import { normalizeShortId } from "@/lib/site";
 import { createAdminClient } from "@/lib/supabase/admin";
 
@@ -37,8 +30,9 @@ export async function reportContent(formData: FormData) {
   redirect(`/q/${shortId}?gemeldet=1`);
 }
 
-// Code-Eingabe eines geheimen Knopfes. Nach mehreren falschen Versuchen ist der Knopf
-// für einige Minuten gesperrt, damit niemand alle Codes durchprobieren kann.
+// Code-Eingabe eines geheimen Knopfes. Nach fünf falschen Versuchen ist der Knopf gesperrt,
+// zuerst 10 Minuten, bei weiteren Fehlversuchen länger (bis 60 Minuten). So kann niemand
+// alle Codes durchprobieren.
 export async function unlockCode(formData: FormData) {
   const shortId = normalizeShortId(String(formData.get("short_id") ?? ""));
   if (!shortId) redirect("/");
@@ -48,28 +42,24 @@ export async function unlockCode(formData: FormData) {
   if (!admin) redirect(`/q/${shortId}`);
   const { data: code } = await admin
     .from("codes")
-    .select("id, pin_required, pin_hash, pin_fail_count, pin_locked_until")
+    .select("id, pin_required, pin_hash")
     .eq("short_id", shortId)
     .maybeSingle();
   if (!code || !code.pin_required || !code.pin_hash) redirect(`/q/${shortId}`);
 
-  const lockedUntil = code.pin_locked_until ? new Date(code.pin_locked_until).getTime() : 0;
-  if (lockedUntil > Date.now()) redirect(`/q/${shortId}?code=gesperrt`);
+  // Der Versuch wird in der Datenbank gezählt, bevor der Code geprüft wird. Zählen und Sperren
+  // geschehen dort in einem Schritt, damit auch viele gleichzeitige Anfragen die Sperre nicht umgehen.
+  const { data: attempt, error } = await admin.rpc("pin_attempt", { p_code_id: code.id });
+  if (error || (attempt !== "ok" && attempt !== "last")) redirect(`/q/${shortId}?code=gesperrt`);
 
-  if (!isValidPin(pin) || !verifyPin(pin, code.pin_hash)) {
-    const fails = (code.pin_fail_count ?? 0) + 1;
-    const lock = fails >= MAX_PIN_ATTEMPTS;
-    await admin
-      .from("codes")
-      .update({
-        pin_fail_count: lock ? 0 : fails,
-        pin_locked_until: lock ? new Date(Date.now() + PIN_LOCK_MINUTES * 60_000).toISOString() : null,
-      })
-      .eq("id", code.id);
-    redirect(`/q/${shortId}?code=${lock ? "gesperrt" : "falsch"}`);
+  if (!isEnterablePin(pin) || !verifyPin(pin, code.pin_hash)) {
+    redirect(`/q/${shortId}?code=${attempt === "last" ? "gesperrt" : "falsch"}`);
   }
 
-  await admin.from("codes").update({ pin_fail_count: 0, pin_locked_until: null }).eq("id", code.id);
+  await admin
+    .from("codes")
+    .update({ pin_fail_count: 0, pin_locked_until: null, pin_lock_level: 0 })
+    .eq("id", code.id);
   const token = createUnlockToken(shortId, code.pin_hash);
   if (token) {
     (await cookies()).set(unlockCookieName(shortId), token.value, {
